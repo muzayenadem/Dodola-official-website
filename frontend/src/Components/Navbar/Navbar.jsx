@@ -47,8 +47,8 @@ function Navbar() {
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">History</a>
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Healthy</a>
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Industry</a>
-                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Contructions</a>
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Edjucation</a>
+                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Constructions</a>
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Contact</a>
             </div>
 
@@ -62,7 +62,7 @@ function Navbar() {
 
     <div
   id="carouselExampleCaptions"
-  className="relative h-[70vh]"
+  className="relative h-[40vh] md:h-[70vh]"
   data-twe-carousel-init
   data-twe-ride="carousel">
   {/* <!--Carousel indicators--> */}
@@ -93,7 +93,7 @@ function Navbar() {
 
   {/* <!--Carousel items--> */}
   <div
-    class="relative w-full h-[70vh] capitalize overflow-hidden after:clear-both after:block after:content-[0]">
+    class="relative w-full h-[40vh] md:h-[70vh] capitalize overflow-hidden after:clear-both after:block after:content-[0]">
     {/* <!--First item--> */}
     <div
       class="relative float-left -mr-[100%] w-full h-full transition-transform duration-[400ms] ease-in-out motion-reduce:transition-none"
