@@ -1,5 +1,6 @@
 import { MdDarkMode } from "react-icons/md";
 import React from 'react'
+import { img1 } from "../Images/images";
 
 function Navbar() {
   return (
@@ -81,14 +82,14 @@ function Navbar() {
       data-twe-carousel-item
       style={{backfaceVisibility:'hidden'}}>
       <img
-        src="https://tecdn.b-cdn.net/img/Photos/Slides/img%20(15).jpg"
-        class="block w-full"
+        src={img1}
+        class="block w-full opacity-60"
         alt="..." />
       <div
-        class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block">
-        <h5 class="text-xl">First slide label</h5>
-        <p>
-          Some representative placeholder content for the first slide.
+        class="absolute inset-x-[15%] bottom-[20%] hidden py-5 text-center text-white md:block">
+        <h5 class="text-3xl  font-bold">Dodola Official website</h5>
+        <p className="text-2xl font-bold ">
+         The fast growing smart city in ethiopia oromia region
         </p>
       </div>
     </div>
@@ -179,12 +180,12 @@ function Navbar() {
     <div class="container px-6 py-16 mx-auto text-center">
         <div class="max-w-lg mx-auto">
             <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Welcome to dodola city with a full of intention</h1>
-            <p class="mt-6 text-gray-500 dark:text-gray-300">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero similique
+            <p class="mt-6 text-gray-500 dark:text-gray-300">Dodola City is a picturesque town in Ethiopia's Oromia Region, known for its rich cultural heritage and stunning natural beauty. Nestled in the highlands near the Bale Mountains, Dodola offers breathtaking landscapes and outdoor activities. 
                 obcaecati illum mollitia.</p>
             <button class="px-5 py-2 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
-                Start 14-Day free trial
+                Start enjoying with dodola's fresh air
             </button>
-            <p class="mt-3 text-sm text-gray-400 ">No credit card required</p>
+            <p class="mt-3 text-sm text-gray-400 ">feel free to contact us </p>
         </div>
 
         <div class="flex justify-center mt-10">
