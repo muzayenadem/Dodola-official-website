@@ -1,4 +1,5 @@
 import React from 'react'
+import { logo1 } from '../Images/images'
 
 function Footer() {
   return (
@@ -8,10 +9,10 @@ function Footer() {
             <div class="w-full -mx-6 lg:w-2/5">
                 <div class="px-6">
                     <a href="#">
-                        <img class="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt=""/>
+                        <img class="w-auto h-8 sm:h-10 rounded-md" src={logo1} alt=""/>
                     </a>
 
-                    <p class="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p>
+                    <p class="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000 + other and never miss out about dodola city on new tips , jobs, bids, and more.</p>
 
                     <div class="flex mt-6 -mx-2">
                         <a href="#"
@@ -58,22 +59,22 @@ function Footer() {
 
                     <div>
                         <h3 class="text-gray-700 uppercase dark:text-white">Blog</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Tec</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Music</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Videos</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">education</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">healthy</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">economy system</a>
                     </div>
 
                     <div>
                         <h3 class="text-gray-700 uppercase dark:text-white">Products</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Mega cloud</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Aperion UI</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Meraki UI</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Wheat</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Minerals</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Others</a>
                     </div>
 
                     <div>
                         <h3 class="text-gray-700 uppercase dark:text-white">Contact</h3>
-                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">+1 526 654 8965</span>
-                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">example@email.com</span>
+                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">+251 36591302</span>
+                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">dodola@email.com</span>
                     </div>
                 </div>
             </div>

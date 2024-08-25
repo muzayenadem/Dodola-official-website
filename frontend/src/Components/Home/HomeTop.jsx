@@ -1,0 +1,24 @@
+import React from 'react'
+import { wheat } from '../Images/images'
+
+function HomeTop() {
+  return (
+    <div className="container px-6 py-16 mx-auto text-center">
+    <div className="max-w-lg mx-auto">
+        <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Welcome to Dodola City, where every element is designed with care</h1>
+        <p className="mt-6 text-gray-500 dark:text-gray-300">Dodola City is a picturesque town in Ethiopia's Oromia Region, known for its rich cultural heritage and stunning natural beauty. Nestled in the highlands near the Bale Mountains, Dodola offers breathtaking landscapes and outdoor activities. 
+            obcaecati illum mollitia.</p>
+        <button class="px-5 py-2 mt-6 text-sm font-medium  leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
+            Start enjoying with dodola's fresh air
+        </button>
+        <p className="mt-3 text-sm text-gray-400 ">feel free to contact us </p>
+    </div>
+
+    <div className="flex justify-center mt-10">
+        <img className=" w-full h-[500px] object-cover rounded-xl lg:w-4/5" src={wheat}/>
+    </div>
+</div>
+  )
+}
+
+export default HomeTop
