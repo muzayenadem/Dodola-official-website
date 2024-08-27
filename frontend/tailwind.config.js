@@ -8,6 +8,17 @@ module.exports = {
   theme: {
     extend: {},
   },
-  // darkMode: "class",
-  plugins: [require("tw-elements/plugin.cjs")],
+  darkMode: "class",
+  plugins: [
+    // themeVariants({
+    //   themes: {
+    //     light: {
+    //       selector: ".light-theme",
+    //     },
+    //     dark: {
+    //       selector: ".dark-theme",
+    //     },
+    //   },
+    // }),
+    require("tw-elements/plugin.cjs")],
 };

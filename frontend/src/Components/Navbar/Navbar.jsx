@@ -1,14 +1,54 @@
-import { MdDarkMode, MdMenu } from "react-icons/md";
+import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
 import React, { useEffect, useState } from 'react'
 import SliderImage from "../Home/SliderImage";
 import { logo1 } from "../Images/images";
 function Navbar() {
+  const [theme ,setTheme] = useState(<MdDarkMode/>)
   const [isOpen,setIsOpen] = useState(false)
   const [me,setMe] = useState('data-twe-carousel-active')
 
   useEffect(()=>{
     setMe('data-twe-carousel-active')
   },[])
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  const setDark = ()=>{
+    localStorage.theme = 'dark'
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      setTheme(<MdLightMode/>)
+    } else {
+      document.documentElement.classList.remove('dark')
+      setTheme(<MdLightMode/>)
+    }
+  }
+
+  const setLight = () =>{
+    localStorage.theme = 'light'
+    if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+      document.documentElement.classList.add('light')
+      // setTheme(<MdDarkMode/>)
+    } 
+    // else {
+    //   document.documentElement.classList.remove('light')
+    //   setTheme(<MdDarkMode/>)
+    // }
+   // localStorage.removeItem('theme')
+  }
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <>
     <section className="bg-white dark:bg-gray-900">
@@ -32,6 +72,7 @@ function Navbar() {
                </svg>
                   }
                 </button>
+                <button onClick={toggleDarkMode} className=" dark:text-white text-gray-900  data-theme-light text-2xl font-bold ml-5">{isDarkMode ? <MdLightMode/> : <MdDarkMode/>}</button>
             </div>
         </div>
 
@@ -49,7 +90,7 @@ function Navbar() {
             <a className="block px-5 py-2 mt-4 text-sm text-center text-white capitalize bg-blue-600 rounded-lg lg:mt-0 hover:bg-blue-500 lg:w-auto" href="#">
                 See News
             </a>
-            <span onClick={()=>alert ('')} className="text-neutral-200 data-theme-light text-2xl font-bold ml-5"><MdDarkMode/></span>
+            <button onClick={toggleDarkMode} className=" border-[1px] bg-gray-500 dark:bg-slate-700 border-gray-700 dark:border-neutral-200 w-10 h-10 items-center lg:flex rounded-full justify-center  dark:text-white hidden  text-gray-900  data-theme-light text-2xl font-bold ml-5">{isDarkMode ? <MdLightMode/> : <MdDarkMode/>}</button>
         </div>
     </nav>
     <SliderImage/>
