@@ -6,7 +6,9 @@ import Footer from '../../Components/Footer/Footer'
 function Home() {
   return (
     <>
-      <Navbar/>
+    <div className="sticky top-0 left-0 z-50">
+    <Navbar/>
+    </div>
       <MainHome/>
       <Footer/>
     </>

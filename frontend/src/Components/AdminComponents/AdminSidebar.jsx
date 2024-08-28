@@ -20,6 +20,8 @@ import { FaFacebook,FaGoogle,FaYoutube,FaX, FaQuora,FaGithub,FaReddit,FaChartAre
 import { MdArrowBack, MdArrowForward, MdClear, MdMenu, MdSpaceDashboard } from "react-icons/md";
 
 import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { closeAdminSidebarToggle, openAdminSidebarToggle } from "../../Controller/Buttons/ToggleAndminSidebar";
 
 
 function AdminSidebar() {
@@ -48,19 +50,18 @@ function AdminSidebar() {
   const responsive = () =>{
     setOpen(true)
   }
+  const dispatch = useDispatch()
+  const AdminToggle = useSelector(state => state.AdminToggle.open)
   return (
     <div className={` py-1 md:py-0 sticky md:sticky  top-0 bg-white dark:bg-gray-900 left-0 z-10  `}>
-           <div onClick={()=>setOpen(false)} className={`flex md:hidden bg-white dark:bg-gray-900 dark:text-white/80 flex-col justify-end items-end px-6 py-2 ${!open && 'hidden'}`}>
-                  <span className='text-2xl font-bold'><MdMenu/></span>
-                </div>
             <Sidebar
-              className={`h-[100vh] ${open == true ? 'hidden lg:block' :'block'} sticky top-2 bg-white dark:bg-gray-950  left-0 md:py-3 `} 
+              className={`h-[100vh] ${AdminToggle == false ? 'hidden lg:block' :'block'} sticky top-2 bg-white dark:bg-gray-950  left-0 md:py-3 `} 
                collapsed={!collapsed}
                toggled={toggled}
                breakPoint={''} // Example breakpoint
                rtl={false} // Example RTL setting
                >
-                <div onClick={()=>setOpen(true)}  className="flex bg-white  dark:bg-gray-900 dark:text-white/80 md:hidden flex-col justify-end items-end px-6 py-2">
+                <div onClick={()=> dispatch(closeAdminSidebarToggle())}  className="flex bg-white  dark:bg-gray-900 dark:text-white/80 md:hidden flex-col justify-end items-end px-6 py-2">
                   <span className='text-2xl font-bold'><MdClear/></span>
                 </div>
                   <div className='flex flex-col justify-end items-end px-6 bg-white dark:bg-gray-900 dark:text-white/80 py-5'>
