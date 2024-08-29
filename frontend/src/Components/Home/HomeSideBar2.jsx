@@ -79,16 +79,16 @@ function HomeSideBar2() {
                   </div>
     <Menu className={`bg-white   dark:text-gray-400 dark:bg-gray-950 ${!collapsed ? '' : 'min-h-[79vh]'}`}>
     <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<MdSpaceDashboard/>} onClick={close} component={<Link to=''/>}>Home </MenuItem>
-      <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaArrowDown/> && <FaArrowUp/>} label="Post">
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={close} component={<Link to='blog-post'/>}>Blog Post</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='job-post'/>}>Job</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='bid-post'/>}>Bid</MenuItem>
+      <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaArrowDown/> && <FaArrowUp/>} label="Offices">
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={close} component={<Link to='blog-post'/>}>Head Office</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='job-post'/>}>ODP Office</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='bid-post'/>}>ABO Office</MenuItem>
       </SubMenu>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={close} component={<Link to='/'/>}>Property </MenuItem>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoIosBed/>}> Listing </MenuItem>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaTiktok/>}> Tiktok </MenuItem>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}> Reddit </MenuItem>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}> Facebook </MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={close} component={<Link to='/'/>}>Industry</MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoIosBed/>}>History</MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaTiktok/>}>Education </MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}>Healthy </MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}>Constructions </MenuItem>
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label=' News '>
         <MenuItem  className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>Moment</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaQuora/>}>Jobs</MenuItem>
