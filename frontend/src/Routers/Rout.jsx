@@ -9,7 +9,9 @@ function Rout() {
   return (
    <Router>
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home/>}>
+            <Route path='history' element={<div className='p-40'>History</div>}/>
+        </Route>
         <Route path='/admin' element={<Admin/>}>
             <Route path='' element={<div>default page</div>}/>
             <Route path='blog-post' element={<NewPost/>}/>
