@@ -57,7 +57,7 @@ function HomeSideBar2() {
   return (
     <div className={` py-1 md:py-0 absolute min-h-full flex flex-col  top-0 bg-white dark:bg-gray-900 left-0 z-10  `}>
             <Sidebar
-              className={`h-[100vh] ${HomeToggle == false ? 'hidden lg:block' :'block'}  flex flex-col gap-32 sticky top-2 bg-white dark:bg-gray-950 left-0 md:py-3 `} 
+              className={`h-[100vh] ${HomeToggle == false ? 'hidden lg:block' :'block'} lg:hidden  flex flex-col gap-32 sticky top-2 bg-white dark:bg-gray-950 left-0 md:py-3 `} 
                collapsed={collapsed}
                toggled={toggled}
                breakPoint={''} // Example breakpoint
