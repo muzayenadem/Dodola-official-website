@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import SliderImage from "../Home/SliderImage";
 import { logo1 } from "../Images/images";
 import NewPost from "../AdminComponents/PostComponents/NewPost/NewPost";
+import { useDispatch, useSelector } from "react-redux";
+import { closeHomeSidebarToggle, openHomeSidebarToggle } from "../../Controller/Buttons/ToggleHomeSidebar";
 function Navbar() {
   const [theme ,setTheme] = useState(<MdDarkMode/>)
   const [isOpen,setIsOpen] = useState(false)
@@ -26,6 +28,10 @@ function Navbar() {
     setIsDarkMode(!isDarkMode);
   };
 
+
+  const dispatch = useDispatch()
+ const HomeToggle = useSelector(state=> state.HomeToggle.open)
+
   return (
     <>
     <section className="bg-white  dark:bg-gray-900">
@@ -39,13 +45,13 @@ function Navbar() {
             <div className="flex lg:hidden gap-2">
                 <button onClick={toggleDarkMode} className=" dark:text-white text-gray-900  data-theme-light text-2xl font-bold ml-5">{isDarkMode ? <MdDarkMode/> : <MdLightMode/> }</button>
                 <button  type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-                  {!isOpen && 
-                        <sspan onClick={()=> setIsOpen(true)}  className="w-6 text-3xl font-bold h-6" strokeWidth="2">
+                  {!HomeToggle && 
+                        <sspan onClick={()=> dispatch(openHomeSidebarToggle())}  className="w-6 text-3xl font-bold h-6" strokeWidth="2">
                           <MdMenu/>
                     </sspan>
                   }
-                  {isOpen &&
-                   <svg onClick={()=> setIsOpen(false)}  xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  {HomeToggle &&
+                   <svg onClick={()=> dispatch(closeHomeSidebarToggle())}  xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                </svg>
                   }

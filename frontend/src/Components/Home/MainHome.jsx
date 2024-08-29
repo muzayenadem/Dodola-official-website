@@ -7,6 +7,8 @@ import Feutures from './Feutures'
 import Subscribe from './Subscribe'
 import Contact from './Contact'
 import NewPost from '../AdminComponents/PostComponents/NewPost/NewPost'
+import HomeSidebar from './HomeSidebar'
+import HomeSideBar2 from './HomeSideBar2'
 
 function MainHome() {
   return (
