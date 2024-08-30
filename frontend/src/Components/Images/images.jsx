@@ -17,6 +17,7 @@ import wheat2 from './wheat2.jpg'
 import logo1 from './logo1.png'
 import logo2 from './logo2.png'
 import community from './community.jpg'
+import students from './students.jpg'
 export {
 logo1,
 logo2,    
@@ -36,5 +37,6 @@ samson,
 beriso,
 wheat,
 wheat2,
+students,
 community,
 }

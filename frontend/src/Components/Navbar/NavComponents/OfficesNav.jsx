@@ -1,7 +1,7 @@
 import React from 'react'
-import { dodoCity } from '../../Images/images'
+import { dodoCity, head, mother } from '../../Images/images'
 import { AnimatePresence,motion } from 'framer-motion'
-
+import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 function OfficesNav({setOffice}){
     return(
         <>
@@ -25,7 +25,7 @@ function OfficesNav({setOffice}){
 function Navs({setOffice}) {
 return (
   <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setOffice(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
-   <div className="flex flex-col py-5 px-16 w-1/2">
+   <div className="flex flex-col py-5 px-16 w-[40%]">
       <motion.h2  className=' text-3xl'>Welcom to Dodola Offices service </motion.h2>
       <p className='px-4 py-2'>Select the office that you wanted to contact or visit</p>
         <div className="flex p-6">
@@ -39,8 +39,87 @@ return (
           </ul>
         </div>
      </div>
-    <div className="flex w-1/2">
-     <img src={dodoCity}/>
+    <div className="flex w-[60%]">
+      <div className="w-full grid grid-cols-2 xl:grid-cols-3 gap-3">
+        <div className="flex flex-col gap-2">
+          <img src={head}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+        <img src={head}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+        <img src={mother}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+        <img src={head}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+        <img src={mother}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+        <img src={head}  className='w-72 h-52 rounded-md'/>
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+            <span><HiOutlinePhoneOutgoing/></span>
+            <p>+251 936591302</p>
+            </div>
+            <div className="flex gap-2 flex-col ">
+            <h2>Hasan Obsee</h2>
+            <p className='text-[12px]'> Dodola city head office manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </motion.div>
   )

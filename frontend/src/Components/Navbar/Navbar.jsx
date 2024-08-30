@@ -12,10 +12,12 @@ import AboutsNav from "./NavComponents/AboutsNav";
 import IndustryNav from "./NavComponents/IndustryNav";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import OfficesNav from "./NavComponents/OfficesNav";
+import EducationNav from "./NavComponents/EducationNav";
 function Navbar() {
   const [about,setAbout] = useState(false)
   const [industry, setIndustry] = useState(false)
   const [office,setOffice] = useState(false)
+  const [education,setEducation] = useState(false)
 
 
 
@@ -54,21 +56,31 @@ function Navbar() {
  const openAbout = () => {
   setIndustry(false)
   setOffice(false)
+  setEducation(false)
   setAbout(true)
  }
  const openIndustry = () => {
   setIndustry(true)
   setOffice(false)
   setAbout(false)
+  setEducation(false)
  }
  
  const openOffice = () => {
   setIndustry(false)
+  setEducation(false)
   setOffice(true)
   setAbout(false)
  }
+
  
- 
+ const openEducation = () => {
+  setIndustry(false)
+  setOffice(false)
+  setAbout(false)
+  setEducation(true)
+ }
+
   return (
     <>
     <section className="bg-white w-screen  dark:bg-gray-900">
@@ -118,7 +130,15 @@ function Navbar() {
                     className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
                   />
                 </a>
-                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Education</a>
+                <a onMouseEnter={openEducation}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
+                <span className=" flex gap-1 items-center ">Education<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                  <span
+                    style={{
+                      transform: education ? "scaleX(1)" : "scaleX(0)",
+                    }}
+                    className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
+                  />
+                </a>
                 <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Constructions</a>
                 <a onMouseEnter={openOffice} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
                 <span className=" flex gap-1 items-center ">Offices<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
@@ -141,7 +161,7 @@ function Navbar() {
 {industry && <IndustryNav setIndustry={setIndustry}/>}
 {about && <AboutsNav setAbout={setAbout} />}
 {office && <OfficesNav setOffice={setOffice}/>}
-
+{education && <EducationNav setEducation={setEducation}/>}
  
 </>
   )
