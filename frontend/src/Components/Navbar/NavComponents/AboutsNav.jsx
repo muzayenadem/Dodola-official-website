@@ -23,13 +23,19 @@ function AboutsNav({setAbout,about}){
 function Component({setAbout}) {
   return (
     <div onMouseLeave={()=> setAbout(false)} className="flex  py-6 px-8 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
-    <div className="flex flex-col gap-5 items-start px-16 w-1/2 justify-center py-5">
-        <a href='#'>About</a>
-        <a href='#'>History</a>
-        <a href='#'>Adminstrater Team</a>
-        <a href='#'>FAQ</a>
-        <a href='#'>History</a>
-        <a href='#'>History</a>
+    <div className="flex flex-col px-16 py-5 w-1/2">
+     <h1 className='text-3xl'>To Know More About Dodola City</h1>
+     <p className='px-4 py-2'>Dodola is Naturally gifted city</p>
+     <div className="flex p-6">
+      <ul className='underline flex flex-col gap-2'>
+        <li>History</li>
+        <li>Festivali</li>
+        <li>Adminstrator</li>
+        <li>Fautures</li>
+        <li>Adminstrator Team</li>
+        <li>FAQ</li>
+      </ul>
+     </div>
     </div>
     <div className="flex w-1/2">
       <img src={dodolaCity2}/>

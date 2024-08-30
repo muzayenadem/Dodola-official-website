@@ -99,6 +99,7 @@ function Navbar() {
        
         <div  className={`${isOpen ? 'translate-x-0 opacity-100 h-[100vh] ':'opacity-0 -translate-x-full '}absolute inset-x-0 z-20 w-full px-6   py-4  transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
             <div className="flex flex-col space-y-4 lg:mt-0 lg:flex-row lg:-px-8 lg:space-y-0">
+            <a a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Home</a>
                 <a onMouseEnter={openAbout} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
                   <span className=" flex gap-1 items-center ">About   <span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
@@ -108,8 +109,7 @@ function Navbar() {
                     className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
                   />
                 </a>
-              <a a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Healthy</a>
-                <a onMouseEnter={openIndustry}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
+                   <a onMouseEnter={openIndustry}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
                 <span className=" flex gap-1 items-center ">Industry<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
