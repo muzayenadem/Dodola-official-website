@@ -1,6 +1,7 @@
 import React from 'react'
-import { dodolaCity2 } from '../../Images/images'
+import { dodolaCity2, water } from '../../Images/images'
 import { AnimatePresence ,motion} from 'framer-motion'
+import { Link } from 'react-router-dom'
 function AboutsNav({setAbout,about}){
     return (
         <>
@@ -28,18 +29,17 @@ function Component({setAbout}) {
      <p className='px-4 py-2'>Dodola is Naturally gifted city</p>
      <div className="flex p-6">
       <ul className='underline flex flex-col gap-2'>
-        <li>History</li>
-        <li>Festivali</li>
-        <li>Theme</li>
-        <li>Adminstrator</li>
-        <li>Fautures</li>
+        <Link onClick={()=> setAbout(false)} to={'/history'}><li>History</li></Link>
+        <Link onClick={()=> setAbout(false)} to={'/festival'}><li>Festival</li></Link>
+        <Link onClick={()=> setAbout(false)} to={'/theme'}><li>Theme</li></Link>
+        <Link onClick={()=> setAbout(false)} to={'/feutures'}><li>Feutures</li></Link>
         <li>Adminstrator Team</li>
-        <li>FAQ</li>
+        <Link onClick={()=> setAbout(false)} to={'/question'}><li>FAQ</li></Link>
       </ul>
      </div>
     </div>
     <div className="flex w-1/2">
-      <img src={dodolaCity2}/>
+      <img src={water} className='rounded-md'/>
     </div>
   </motion.div>
   )

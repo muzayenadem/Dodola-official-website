@@ -18,12 +18,20 @@ import logo1 from './logo1.png'
 import logo2 from './logo2.png'
 import community from './community.jpg'
 import students from './students.jpg'
+import water from './History/water.jpeg'
+import water2 from './History/water2.jpeg'
+import fafate from './History/fafate.jpg'
+import city2 from './History/city.jpg'
+import hole from './holl.jpg'
+import abdiboru from './AbdiBoru.jpg'
+import mountain from './History/mountain.jpeg'
 export {
 logo1,
 logo2,    
 img1,
 head,
 dodoCity,
+hole,
 city,
 dodolaCity2,
 dodolaCiityOffice,
@@ -39,4 +47,10 @@ wheat,
 wheat2,
 students,
 community,
+mountain,
+water,
+city2,
+water2,
+fafate,
+abdiboru
 }

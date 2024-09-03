@@ -3,7 +3,7 @@ import { logo1 } from '../Images/images'
 
 function Footer() {
   return (
-    <footer class="bg-white dark:bg-gray-900">
+    <footer class="bg-white dark:bg-gray-900 border-t-[1px] dark:border-t-gray-700 ">
     <div class="container p-6 mx-auto">
         <div class="lg:flex">
             <div class="w-full -mx-6 lg:w-2/5">

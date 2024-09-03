@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SliderImage from './SliderImage'
 import HomeTop from './HomeTop'
 import BlogHome from './BlogHome'
@@ -11,6 +11,9 @@ import HomeSidebar from './HomeSidebar'
 import HomeSideBar2 from './HomeSideBar2'
 
 function MainHome() {
+  useEffect(()=>{
+    document.title= 'dodola official website'
+  })
   return (
     <section className='bg-white dark:bg-gray-900'>
       <NewPost/>

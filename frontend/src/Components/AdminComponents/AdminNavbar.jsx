@@ -9,7 +9,7 @@ function AdminNavbar() {
 const [isDarkMode, setIsDarkMode] = useState(false);
 
 useEffect(() => {
-  if (isDarkMode) {
+  if (!isDarkMode) {
     document.documentElement.classList.add('dark');
   } else {
     document.documentElement.classList.remove('dark');

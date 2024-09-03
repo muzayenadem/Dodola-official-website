@@ -1,0 +1,32 @@
+export const links = [
+    {
+        _id:1,
+        title:'Home',
+        link:'Home'
+    },
+    {
+        _id:2,
+        title:'Feutures',
+        link:'Feutures'
+    },
+    {
+        _id:3,
+        title:'Projects',
+        link:'Projects'
+    },
+    {
+        _id:4,
+        title:'Resume',
+        link:'Resume'
+    },
+    {
+        _id:5,
+        title:'Testimonial',
+        link:'Testimonial'
+    },
+    {
+        _id:6,
+        title:'Contacts',
+        link:'Contacts'
+    },
+]
