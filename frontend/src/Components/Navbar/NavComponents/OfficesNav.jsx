@@ -1,5 +1,5 @@
 import React from 'react'
-import { dodoCity, head, mother } from '../../Images/images'
+import { abdu, dodoCity, head, kantiibaa, mother, tilahun } from '../../Images/images'
 import { AnimatePresence,motion } from 'framer-motion'
 import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 function OfficesNav({setOffice}){
@@ -42,41 +42,53 @@ return (
     <div className="flex w-[60%]">
       <div className="w-full grid grid-cols-2 xl:grid-cols-3 gap-3">
         <div className="flex flex-col gap-2">
-          <img src={head}  className='w-72 h-52 rounded-md'/>
+          <img src={kantiibaa}  className='w-72 h-52 rounded-md'/>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
             <span><HiOutlinePhoneOutgoing/></span>
             <p>+251 936591302</p>
             </div>
             <div className="flex gap-2 flex-col ">
-            <h2>Hasan Obsee</h2>
-            <p className='text-[12px]'> Dodola city head office manager</p>
+            <h2>Obbo Ayyuub Dullee</h2>
+            <div className="flex gap-2 items-center">
+            <p className='text-[12px]'>The mMayor of Dodola</p>
+            |
+            <p className='text-[10px]'>Kantiibaa Magaalaa Dodolaa</p>
+            </div>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-2">
-        <img src={head}  className='w-72 h-52 rounded-md'/>
+        <img src={abdu}  className='w-72 h-52 rounded-md'/>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
             <span><HiOutlinePhoneOutgoing/></span>
             <p>+251 936591302</p>
             </div>
             <div className="flex gap-2 flex-col ">
-            <h2>Hasan Obsee</h2>
-            <p className='text-[12px]'> Dodola city head office manager</p>
+            <h2>Obbo Abdulsalam Hasan</h2>
+            <div className="flex gap-2 items-center">
+            <p className='text-[12px]'>The Deputy Mayor of Dodola</p>
+            |
+            <p className='text-[10px]'>Itti Aanaa Kantiibaa Magaalaa <br/>Dodolaa</p>
+            </div>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-2">
-        <img src={mother}  className='w-72 h-52 rounded-md'/>
+        <img src={tilahun}  className='w-72 h-52 rounded-md'/>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
             <span><HiOutlinePhoneOutgoing/></span>
             <p>+251 936591302</p>
             </div>
             <div className="flex gap-2 flex-col ">
-            <h2>Hasan Obsee</h2>
-            <p className='text-[12px]'> Dodola city head office manager</p>
+            <h2>Obbo Kaasahuun Xilahuun</h2>
+            <div className="flex gap-2 items-center capitalize">
+            <p className='text-[12px] '>head of the office of prosperity part in dodola</p>
+            |
+            <p className='text-[10px]'>Itti gaafatamaa waajjira paartii badhaadhinnamagaalaa Dodolaa</p>
+            </div>
             </div>
           </div>
         </div>

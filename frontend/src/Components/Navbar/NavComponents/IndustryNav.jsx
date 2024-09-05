@@ -1,5 +1,5 @@
 import React from 'react'
-import { dodoCity } from '../../Images/images'
+import { agri, agri2, dodoCity, industrial } from '../../Images/images'
 import { AnimatePresence,motion } from 'framer-motion'
 
 function IndustryNav({setIndustry}){
@@ -38,8 +38,10 @@ function Navs({setIndustry}) {
       </ul>
      </div>
     </div>
-    <div className="flex w-1/2">
-     <img src={dodoCity}/>
+    <div className="grid grid-cols-3 gap-3">
+     <img src={agri} className='w-full h-full rounded-md'/>
+     <img src={agri2}  className='w-full h-full rounded-md'/>
+     <img src={industrial}  className='w-full h-full rounded-md'/>
     </div>
   </motion.div>
   )

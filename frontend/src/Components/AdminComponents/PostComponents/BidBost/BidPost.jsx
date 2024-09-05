@@ -4,7 +4,7 @@ function BidPost() {
   return (
 
 
-<div className='bg-white  dark:bg-gray-900 dark:text-white p-6'>
+<div className='bg-neutral-50  dark:bg-gray-900 dark:text-white p-6'>
 <form >
   <div class="space-y-12">
     <div class="border-b border-gray-900/10 pb-12">

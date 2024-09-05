@@ -33,7 +33,8 @@ function Component({setAbout}) {
         <Link onClick={()=> setAbout(false)} to={'/festival'}><li>Festival</li></Link>
         <Link onClick={()=> setAbout(false)} to={'/theme'}><li>Theme</li></Link>
         <Link onClick={()=> setAbout(false)} to={'/feutures'}><li>Feutures</li></Link>
-        <li>Adminstrator Team</li>
+        <Link onClick={()=> setAbout(false)} to={'/sport'}><li>Sport</li></Link>
+        <li>Religions</li>
         <Link onClick={()=> setAbout(false)} to={'/question'}><li>FAQ</li></Link>
       </ul>
      </div>

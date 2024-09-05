@@ -11,6 +11,7 @@ import Festival from '../Components/About/Festival/Festival'
 import Themes from '../Components/About/Theme/Themes'
 import Feutures from '../Components/About/Feutures/Feutures'
 import Question from '../Components/About/Question/Question'
+import Sport from '../Components/About/Sport/Sport'
 function Rout() {
   return (
    <Router>
@@ -22,6 +23,7 @@ function Rout() {
             <Route path='theme' element={<Themes/>}/>
             <Route path='feutures' element={<Feutures/>}/>
             <Route path='question' element={<Question/>}/>
+            <Route path='sport' element={<Sport/>}/>
         </Route>
         <Route path='/admin' element={<Admin/>}>
             <Route path='' element={<div>default page</div>}/>
