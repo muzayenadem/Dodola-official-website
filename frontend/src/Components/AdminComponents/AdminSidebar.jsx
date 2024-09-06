@@ -3,6 +3,8 @@ import { IoHome } from "react-icons/io5";
 import { IoIosBed } from "react-icons/io";
 import { SiCampaignmonitor } from "react-icons/si";
 import { Link } from 'react-router-dom';
+//real
+import { MdOutlinePostAdd } from "react-icons/md";
 
 //practice
 import { CgProfile } from "react-icons/cg";
@@ -83,7 +85,7 @@ function AdminSidebar() {
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='bid-post'/>}>Bid</MenuItem>
       </SubMenu>
       <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={close} component={<Link to='/'/>}>Property </MenuItem>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoIosBed/>}> Listing </MenuItem>
+      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<MdOutlinePostAdd/>} onClick={close} component={<Link to='main-post'/>}> Listing </MenuItem>
       <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaTiktok/>}> Tiktok </MenuItem>
       <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}> Reddit </MenuItem>
       <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}> Facebook </MenuItem>

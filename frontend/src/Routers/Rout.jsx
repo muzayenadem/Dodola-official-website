@@ -12,6 +12,7 @@ import Themes from '../Components/About/Theme/Themes'
 import Feutures from '../Components/About/Feutures/Feutures'
 import Question from '../Components/About/Question/Question'
 import Sport from '../Components/About/Sport/Sport'
+import MainPost from '../Components/AdminComponents/PostComponents/MainPost/MainPost'
 function Rout() {
   return (
    <Router>
@@ -30,6 +31,7 @@ function Rout() {
             <Route path='blog-post' element={<NewPost/>}/>
             <Route path='job-post' element={<JobPost/>}/>
             <Route path='bid-post' element={<BidPost/>}/>
+            <Route path='main-post' element={<MainPost/>}/>
         </Route>
       </Routes>
    </Router>

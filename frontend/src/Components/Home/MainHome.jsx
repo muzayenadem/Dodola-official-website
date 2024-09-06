@@ -9,6 +9,7 @@ import Contact from './Contact'
 import NewPost from '../AdminComponents/PostComponents/NewPost/NewPost'
 import HomeSidebar from './HomeSidebar'
 import HomeSideBar2 from './HomeSideBar2'
+import SlideImage from './SlideImage'
 
 function MainHome() {
   useEffect(()=>{
@@ -16,7 +17,7 @@ function MainHome() {
   })
   return (
     <section className='bg-white dark:bg-gray-900'>
-      <NewPost/>
+      <SlideImage/>
      <HomeTop/>
      <BlogHome/>
      <Feutures/>
