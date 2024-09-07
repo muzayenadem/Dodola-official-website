@@ -1,13 +1,11 @@
 const express = require('express')
+const createAdmin = require('../Controller/admin/createAdmin')
+const data = require('../Controller/samp')
 const route = express.Router()
 
-route.get('/',(req,res) =>{
-    res.send(process.env.DATABASE)
-    console.log('seems worked')
-})
+route.get('/',data)
 
-route.get('/data',(req,res) =>{
-    res.send('booooooom')
-})
 
+ 
+route.post('/create-admin',createAdmin)
 module.exports = route
