@@ -6,9 +6,9 @@ dotenv.config({path:'./.env'})
 // .then(()=>{
 //     console.log('database successfully connected')
 // })
-.catch((err)=>{
-    console.log(err.message)
-})
+// .catch((err)=>{
+//     console.log(err.message)
+// })
 const app = require('express')()
 
 app.use(route)
