@@ -1,7 +1,7 @@
 const  route  = require('./Routes/Route')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-dotenv.config({path:'./.env'})
+// const mongoose = require('mongoose')
+// const dotenv = require('dotenv')
+// dotenv.config({path:'./.env'})
 // mongoose.connect(process.env.DATABASE)
 // .then(()=>{
 //     console.log('database successfully connected')
