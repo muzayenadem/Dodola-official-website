@@ -1,10 +1,16 @@
 const express = require('express')
 const  route  = require('./Routes/Route')
 const mongoose = require('mongoose')
+const session = require('express-session')
 const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const cors = require('cors')
+const passport = require('passport')
 dotenv.config({path:'./.env'})
+
+require('./Middleware/passportAuth')
+
 mongoose.connect(process.env.DATABASE)
 .then(()=>{
     console.log('database successfully connected')
@@ -16,12 +22,23 @@ mongoose.connect(process.env.DATABASE)
 
 
 const app = express()
-
+app.use(cors({ 
+    origin:['https://gofind.vercel.app','http://localhost:5173','https://gofind-git-ecommerce-muzayen.vercel.app','https://gofind-muzayen.vercel.app','https://gofind-git-gofind-muzayen.vercel.app'],
+     credentials:true,
+     methods: 'GET,POST,PUT,DELETE',
+     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+   }))
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
+
+
+app.use(session({secret:'cats'}))
+//app.use(require('express-session')({ secret: 'secret', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(route)
 app.listen(3600,()=>{

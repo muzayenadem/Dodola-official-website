@@ -13,7 +13,12 @@ import Feutures from '../Components/About/Feutures/Feutures'
 import Question from '../Components/About/Question/Question'
 import Sport from '../Components/About/Sport/Sport'
 import MainPost from '../Components/AdminComponents/PostComponents/MainPost/MainPost'
+import LoginAdmin from '../Components/AdminComponents/LoginAdmin/LoginAdmin'
+import isAdminLoggined from '../Components/ComponentsData/isAdminLoggined'
+import AdminPageNotFound from '../Components/PageNotFound/AdminPageNotFound'
 function Rout() {
+  const adminToken = isAdminLoggined()
+  console.log({adminToken})
   return (
    <Router>
       <Routes>
@@ -25,8 +30,12 @@ function Rout() {
             <Route path='feutures' element={<Feutures/>}/>
             <Route path='question' element={<Question/>}/>
             <Route path='sport' element={<Sport/>}/>
+            <Route path='login-admin' element={<LoginAdmin/>}/>
         </Route>
-        <Route path='/admin' element={<Admin/>}>
+        <Route path='/page-not-found' element={<AdminPageNotFound/>}/>
+        <Route path='/admin' element={
+          adminToken.error !== 'succed' ? <></> :
+          adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
             <Route path='blog-post' element={<NewPost/>}/>
             <Route path='job-post' element={<JobPost/>}/>

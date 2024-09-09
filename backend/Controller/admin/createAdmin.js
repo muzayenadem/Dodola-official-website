@@ -1,6 +1,8 @@
 const adminModel = require('../../Model/adminModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const assureEmail = require('../../Middleware/assureEmail')
+
 
 const createAdmin = async (req,res) =>{
     try {
@@ -8,6 +10,9 @@ const createAdmin = async (req,res) =>{
 
         if(!fname || !lname || !email || !phone || !password || !confirmPassword)
         return res.status(402).send('you must fill all required place')
+
+        if(!assureEmail(email))
+        return res.status(402).send('invalid email address')
 
         if(password !== confirmPassword)
         return res.status(403).send('your password must be matched')
@@ -19,6 +24,7 @@ const createAdmin = async (req,res) =>{
 
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt)
+     
 
         const newAdmin = new adminModel({
             fname,lname,email,phone,password:hashedPassword
@@ -26,7 +32,7 @@ const createAdmin = async (req,res) =>{
 
         const savedAdmin = await newAdmin.save()
 
-        const token = jwt.sign({renterId:savedAdmin._id},process.env.ADMINPASSWORD)
+        const token = jwt.sign({adminId:savedAdmin._id},process.env.ADMINPASSWORD)
         res.cookie('adminToken', token, {
             maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
