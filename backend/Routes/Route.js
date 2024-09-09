@@ -11,7 +11,13 @@ const isLogginedWithGoogle = require('../Middleware/isLogginedWithGoogle')
 const isLogginedWithEmail = require('../Middleware/isLogginedWithEmail')
 const authorizedAdmin = require('../Controller/admin/authorizedAdmin')
 const isAdminLoggined = require('../Controller/admin/AdminToken/isAdminLoggined')
+const contentPost = require('../Controller/post/contentPost')
+const multer = require('multer')
 const route = express.Router()
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 
 // GET METHODS
 route.get('/',data)
@@ -33,6 +39,9 @@ route.post('/login-admin',loginAdmin)
 
 // is admin loggined
 route.get('/isadminloggined',isAdminLoggined)
+
+//POST METHOD
+route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)
 
 
 

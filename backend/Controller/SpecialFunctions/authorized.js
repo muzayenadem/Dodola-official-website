@@ -23,7 +23,7 @@ const authorized =  async (req,res) =>{
             path: '/'
         })
         console.log({token})
-        res.redirect('http://localhost:5173/admin');
+        res.redirect('https://dodola-official-website.vercel.app/admin');
         //sendMail(refreshToken,accessToken)
         // res.status(200).send(`
         //     <div>
