@@ -8,9 +8,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const passport = require('passport')
 dotenv.config({path:'./.env'})
-
+require('dotenv').config();
 require('./Middleware/passportAuth')
-
+//require('./Controller/firebase/admin')
 mongoose.connect(process.env.DATABASE)
 .then(()=>{
     console.log('database successfully connected')
@@ -18,7 +18,6 @@ mongoose.connect(process.env.DATABASE)
 .catch((err)=>{
     console.log(err.message)
 })
-
 
 
 const app = express()

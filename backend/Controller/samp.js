@@ -1,5 +1,5 @@
 const data = async (req,res) =>{
-    res.send('kfdhiwguecd iutf7et')
+    res.send(process.env.SERVICE_ACCOUNT_KEY)
 }
 
 module.exports = data

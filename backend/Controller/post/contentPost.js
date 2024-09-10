@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken')
 const contentModel = require('../../Model/contentModel')
 
+const admin = require('../firebase/admin')
+
 const contentPost = async(req,res) =>{
+    const bucket = admin.storage().bucket(); 
+    const serviceAccountPath = process.env.SERVICE_ACCOUNT_KEY;
     try {
-        // take data from client
-        let {data} = req.body
-        data = JSON.parse(data)
-        const files = req.files
-        
+  
         const adminToken = req.cookies.adminToken
 
         if(!adminToken)
@@ -18,10 +18,40 @@ const contentPost = async(req,res) =>{
         if(!verify)
         return res.status(403).send('not authenticated')
 
+        // take data from client
+        let {data} = req.body
+        data = JSON.parse(data)
+        const files = req.files
+
+        const uploadPromises = files.map(async (file) => {
+            const fileName = `${Date.now()}-${file.originalname}`;
+            const fileRef = bucket.file(`contentImages/${fileName}`);
+     
+            const stream = fileRef.createWriteStream({
+              metadata: {
+                contentType: file.mimetype
+              }
+            });
+     
+            await new Promise((resolve, reject) => {
+              stream.on('error', reject);
+              stream.on('finish', resolve);
+              stream.end(file.buffer);
+            });
+     
+            await fileRef.makePublic();
+            const publicUrl = `https://storage.googleapis.com/${bucket.name}/${fileRef.name}`;
+
+            return publicUrl
+          });
+     
+          const imagesUrl = await Promise.all(uploadPromises);
+        
+          console.log({imagesUrl})
         const newContent = new contentModel({
             adminId:verify.adminId,
             ...data,
-            images:files,
+            images:imagesUrl,
 
         })
         const savedContent = await newContent.save()
