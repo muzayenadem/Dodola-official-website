@@ -10,7 +10,6 @@ const passport = require('passport')
 dotenv.config({path:'./.env'})
 require('dotenv').config();
 require('./Middleware/passportAuth')
-//require('./Controller/firebase/admin')
 mongoose.connect(process.env.DATABASE)
 .then(()=>{
     console.log('database successfully connected')

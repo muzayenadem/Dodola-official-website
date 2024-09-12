@@ -13,6 +13,7 @@ const authorizedAdmin = require('../Controller/admin/authorizedAdmin')
 const isAdminLoggined = require('../Controller/admin/AdminToken/isAdminLoggined')
 const contentPost = require('../Controller/post/contentPost')
 const multer = require('multer')
+const content = require('../Controller/readData/content')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -30,7 +31,8 @@ route.get('/unauthorized', unauthorized)
 //authorized admin
 route.get('/authorized-admin',isLogginedWithEmail,authorizedAdmin)
 
-
+// readdata from database
+route.get('/contents',content)
 
 
 // POST METHOD 

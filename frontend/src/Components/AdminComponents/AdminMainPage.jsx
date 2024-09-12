@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 function AdminMainPage() {
   return (
     <div>
-       <div className=" sticky top-0 left-0 z-10">
+       <div className=" sticky top-0 left-0 z-50">
        <AdminNavbar/>
        </div>
         <div className="flex relative justify-start gap-5 bg-neutral-100 dark:bg-gray-600 dark:text-white" >

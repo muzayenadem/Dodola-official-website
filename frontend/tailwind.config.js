@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flowbite-react/lib/esm/**/*.js",
+    "./node_modules/tw-elements/js/**/*.js",
   ],
   theme: {
     extend: {},

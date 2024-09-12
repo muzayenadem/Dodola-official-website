@@ -5,7 +5,6 @@ const admin = require('../firebase/admin')
 
 const contentPost = async(req,res) =>{
     const bucket = admin.storage().bucket(); 
-    const serviceAccountPath = process.env.SERVICE_ACCOUNT_KEY;
     try {
   
         const adminToken = req.cookies.adminToken

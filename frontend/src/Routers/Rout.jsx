@@ -16,6 +16,8 @@ import MainPost from '../Components/AdminComponents/PostComponents/MainPost/Main
 import LoginAdmin from '../Components/AdminComponents/LoginAdmin/LoginAdmin'
 import isAdminLoggined from '../Components/ComponentsData/isAdminLoggined'
 import AdminPageNotFound from '../Components/PageNotFound/AdminPageNotFound'
+import ManageContent from '../Components/AdminComponents/ManageContent/ManageContent'
+import UpdateContent from '../Components/AdminComponents/UpdateComponents/UpdateContent/UpdateContent'
 function Rout() {
   const adminToken = isAdminLoggined()
   console.log({adminToken})
@@ -41,6 +43,8 @@ function Rout() {
             <Route path='job-post' element={<JobPost/>}/>
             <Route path='bid-post' element={<BidPost/>}/>
             <Route path='main-post' element={<MainPost/>}/>
+            <Route path='content' element={<ManageContent/>}/>
+            <Route path='update-content/:contentId' element={<UpdateContent/>}/>
         </Route>
       </Routes>
    </Router>

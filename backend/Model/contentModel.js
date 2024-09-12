@@ -4,10 +4,6 @@ const schema = mongoose.Schema({
         required:true,
         type:String
     },
-    title:{
-        required:true,
-        type:String,
-    },
     category:{
         required:true,
         type:String
@@ -15,6 +11,14 @@ const schema = mongoose.Schema({
     subCategory:{
         required:true,
         type:String
+    },
+    title:{
+        required:true,
+        type:String,
+    },
+    description:{
+        type:String,
+        required:true
     },
     date:{
         type:String
@@ -29,6 +33,6 @@ const schema = mongoose.Schema({
     }
 })
 
-const contentModel = mongoose.model('Contetns',schema)
+const contentModel = mongoose.model('Contents',schema)
 
 module.exports = contentModel
