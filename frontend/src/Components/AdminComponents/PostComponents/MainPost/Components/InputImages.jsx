@@ -49,12 +49,6 @@ function InputImages({page,previous,next}) {
                             <div className="flex justify-center items-center p-1 w-6 h-6 absolute top-1 right-1 bg-white rounded-full">
                             <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> dispatch(removeMainImages(images.indexOf(img))) & console.log({index:images.indexof(img)})}>&times;</span>
                             </div>
-                          
-                            {/* <video className='w-[100%] h-[100%] rounded-lg' controls>
-                              <source src={URL.createObjectURL(img)} type='video/mp4'></source>
-                              <source src={URL.createObjectURL(img)} type='video/ogg'></source>
-                              nfffffffffffff
-                            </video> */}
                             <img className='w-[100%] h-[100%] rounded-lg' src={URL.createObjectURL(img)} alt=''/>
                         </div>
                         )

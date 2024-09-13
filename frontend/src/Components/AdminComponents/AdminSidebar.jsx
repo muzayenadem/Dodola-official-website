@@ -81,7 +81,7 @@ function AdminSidebar() {
     <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<MdSpaceDashboard/>} onClick={close} component={<Link to=''/>}> Dashboard </MenuItem>
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaArrowDown/> && <FaArrowUp/>} label="Post">
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={close} component={<Link to='blog-post'/>}>Blog Post</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='job-post'/>}>Job</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='jobs'/>}>Job</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={close} component={<Link to='bid-post'/>}>Bid</MenuItem>
       </SubMenu>
       <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={close} component={<Link to='/'/>}>Property </MenuItem>

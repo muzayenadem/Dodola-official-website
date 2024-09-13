@@ -14,6 +14,10 @@ const isAdminLoggined = require('../Controller/admin/AdminToken/isAdminLoggined'
 const contentPost = require('../Controller/post/contentPost')
 const multer = require('multer')
 const content = require('../Controller/readData/content')
+const filterContent = require('../Controller/readData/filterContent')
+const postJob = require('../Controller/post/postJob')
+const jobs = require('../Controller/readData/jobs')
+const filterJobs = require('../Controller/readData/filterJobs')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -31,19 +35,23 @@ route.get('/unauthorized', unauthorized)
 //authorized admin
 route.get('/authorized-admin',isLogginedWithEmail,authorizedAdmin)
 
+// is admin loggined
+route.get('/isadminloggined',isAdminLoggined)
+
 // readdata from database
 route.get('/contents',content)
+route.get('/filter-content',filterContent)
+route.get('/jobs',jobs)
+route.get('/filter-jobs',filterJobs)
 
 
 // POST METHOD 
 route.post('/create-admin',createAdmin)
 route.post('/login-admin',loginAdmin)
 
-// is admin loggined
-route.get('/isadminloggined',isAdminLoggined)
-
 //POST METHOD
 route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)
+route.post('/post-job',isLogginedWithEmail,upload.array('files'),postJob)
 
 
 

@@ -9,55 +9,52 @@ const initialState = {
     error:''
 }
 //server side render
-export const fetchContent = createAsyncThunk('contentSlice/fetchContent',()=>{
-   return axiosFunction(`${serverLink}/contents`)
+export const fetchJobs = createAsyncThunk('jobSlice/fetchJobs',()=>{
+   return axiosFunction(`${serverLink}/jobs`)
 })
-export const  filterContentFromServer = createAsyncThunk('contentSlice/filterContentFromServer',(value)=>{
-    return axiosFilterFunctio(`${serverLink}/filter-content`,value)
+export const  filterJobsFromServer = createAsyncThunk('jobSlice/filterJobsFromServer',(value)=>{
+    return axiosFilterFunctio(`${serverLink}/filter-jobs`,value)
 })
-export const reFetchContent = createAsyncThunk('contentSlice/reFetchContent',()=>{
-    return axiosFunction(`${serverLink}/contents`)
+export const reFetchJobs = createAsyncThunk('jobSlice/reFetchJobs',()=>{
+    return axiosFunction(`${serverLink}/jobs`)
  })
 
-const contentSlice = createSlice({
-    name:'contentSlice',
+const jobsSlice = createSlice({
+    name:'jobsSlice',
     initialState:initialState,
-
     //servser side render
     extraReducers:(build) =>{
         // collin when the app rendered 
-        build.addCase(fetchContent.pending,(state,action) =>{
+        build.addCase(fetchJobs.pending,(state,action) =>{
             state.loading = true
         })
-        build.addCase(fetchContent.fulfilled,(state,action)=>{
+        build.addCase(fetchJobs.fulfilled,(state,action)=>{
             state.loading = false
             state.data = action.payload
-            state.allData = action.payload
         })
-        build.addCase(fetchContent.rejected,(state,action)=>{
+        build.addCase(fetchJobs.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         })
         //for filtering
-        build.addCase(filterContentFromServer.fulfilled,(state,action)=>{
+        build.addCase(filterJobsFromServer.fulfilled,(state,action)=>{
             state.loading = false
             state.data = action.payload
         })
-        build.addCase(filterContentFromServer.rejected,(state,action)=>{
+        build.addCase(filterJobsFromServer.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         })
 
         //for refetchin content
-        build.addCase(reFetchContent.fulfilled,(state,action)=>{
+        build.addCase(reFetchJobs.fulfilled,(state,action)=>{
             state.loading = false
             state.data = action.payload
         })
-        build.addCase(reFetchContent.rejected,(state,action)=>{
+        build.addCase(reFetchJobs.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         })
     }
 })
-
-export default  contentSlice.reducer
+export default  jobsSlice.reducer

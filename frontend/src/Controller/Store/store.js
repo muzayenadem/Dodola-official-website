@@ -4,6 +4,8 @@ import HomeToggle from '../Buttons/ToggleHomeSidebar'
 import mainPost from '../Posts/MainPostSlicer'
 import adminToken from '../Tokens/adminToken'
 import content from '../Data/contentSlice'
+import jobs from '../Data/jobsSlce'
+import jobPost from "../Posts/jobPost";
 const store = configureStore({
     reducer:{
        //buttons 
@@ -12,14 +14,16 @@ const store = configureStore({
 
        //post reducers
        mainPost,
+       jobPost,
 
        //loggined asure reduceres
        adminToken,
 
        //data from server
        content,
+       jobs,
 
-       //fitered at react or fronend
+
 
     }
 })

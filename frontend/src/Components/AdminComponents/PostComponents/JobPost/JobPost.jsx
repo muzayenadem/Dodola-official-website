@@ -1,278 +1,500 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios'
 
-function JobPost() {
+import Select from 'react-select';
+import { removeJobPOstImages, setJobPostImages } from '../../../../Controller/Posts/jobPost';
+
+import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
+import { useNavigate } from 'react-router-dom';
+function  JobPost() {
+  const [isClearable, setIsClearable] = useState(true);
+  const [isSearchable, setIsSearchable] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRtl, setIsRtl] = useState(false);
+  const [response , setResponse] = useState('')
+  const [loading,setLoading] = useState('')
+  const [open,setOpen] = useState(false)
+  const [errMessage,setErrMessage] = useState('')
+  const [errorPage,setErrorPage] = useState(false)
+  const [succed,setSucced] = useState(false)
+  const [asured, setAsured] = useState(false)
+  const [postData,setPostData] = useState({
+    category:'',
+    title:'',
+    description:'',
+    salary:'',
+    type:'',
+    deadline:'',
+    requirement:'',
+    experience:'',
+  })
+  const [address,setAdress] = useState({
+    streate:'',
+    city:'',
+    state:'',
+    postalCode:'',
+  })
+
+  const [company,setCompany] = useState({
+    companyName:'',
+    companyEmail:'',
+    companyPhone:''
+  })
+
+  const dispatch = useDispatch()
+ 
+ const navigate = useNavigate('')
+    
+  const images = useSelector(state => state.jobPost.images)
+
+  console.log({images})
+
+  const selectImages = (e)=>{
+    dispatch(setJobPostImages(e.target.files))      
+  }
+
+  const changeHandler = value =>{
+     setPostData({...postData,category:value.label})
+  }
+  const exprienceHandler = (value)=>{
+    setPostData({...postData,experience:value.label})
+  }
+  const typeHandler = (value) =>{
+    setPostData({...postData,type:value.label})
+  }
+
+
+
+  const typeList = [
+    {value:1,label:'Full Time'},
+    {value:2,label:'Part Time'},
+    {value:1,label:'Contract'},
+  ]
+
+  const exprienceLevel = [
+    {label:'0 year',value:1},
+    {label:'1 year',value:2},
+    {label:'2 year',value:3},
+    {label:'3 year',value:4},
+    {label:'4 year',value:5},
+    {label:'5 year',value:6},
+    {label:'6 year',value:7},
+  ]
+  const data = [
+    {value:1,label:' Goverbment & public Adminstration'},
+    {value:2,label:'Healthycare'},
+    {value:3,label:'Education'},
+    {value:4,label:'Construction and infrustructure'},
+    {value:5,label:'Information Technology'},
+    {value:6,label:'Agriculture',},
+    {value:7,label:'Bussiness and Finance'},
+    {value:8,label:'Environmental and Natural Resources',},
+    {value:9,label:'Social Services'},
+    {value:10,label:'Media and Communication'}
+]
+//console.log({postData,address,campany})
+console.log({response})
+const submitHundler = async (e) =>{
+  e.preventDefault()
+  setLoading(true)
+  const formData = new FormData()
+  formData.append('data',JSON.stringify({postData,address,company}))
+  for(let i = 0; i <= images.length; i++){
+    formData.append('files',images[i]) 
+  }
+
+    try {
+        // Replace with your server URL
+    
+        const response = await axios.post(`${serverLink}/post-job`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            withCredentials: true, // This is important for sending credentials
+          })
+        console.log('Data fetched successfully:', response.data);
+        setLoading(false)
+        setOpen(false)
+        setErrorPage(false)
+        setSucced(true)
+        
+        // You can handle the response here, such as updating state in React
+        return response.data;
+    
+        } catch (error) {
+        // Error handling
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.error('Server responded with an error:', error.response.data);
+          setLoading(false)
+          setOpen(false)
+          setSucced(false)
+          setResponse(error.response.data)
+          setErrorPage(true)
+          return error.response.data
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error('No response received:', error.request);
+          setLoading(false)
+          setOpen(false)
+          setSucced(false)
+          setResponse('response not received')
+          setErrorPage(true)
+          
+          return error.request
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error('Error setting up request:', error.message);
+          setLoading(false)
+          setOpen(false)
+          setSucced(false)
+          setResponse('Error setting up request')
+          setErrorPage(true)
+          
+          return error.message
+        }
+      }
+  }
+
+  const nextHandler =  (e) => {
+    e.preventDefault()
+    setAsured(true)
+
+    if(postData.title && postData.description && postData.category && postData.deadline && postData.experience
+      && postData.requirement && postData.salary && postData.type
+      && company.companyName && company.companyEmail && company.companyPhone
+      && address.streate && address.city && address.state && address.postalCode && images.length
+    ){
+      setAsured(false)
+      setOpen(true)
+    }else{
+      setErrMessage('you have to fiil all required place')
+    }
+  }
   return (
-    <section class="container px-4 mx-auto">
-    <div class="sm:flex sm:items-center sm:justify-between">
-        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Files uploaded</h2>
+<div className='bg-neutral-50  dark:bg-gray-900 dark:text-white/80 p-6'>
 
-        <div class="flex items-center mt-4 gap-x-3">
-            <button class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
-                Download all
-            </button>
 
-            <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_3098_154395)">
-                    <path d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_3098_154395">
-                    <rect width="20" height="20" fill="white"/>
-                    </clipPath>
-                    </defs>
-                </svg>
+<form  onSubmit={nextHandler}>
+  <div class="space-y-12">
+    <div class="border-b border-gray-900/10 dark:border-neutral-600 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white/80">New Job Post</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-white">This information will be displayed publicly so be careful what you share.</p>
 
-                <span>Upload</span>
-            </button>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+        <div class="sm:col-span-4">
+          <label for="username" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">	Job Title</label>
+ 		      <div class="mt-2">
+            <input onChange={(e)=> setPostData({...postData,title:e.target.value})} type="text"  autocomplete="given-name" 
+            className={`${asured == true & postData.title == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
         </div>
+        
+
+        <div class="col-span-full lg:col-span-5">
+          <label for="about" class="block text-sm font-medium leading-6 dark:text-white/80 text-gray-900">About</label>
+          <div class="mt-2">
+            <textarea onChange={(e)=> setPostData({...postData,description:e.target.value})}  id="about"  name="about" rows="6" 
+            className={` ${asured == true & postData.description == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}></textarea>
+          </div>
+          <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-white/80">Write a few sentences about yourself.</p>
+        </div>
+
+{/* 
+        //images placeholder */}
+      </div>
     </div>
 
-    <div class="flex flex-col mt-6">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-800">
-                            <tr>
-                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <div class="flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
-                                        <span>File name</span>
-                                    </div>
-                                </th>
 
-                                <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    File size
-                                </th>
+    <div class="border-b border-gray-900/10 dark:border-neutral-600 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white/80">Company's Condition </h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-white/80">Use a permanent address where you can receive mail.</p>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Date uploaded
-                                </th>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Last updated
-                                </th>
+      <div className="flex gap-6 flex-col md:flex-row">
+    <div className="flex flex-col py-6 gap-2">
+    <p class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">	Job Category</p>
+    <Select
+        className={` ${asured == true & postData.category == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
+        classNamePrefix="select"
+        defaultValue={{value:0,label:'Select Category'}}
+        isDisabled={isDisabled}
+        isLoading={true}
+       onChange={changeHandler}
+       isClearable={isClearable}
+        isRtl={isRtl}
+        isSearchable={isSearchable}
+        name="color"
+        options={data}
+      />
+    </div>
+    <div className="flex flex-col gap-2 py-6">
+    <p class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Experience Level</p>
+    <Select
+        className={` ${asured == true & postData.experience == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
+        classNamePrefix="select"
+        defaultValue={{value:0,label:'Select Exprience'}}
+        isDisabled={isDisabled}
+        isLoading={true}
+       onChange={exprienceHandler}
+       isClearable={isClearable}
+        isRtl={isRtl}
+        isSearchable={isSearchable}
+        name="color"
+        options={exprienceLevel}
+      />
+    </div>
+    <div className="flex flex-col gap-2 py-6">
+    <p class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Job Type</p>
+    <Select
+         className={` ${asured == true & postData.type == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
+        classNamePrefix="select"
+        defaultValue={{value:0,label:'Select Job Type'}}
+        isDisabled={isDisabled}
+        isLoading={true}
+       onChange={typeHandler}
+       isClearable={isClearable}
+        isRtl={isRtl}
+        isSearchable={isSearchable}
+        name="color"
+        options={typeList}
+      />
+    </div>
+      </div>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Uploaded by
-                                </th>
 
-                                <th scope="col" class="relative py-3.5 px-4">
-                                    <span class="sr-only">Edit</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                                        <div class="flex items-center gap-x-2">
-                                            <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                </svg>
-                                            </div>
-                                            
-                                            <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">Tech requirements.pdf</h2>
-                                                <p class="text-xs font-normal text-gray-500 dark:text-gray-400">200 KB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-normal text-gray-700 whitespace-nowrap">
-                                    200 KB
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 4, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 4, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Lana Steiner</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
+        <div class="col-span-full lg:col-span-3">
+          <label for="about" class="block text-sm font-medium leading-6 dark:text-white/80 text-gray-900">Job Requirment</label>
+          <div class="mt-2">
+            <textarea onChange={(e) => setPostData({...postData,requirement:e.target.value})} id="about"  name="about" rows="3" 
+            className={` ${asured == true & postData.requirement == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}></textarea>
+          </div>
+          <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-white/80">Write a few sentences about yourself.</p>
+        </div>
+      </div>
 
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
+      <div class="w-52">
+          <label for="username" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Salary</label>
+ 		      <div class="mt-2">
+            <input onChange={(e) => setPostData({...postData,salary:e.target.value})} type="text" name="first-name" id="first-name" autocomplete="given-name" 
+            className={` ${asured == true & postData.salary == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500  sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+        
+    </div>
 
-                                        <div class="flex items-center gap-x-2">
-                                            <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                                </svg>
-                                            </div>
-                                            
-                                            <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">Dashboard screenshot.jpg</h2>
-                                                <p class="text-xs font-normal text-gray-500 dark:text-gray-400">720 KB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-normal text-gray-700 whitespace-nowrap">
-                                    720 KB
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 4, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 4, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Demi Wilkinson</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
 
-                                        <div class="flex items-center gap-x-2">
-                                            <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 8.25v7.5m6-7.5h-3V12m0 0v3.75m0-3.75H18M9.75 9.348c-1.03-1.464-2.698-1.464-3.728 0-1.03 1.465-1.03 3.84 0 5.304 1.03 1.464 2.699 1.464 3.728 0V12h-1.5M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                                                </svg>
-                                            </div>
-                                            
-                                            <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">Dashboard prototype FINAL.gif</h2>
-                                                <p class="text-xs font-normal text-gray-500 dark:text-gray-400">21 KB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-normal text-gray-700 whitespace-nowrap">
-                                    21 KB
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 2, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 2, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Lana Steiner</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
+    <div class="border-b border-gray-900/10 dark:border-neutral-600 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white/80">Company Information</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-white/80">Use a permanent address where you can receive mail.</p>
 
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-6">
 
-                                        <div class="flex items-center gap-x-2">
-                                            <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                                </svg>
-                                            </div>
-                                            
-                                            <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">App inspiration.png</h2>
-                                                <p class="text-xs font-normal text-gray-500 dark:text-gray-400">2 MB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-normal text-gray-700 whitespace-nowrap">
-                                    2 MB
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 8, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 8, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Demi Wilkinson</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
+        <div class="sm:col-span-2 sm:col-start-1">
+          <label for="city" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Company Name</label>
+          <div class="mt-2">
+            <input onChange={(e)=> setCompany({...company,companyName:e.target.value})}  type="text" name="city" id="city" autocomplete="address-level2" 
+             className={`${asured == true & company.companyName == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
 
-                            <tr>
-                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div class="inline-flex items-center gap-x-3">
-                                        <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"/>
+        <div class="sm:col-span-2">
+          <label for="region" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Company Email</label>
+          <div class="mt-2">
+            <input onChange={(e)=> setCompany({...company,companyEmail:e.target.value})} type="email" name="region" id="region" autocomplete="address-level1" 
+             className={`${asured == true & company.companyEmail == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
 
-                                        <div class="flex items-center gap-x-2">
-                                            <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" />
-                                                </svg>
-                                            </div>
-                                            
-                                            <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">The Absolute Basics.mp4</h2>
-                                                <p class="text-xs font-normal text-gray-500 dark:text-gray-400">720 MB</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-12 py-4 text-sm font-normal text-gray-700 whitespace-nowrap">
-                                    720 MB
-                                </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 8, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 8, 2022</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Demi Wilkinson</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                        </svg>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="sm:col-span-2">
+          <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Company Phone</label>
+          <div class="mt-2">
+            <input onChange={(e)=> setCompany({...company,companyPhone:e.target.value})} type="text" name="postal-code" id="postal-code" autocomplete="postal-code" 
+            className={`${asured == true & company.companyPhone == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="border-b border-gray-900/10 dark:border-neutral-600 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white/80">Job address</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-white/80">Use a permanent address where you can receive mail.</p>
+
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8  sm:grid-cols-6">
+        <div class="col-span-full">
+          <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Street address</label>
+          <div class="mt-2">
+            <input onChange={(e) => setAdress({...address,streate:e.target.value})} type="text" name="street-address" id="street-address" autocomplete="street-address" 
+             className={`${asured == true & address.streate == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+
+        <div class="sm:col-span-2 sm:col-start-1">
+          <label for="city" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">City</label>
+          <div class="mt-2">
+            <input onChange={(e) => setAdress({...address,city:e.target.value})} type="text" name="city" id="city" autocomplete="address-level2" 
+            className={`${asured == true & address.city == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="region" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">State / Province</label>
+          <div class="mt-2">
+            <input onChange={(e) => setAdress({...address,state:e.target.value})} type="text" name="region" id="region" autocomplete="address-level1" 
+           className={`${asured == true & address.state == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">ZIP / Postal code</label>
+          <div class="mt-2">
+            <input onChange={(e) => setAdress({...address,postalCode:e.target.value})} type="text" name="postal-code" id="postal-code" autocomplete="postal-code" 
+            className={`${asured == true & address.postalCode == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-span-3">
+          <label for="cover-photo" class="block text-sm font-medium leading-6 dark:text-white/80 text-gray-900">Cover photo</label>
+          <div class={` ${asured == true & !images.length  && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 dark:border-white/80 px-6 py-10 dark:text-white/80 `}>
+            <div class="text-center">
+              <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+              </svg>
+              <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                  <span>Upload a file</span>
+                  <input onChange={selectImages} multiple id="file-upload" name="file-upload" type="file" class="sr-only "/>
+                </label>
+                <p class="pl-1">or drag and drop</p>
+              </div>
+              <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
             </div>
+          </div>
         </div>
+
+        <div className="container flex justify-start flex-wrap overflow-y-auto mt-6">
+                 {images.length > 0 && 
+                    images.map((img,i)=>{
+                        return (
+                            <div key={i} className='relative w-[120px] h-[120px] mb-4 ml-2 '>
+                            <div className="flex justify-center items-center p-1 w-6 h-6 absolute top-1 right-1 bg-white rounded-full">
+                            <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> dispatch(removeJobPOstImages(images.indexOf(img))) & console.log({index:images.indexof(img)})}>&times;</span>
+                            </div>
+                            <img className='w-[100%] h-[100%] rounded-lg' src={URL.createObjectURL(img)} alt=''/>
+                        </div>
+                        )
+                    })
+                 }
+                </div>
+
+    <div className='w-52'>
+      <label for="Birthday" class="block text-sm text-gray-500 dark:text-gray-300">Dead Line</label>
+
+      <input onChange={(e) => setPostData({...postData,deadline:e.target.value})} type="date" placeholder="John Doe" 
+      className={` ${asured == true & !postData.deadline && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block  mt-2 w-full placeholder-gray-400/70 dark:text-white/80 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border- blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300`} />
+  </div>
     </div>
 
-    <div class="flex items-center justify-between mt-6">
-        <a href="#" class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+   {errMessage &&
+    <div className="py-3">
+    <div class="w-full text-white bg-red-500 rounded-md">
+    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+        <div class="flex">
+            <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
+                <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                </path>
             </svg>
 
-            <span>
-                previous
-            </span>
-        </a>
+                <p class="mx-3">{errMessage}</p>
+            </div>
 
-        <div class="items-center hidden md:flex gap-x-3">
-            <a href="#" class="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60">1</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">2</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">3</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">...</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">12</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">13</a>
-            <a href="#" class="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">14</a>
+            <button onClick={()=> setErrMessage('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
         </div>
+    </div>
+    </div>
+   }
 
-        <a href="#" class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-            <span>
-                Next
-            </span>
 
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-            </svg>
-        </a>
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <button onClick={()=> navigate('/admin/jobs')} type="button" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white/80">Cancel</button>
+    <button type="submit"  class="rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Next</button>
+  </div>
+</form>
+
+
+
+<dialog open={open} className='fixed top-0 left-0 bg-white py-20 dark:bg-gray-900 w-screen h-screen '>
+<div class="container px-6 py-6 mx-auto text-center">
+        <div class="max-w-lg mx-auto">
+          <h1>{}</h1>
+            <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Almost Done you just have to click the button bellow</h1>
+            <p class="mt-6 text-gray-500 dark:text-gray-300">please be sure first that everything is as you want before publish</p>
+           {!loading && 
+             <div className='flex gap-5 justify-center items-center'>
+                <button onClick={()=> setOpen(false)}  class="px-5 py-2 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-gray-600 rounded-lg hover:bg-gray-500 lg:mx-0 lg:w-auto focus:outline-none">
+                  Not Sure 
+                </button>
+                <button onClick={submitHundler}  class="px-5 py-2 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-blue-600 rounded-lg hover:bg-blue-500 lg:mx-0 lg:w-auto focus:outline-none">
+                  Publish it
+                </button>
+              </div>
+           }
+           {loading && <div className="w-16  h-16 mx-auto py-20 mt-12 border-4 border-dashed rounded-full animate-spin border-violet-600"></div>}
+        </div>
+    </div>
+</dialog>
+
+<dialog open={succed} className='fixed top-0 left-0 bg-white py-20 dark:bg-gray-900 w-screen h-screen '>
+<section class="bg-white dark:bg-gray-900">
+    <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+        <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            CONGRATULATIONS!! your <span class="text-blue-500">New job</span> Content has been succesfully published
+        </h2>
+
+        <div class="inline-flex w-full mt-10 sm:w-auto">
+            <a href="/admin/jobs" class="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Close
+            </a>
+        </div>
     </div>
 </section>
-  )
+</dialog>
+
+<dialog open={errorPage} className='fixed top-0 left-0 bg-white py-20 dark:bg-gray-900 w-screen h-screen '>
+<section class="bg-white dark:bg-gray-900">
+    <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+        <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            Something went wrong! <span class="text-blue-500">New job</span> 
+        </h2>
+        <div class="inline-flex w-full mt-10 sm:w-auto">
+            <button onClick={()=>  setLoading(false) & setOpen(false) & setSucced(false) & setErrorPage(false) & setResponse('') }  class="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                Close
+            </button>
+        </div>
+    </div>
+</section>
+</dialog>
+
+</div>
+ )
 }
 
 export default JobPost
