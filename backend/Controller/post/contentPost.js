@@ -51,6 +51,7 @@ const contentPost = async(req,res) =>{
             adminId:verify.adminId,
             ...data,
             images:imagesUrl,
+            postedDate:new Date(),
 
         })
         const savedContent = await newContent.save()

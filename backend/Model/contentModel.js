@@ -30,7 +30,8 @@ const schema = mongoose.Schema({
     images:{
         required:true,
         type:Array
-    }
+    },
+    postedDate:String,
 })
 
 const contentModel = mongoose.model('Contents',schema)

@@ -24,7 +24,7 @@ import { MdArrowBack, MdArrowForward, MdClear, MdMenu, MdSpaceDashboard } from "
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { closeAdminSidebarToggle, openAdminSidebarToggle } from "../../Controller/Buttons/ToggleAndminSidebar";
-import { dodoCity, holeCity } from "../Images/images";
+import { dodoCity, holeCity } from "../AppComponents/Images/images";
 
 
 function AdminSidebar() {

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { CiMenuKebab } from "react-icons/ci";
 import Clicks from './Clicks';
 import ContentPages from './ContentPages';
-import DeletePopUp from '../../PopUps/DeletePopUp';
-import UnPuplishPopUp from '../../PopUps/UnPuplishPopUp';
+import DeletePopUp from './PopUps/DeletePopUp';
+import UnPuplishPopUp from './PopUps/UnPuplishPopUp';
 
 function ListOfContent({contents}) {
     const [openDelete,setOpenDelete] = useState(false)

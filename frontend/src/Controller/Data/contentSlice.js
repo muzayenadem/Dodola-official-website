@@ -6,6 +6,8 @@ import { axiosFilterFunctio } from '../AxiosFunctions/axiosFilterFunction'
 const initialState = {
     loading:false,
     data:[],
+    filteredData:[],
+    filterLoading:false,
     error:''
 }
 //server side render
@@ -39,12 +41,18 @@ const contentSlice = createSlice({
             state.error = action.error.message
         })
         //for filtering
+        build.addCase(filterContentFromServer.pending,(state,action)=>{
+            state.filterLoading = true
+            state.loading = false
+        })
         build.addCase(filterContentFromServer.fulfilled,(state,action)=>{
             state.loading = false
+            state.filterLoading = false
             state.data = action.payload
         })
         build.addCase(filterContentFromServer.rejected,(state,action)=>{
             state.loading = false
+            state.filterLoading = false
             state.error = action.error.message
         })
 

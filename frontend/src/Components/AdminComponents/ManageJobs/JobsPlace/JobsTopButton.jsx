@@ -27,7 +27,7 @@ function JobsTopButton() {
     }
 
       const data = [
-        {value:1,label:' Goverbment & public Adminstration'},
+        {value:1,label:'Goverbment & public Adminstration'},
         {value:2,label:'Healthycare'},
         {value:3,label:'Education'},
         {value:4,label:'Construction and infrustructure'},
@@ -42,14 +42,14 @@ function JobsTopButton() {
   return (
     <div className="flex justify-between">
     <div className="flex gap-3">
-        <div class="relative" >
+        <div className="relative" >
 
 
         <button
         onClick={allHandler}
-    class="flex items-center rounded bg-neutral-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-    type="button">All</button>
-</div>
+        className="flex items-center rounded bg-neutral-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-600 shadow-light-3 transition duration-150 ease-in-out hover:bg-neutral-200 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+        type="button">All</button>
+       </div>
 
 
         <Select
@@ -69,7 +69,7 @@ function JobsTopButton() {
     </div>
     <button
         onClick={()=> navigate('/admin/job-post')}
-    class="flex items-center rounded bg-purple-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-light-3 transition duration-150 ease-in-out hover:bg-purple-950 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+    className="flex items-center rounded bg-purple-700 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-light-3 transition duration-150 ease-in-out hover:bg-purple-950 hover:shadow-light-2 focus:bg-neutral-200 focus:shadow-light-2 focus:outline-none focus:ring-0 active:bg-neutral-200 active:shadow-light-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
     type="button">
     Add <span className='hidden md:block'>{`_Job`}</span>
   </button>

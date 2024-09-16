@@ -51,13 +51,14 @@ const postJob = async(req,res) =>{
      
           const imagesUrl = await Promise.all(uploadPromises);
         
-          console.log({imagesUrl})
+         console.log({imagesUrl})
         const newJob = new JobModel({
             adminId:verify.adminId,
             job:data.postData,
-            images:imagesUrl,
+             images:imagesUrl,
             company:data.company,
             address:data.address,
+            postedDate:new Date(),
         })
         const savedJob = await newJob.save()
         console.log({verify})

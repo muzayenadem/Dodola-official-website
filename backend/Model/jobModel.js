@@ -5,6 +5,7 @@ const schema = mongoose.Schema({
         required:true,
         type:String
     },
+    postedDate:String,
     job:Object,
     images:Array,
     company:Object,

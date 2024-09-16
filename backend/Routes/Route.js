@@ -18,6 +18,7 @@ const filterContent = require('../Controller/readData/filterContent')
 const postJob = require('../Controller/post/postJob')
 const jobs = require('../Controller/readData/jobs')
 const filterJobs = require('../Controller/readData/filterJobs')
+const searchJobs = require('../Controller/readData/searchJobs')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -43,6 +44,7 @@ route.get('/contents',content)
 route.get('/filter-content',filterContent)
 route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
+route.get('/search-jobs',searchJobs)
 
 
 // POST METHOD 

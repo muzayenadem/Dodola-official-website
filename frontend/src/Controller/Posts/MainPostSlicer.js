@@ -7,7 +7,7 @@ const initailState = {
         title:'ti',
         description:'des',
         date:'da',
-        postedDate:new Date(),
+        //postedDate:new Date(),
     },
     images:[]
 }

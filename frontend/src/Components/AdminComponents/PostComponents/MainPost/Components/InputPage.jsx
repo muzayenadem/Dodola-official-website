@@ -17,7 +17,7 @@ function InputPage({method,setMethod,postData,setPostData}) {
             id="floatingInput"
             placeholder="name@example.com" />
           <label
-            for="floatingInput"
+            htmlFor="floatingInput"
             className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
             >Title of{postData.category} / {postData.subCategory}</label
           >
@@ -30,7 +30,7 @@ function InputPage({method,setMethod,postData,setPostData}) {
             id="floatingInput"
             placeholder="name@example.com" />
           <label
-            for="floatingInput"
+            htmlFor="floatingInput"
             className="pointer-events-none absolute left-0 bottom-0 origin-[0_0] border border-solid border-transparent px-3  text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
             >Description of {postData.category} / {postData.subCategory}</label
           >
@@ -39,13 +39,13 @@ function InputPage({method,setMethod,postData,setPostData}) {
         <InputImages/>        
 
         <div className='relative mb-3 w-52'>
-        <label for="Birthday" class="block text-sm text-gray-500 dark:text-gray-300">Dead Line</label>
+        <label htmlFor="Birthday" className="block text-sm text-gray-500 dark:text-gray-300">Dead Line</label>
 
         <input 
         type="date" 
         onChange={(e)=>setPostData({...postData,date:e.target.value})}
         placeholder="John Doe" 
-        class="block  mt-2 w-full placeholder-gray-400/70 dark:text-white/80 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border- blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
+        className="block  mt-2 w-full placeholder-gray-400/70 dark:text-white/80 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border- blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
     </div>
       </div>
     </div>

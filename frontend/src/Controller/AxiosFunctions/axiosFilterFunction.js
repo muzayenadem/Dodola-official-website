@@ -15,16 +15,19 @@ export const axiosFilterFunctio = async (link,value) =>{
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          console.error('Server responded with an error:', error.response.data);
-          return error.response.data
+         // console.error('Server responded with an error:', error.response.data);
+          //return error.response.data
+          throw TypeError(error.response.data)
         } else if (error.request) {
           // The request was made but no response was received
-          console.error('No response received:', error.request);
-          return error.request
+          console.error('No response received error:', error.request);
+          //return error.request
+          throw Error(error.message)
+
         } else {
           // Something happened in setting up the request that triggered an Error
           console.error('Error setting up request:', error.message);
-          return error.message
+          throw Error(error.message)
         }
       }
 }

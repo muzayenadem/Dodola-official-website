@@ -10,7 +10,7 @@ const initialState = {
         deadline:'',
         experience:'',
         requirement:'',
-        postedDay:new Date()
+        //postedDay:new Date()
     },
     contact:{
         campanyName:'',

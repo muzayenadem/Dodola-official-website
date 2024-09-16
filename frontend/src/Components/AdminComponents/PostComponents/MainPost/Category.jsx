@@ -46,6 +46,10 @@ function Category({method,setMethod,postData,setPostData}) {
                     },
                     {
                         value:5,
+                        label:'Sport'
+                    },
+                    {
+                        value:6,
                         label:'Adminstration Team'
                     },
                 ]
@@ -105,7 +109,7 @@ function Category({method,setMethod,postData,setPostData}) {
                 },
                 {
                     value:7,
-                    label:'Police department Office'
+                    label:'Police Department Office'
                 },
 
             ])
@@ -122,15 +126,15 @@ function Category({method,setMethod,postData,setPostData}) {
                 },
                 {
                     value:2,
-                    label:'Secondry school'
+                    label:'Secondary School'
                 },
                 {
                     value:3,
-                    label:'Thecnical class'
+                    label:'Thecnical Class'
                 },
                 {
                     value:4,
-                    label:'Deploma '
+                    label:'Depeloma'
                 },
                 {
                     value:5,

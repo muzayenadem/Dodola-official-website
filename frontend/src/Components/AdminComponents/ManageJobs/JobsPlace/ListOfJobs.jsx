@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { CiMenuKebab } from "react-icons/ci";
 import Clicks from './Clicks';
 import ContentPages from '../../ManageContent/ContentPlace/ContentPages';
-import DeletePopUp from '../../PopUps/DeletePopUp';
-import UnPuplishPopUp from '../../PopUps/UnPuplishPopUp';
+import DeletePopUp from '../../ManageContent/ContentPlace/PopUps/DeletePopUp';
+import UnPuplishPopUp from '../../ManageContent/ContentPlace/PopUps/UnPuplishPopUp';
 function ListOfJobs({jobs}) {
     const [openDelete,setOpenDelete] = useState(false)
     const [openPublish,setOpenPublish] = useState(false)
@@ -88,7 +88,7 @@ function ListOfJobs({jobs}) {
             )
         })}
     </div>
-    <ContentPages/>
+    {jobs.length >= 3 && <ContentPages/>}
         <dialog open={openDelete}>
         <DeletePopUp 
             openDelete={setOpenDelete} 

@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
-import MainHome from '../../Components/Home/MainHome'
-import Footer from '../../Components/Footer/Footer'
-import HomeSideBar2 from '../../Components/Home/HomeSideBar2'
+import Navbar from '../../Components/AppComponents/Navbar/Navbar'
+import MainHome from '../../Components/AppComponents/Home/MainHome'
+import Footer from '../../Components/AppComponents/Footer/Footer'
+import HomeSideBar2 from '../../Components/AppComponents/Home/HomeSideBar2'
 import { Outlet } from 'react-router-dom'
 
 function Home() {
