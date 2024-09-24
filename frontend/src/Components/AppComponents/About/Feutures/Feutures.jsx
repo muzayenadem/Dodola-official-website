@@ -8,10 +8,10 @@ function Feutures() {
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white/80">
 		<div className="p-5">
-		<TopAbout 
+		{/* <TopAbout 
 		   title={"Dodola's Fueture"}
 		   description={'all you see the bellow fuetures are the fuetures that you will get by living in dodola'}
-		/>
+		/> */}
 		</div>
 	<div className="px-4 pt-16 pb-24 mx-auto max-w-7xl sm:px-6 lg:px-8">
 		<div className="max-w-3xl mx-auto text-center">

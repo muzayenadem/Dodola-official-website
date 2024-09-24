@@ -1,7 +1,7 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { axiosFunction } from '../AxiosFunctions/axiosFunction'
 import { serverLink } from '../CommonLinks/ServerLink'
-import { axiosFilterFunctio } from '../AxiosFunctions/axiosFilterFunction'
+import { axiosFilterFunction } from '../AxiosFunctions/axiosFilterFunction'
 
 const initialState = {
     loading:false,
@@ -15,7 +15,7 @@ export const fetchContent = createAsyncThunk('contentSlice/fetchContent',()=>{
    return axiosFunction(`${serverLink}/contents`)
 })
 export const  filterContentFromServer = createAsyncThunk('contentSlice/filterContentFromServer',(value)=>{
-    return axiosFilterFunctio(`${serverLink}/filter-content`,value)
+    return axiosFilterFunction(`${serverLink}/filter-content`,value)
 })
 export const reFetchContent = createAsyncThunk('contentSlice/reFetchContent',()=>{
     return axiosFunction(`${serverLink}/contents`)

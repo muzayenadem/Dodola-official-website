@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { CiMenuKebab } from "react-icons/ci";
 import Clicks from './Clicks';
 import ContentPages from './ContentPages';
-import DeletePopUp from './PopUps/DeletePopUp';
-import UnPuplishPopUp from './PopUps/UnPuplishPopUp';
+import DeletePopUp from '../../PopUps/DeletePopUp';
+import UnPuplishPopUp from '../../PopUps/UnPuplishPopUp';
+import axios from 'axios';
+import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 
-function ListOfContent({contents}) {
+function ListOfContent({contents,data}) {
     const [openDelete,setOpenDelete] = useState(false)
     const [openPublish,setOpenPublish] = useState(false)
     const [openId,setOpenId] = useState('') 
@@ -20,12 +22,35 @@ function ListOfContent({contents}) {
             setIsOpen(!isOpen)
         }
        }
-  const deleteHandler =  () =>{
-    alert('delete function')
+  const deleteHandler = async () =>{
+    try {
+        const response = await axios.post(`${serverLink}/delete-content`,{id:openId})
+
+        if(response.data){
+            setOpenDelete(false)
+            window.location.href = 'http://localhost:5173/admin/content'
+        }
+    } catch (error) {
+        if(error.response.data){
+            console.log('error respone data : ', error.response.data)
+            return error.response.data
+        }
+        if(error.request){
+            console.log('request error : ',error.request)
+            return error.request
+        }
+        if(error.message)
+            console.log('error message : ', error.message)
+            return error.message
+    } 
   }
   const unPublishHandler = () =>{
     alert('Un Publish handler')
   }
+  if(!data.data.length & data.loading == false){
+    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+  }
+
   return (
     <>
     <div className='bg-white dark:bg-gray-900 dark:text-white/80'>

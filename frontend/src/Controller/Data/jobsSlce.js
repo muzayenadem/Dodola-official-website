@@ -1,7 +1,7 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { axiosFunction } from '../AxiosFunctions/axiosFunction'
 import { serverLink } from '../CommonLinks/ServerLink'
-import { axiosFilterFunctio } from '../AxiosFunctions/axiosFilterFunction'
+import { axiosFilterFunction } from '../AxiosFunctions/axiosFilterFunction'
 
 const initialState = {
     loading:false,
@@ -14,14 +14,14 @@ export const fetchJobs = createAsyncThunk('jobsSlice/fetchJobs',()=>{
    return axiosFunction(`${serverLink}/jobs`)
 })
 export const  filterJobsFromServer = createAsyncThunk('jobsSlice/filterJobsFromServer',(value)=>{
-    return axiosFilterFunctio(`${serverLink}/filter-jobs`,value)
+    return axiosFilterFunction(`${serverLink}/filter-jobs`,value)
 })
 export const reFetchJobs = createAsyncThunk('jobsSlice/reFetchJobs',()=>{
     return axiosFunction(`${serverLink}/jobs`)
  })
 
 export const searchJobs = createAsyncThunk('jobsSlice/searchJobs',(value)=>{
-    return axiosFilterFunctio(`${serverLink}/search-jobs`,value)
+    return axiosFilterFunction(`${serverLink}/search-jobs`,value)
 })
 
 const jobsSlice = createSlice({

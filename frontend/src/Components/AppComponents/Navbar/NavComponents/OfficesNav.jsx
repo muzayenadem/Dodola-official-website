@@ -31,7 +31,7 @@ return (
       <p className='px-4 py-2'>Select the office that you wanted to contact or visit</p>
         <div className="flex p-6">
           <ul className='underline gap-2 flex flex-col'>
-          <Link onClick={()=> setOffice(false)} to={'/office'}><li>Mayor Office</li></Link>
+          <Link onClick={()=> setOffice(false)} to={'/mayor-office'}><li>Mayor Office</li></Link>
             <li>Construction Office</li>
             <li>Healthy Office</li>
             <li>Education Office</li>

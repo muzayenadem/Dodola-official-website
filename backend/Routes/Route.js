@@ -19,6 +19,9 @@ const postJob = require('../Controller/post/postJob')
 const jobs = require('../Controller/readData/jobs')
 const filterJobs = require('../Controller/readData/filterJobs')
 const searchJobs = require('../Controller/readData/searchJobs')
+const deleteContent = require('../Controller/deleteData/deleteContent')
+const deleteJob = require('../Controller/deleteData/deleteJob')
+const askQuestions = require('../Controller/SpecialFunctions/askQuestions')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -46,7 +49,6 @@ route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)
 
-
 // POST METHOD 
 route.post('/create-admin',createAdmin)
 route.post('/login-admin',loginAdmin)
@@ -54,7 +56,11 @@ route.post('/login-admin',loginAdmin)
 //POST METHOD
 route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)
 route.post('/post-job',isLogginedWithEmail,upload.array('files'),postJob)
-
+//QUESTIONS
+route.post('/ask',askQuestions)
+//DELETE METHODS
+route.post('/delete-content',isLogginedWithEmail,deleteContent)
+route.post('/delete-job',isLogginedWithEmail,deleteJob)
 
 
 module.exports = route

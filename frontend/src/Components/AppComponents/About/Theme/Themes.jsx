@@ -6,12 +6,16 @@ function Themes() {
   useEffect(()=>{
     document.title= 'pictures of dodola city'
   })
+  const image = [
+   {images:[dodoCity]}
+  ]
   return (
     <section className=' dark:bg-gray-900 py-5' >
       <div className="px-5">
       <TopAbout
         title={'Dodola city Images'}
         description={'Enjoy with taking a look at each picture of dodola '}
+        image={image}
       />
       </div>
         <div className="container py-20 mx-auto">

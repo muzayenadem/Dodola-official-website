@@ -15,6 +15,7 @@ function    Depeloma() {
 
   const depeloma = data.data
 
+  const latest = depeloma.length > 0 && depeloma.slice(-1)
   
   if(data.filterLoading){
     return (
@@ -38,7 +39,11 @@ function    Depeloma() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopEducation/>
+     <TopEducation
+          title={'Dodola city elematry Depeloma program'}
+          description={'this si the dodola city Depeloma program that can be replaced with other discripion'}
+          latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
           <DepelomaCard depeloma={depeloma}/>

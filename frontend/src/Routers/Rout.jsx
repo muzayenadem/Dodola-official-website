@@ -62,7 +62,7 @@ function Rout() {
             <Route path='college' element={<Depeloma/>}/>
             <Route path='degree' element={<Degree/>}/>
             {/* office educaion */}
-            <Route path='office' element={<Office/>}/>
+            <Route path='mayor-office' element={<Office/>}/>
 
 
             {/* news routes */}

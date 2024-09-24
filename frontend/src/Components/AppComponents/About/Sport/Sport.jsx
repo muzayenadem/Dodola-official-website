@@ -6,6 +6,7 @@ import { filterContentFromServer } from '../../../../Controller/Data/contentSlic
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopAbout from '../TopAbout/TopAbout'
 import SportCard from './SportCard'
+import { water } from '../../Images/images'
 
 
 function Sport() {
@@ -38,12 +39,14 @@ function Sport() {
     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
   }
 
+  const sportImage = sport.length > 0 && sport.slice(-1)
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
      <TopAbout 
         title={'Sports in dodola city'} 
         description={'there are many kind of sports in dodola city'}
+        image={sportImage}
 
       />
      </div>

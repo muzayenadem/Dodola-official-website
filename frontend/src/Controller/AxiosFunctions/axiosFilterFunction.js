@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const axiosFilterFunctio = async (link,value) =>{
+export const axiosFilterFunction = async (link,value) =>{
     try {
         // Replace with your server URL
     

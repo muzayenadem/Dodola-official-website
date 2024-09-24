@@ -13,6 +13,7 @@ function Degree() {
 
 
    const degree = data.data
+   const latest = degree.length > 0 && degree.slice(-1)
 
    if(data.filterLoading){
     return (
@@ -36,7 +37,11 @@ function Degree() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopEducation/>
+     <TopEducation
+          title={'Dodola city elematry Degree program'}
+          description={'this si the dodola city Degree program that can be replaced with other discripion'}
+          latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
             <DegreeCard degree={degree}/>

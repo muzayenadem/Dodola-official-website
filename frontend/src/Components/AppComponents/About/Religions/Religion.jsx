@@ -36,12 +36,15 @@ function Religion() {
   if(!data.data.length & data.filterLoading == false){
     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
   }
+
+  const latestR = religion.length > 0 && religion.slice(-1)
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
      <TopAbout 
         title={'Religions in dodola city'} 
         description={'there are many religions in dodola city'}
+        image={latestR}
 
       />
      </div>
