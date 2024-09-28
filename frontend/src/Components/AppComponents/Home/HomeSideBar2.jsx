@@ -129,9 +129,9 @@ function HomeSideBar2() {
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>Human Resource Office</MenuItem>
       </SubMenu>
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label=' News '>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>Moment</MenuItem>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaQuora/>}>Jobs</MenuItem>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaInstagram/>}>Bidding </MenuItem>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-events'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>Events</MenuItem>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-jobs'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaQuora/>}>Jobs</MenuItem>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-jobs'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaInstagram/>}>Bidding </MenuItem>
       </SubMenu>
     </Menu>
     {
