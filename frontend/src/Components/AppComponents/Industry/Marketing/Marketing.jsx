@@ -16,6 +16,7 @@ function  Marketing() {
    const marketing = data.data
 
  
+   const latest = marketing.length > 0 && marketing.slice(-1)
    if(data.filterLoading){
      return (
        <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">
@@ -39,7 +40,11 @@ function  Marketing() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopIndustry/>
+        <TopIndustry
+         title={'Marketing in Dodola city'}
+         description={'Dodola is the center city fo marketing'}
+         latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
          <MarketingCard marketing={marketing}/>

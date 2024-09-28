@@ -14,6 +14,7 @@ function    Agriculture() {
   
    const agriculture = data.data
 
+   const latest = agriculture.length > 0 && agriculture.slice(-1)
  
    if(data.filterLoading){
      return (
@@ -38,7 +39,11 @@ function    Agriculture() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopIndustry/>
+     <TopIndustry
+         title={'Agriculture in Dodola city'}
+         description={'Dodola is the best city for Agriculture'}
+         latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
           <AgricultureCard agriculture={agriculture}/>

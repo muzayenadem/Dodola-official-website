@@ -14,7 +14,7 @@ function CongraPage() {
         </h2>
 
         <div class="inline-flex w-full mt-10 sm:w-auto">
-            <a href="/admin" class="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <a href="/admin/content" class="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                 Close
             </a>
         </div>

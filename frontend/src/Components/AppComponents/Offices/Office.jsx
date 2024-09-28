@@ -14,6 +14,7 @@ function  Office() {
  
    const office = data.data
 
+   const latest = office.length > 0 && office.slice(-1)
  
    if(data.filterLoading){
      return (
@@ -38,7 +39,11 @@ function  Office() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopOffice/>
+        <TopOffice
+          title={'Dodola Offices '}
+          description={'this is the discription of dodola city'}
+          latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
           <OfficeCard office={office}/>

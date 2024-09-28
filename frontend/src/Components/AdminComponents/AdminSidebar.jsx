@@ -5,6 +5,7 @@ import { SiCampaignmonitor } from "react-icons/si";
 import { Link } from 'react-router-dom';
 //real
 import { MdOutlinePostAdd } from "react-icons/md";
+import { FaPersonCircleQuestion } from "react-icons/fa6";
 
 //practice
 import { CgProfile } from "react-icons/cg";
@@ -80,13 +81,13 @@ function AdminSidebar() {
     <Menu className="bg-white dark:text-gray-400 dark:bg-gray-950 min-h-[70vh]">
     <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<MdSpaceDashboard/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to=''/>}> Dashboard </MenuItem>
       <SubMenu className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaArrowDown/> && <FaArrowUp/>} label="Post">
-        <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='blog-post'/>}>Blog Post</MenuItem>
+        <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='news'/>}>Blog Post</MenuItem>
         <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>}  onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='jobs'/>}>Job</MenuItem>
         <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='bid-post'/>}>Bid</MenuItem>
       </SubMenu>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='/'/>}>Property </MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<MdOutlinePostAdd/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='content'/>}>Contents</MenuItem>
-      <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaTiktok/>}> Tiktok </MenuItem>
+      <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaPersonCircleQuestion/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='questions'/>}> Questions </MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}> Reddit </MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}> Facebook </MenuItem>
       <SubMenu className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label='Fix all'>

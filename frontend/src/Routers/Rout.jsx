@@ -34,6 +34,8 @@ import Office from '../Components/AppComponents/Offices/Office'
 import MainEvents from '../Components/AppComponents/News/Events/MainEvents'
 import MainJob from '../Components/AppComponents/News/Job/MainJob'
 import MainBidding from '../Components/AppComponents/News/Bidding/MainBidding'
+import NewQuestions from '../Components/AdminComponents/Questions/NewQuestions'
+import ManageNews from '../Components/AdminComponents/ManageNews/ManageNews'
 
 function Rout() {
   const adminToken = isAdminLoggined()
@@ -80,8 +82,12 @@ function Rout() {
           !adminToken.error  ? <></> :
           adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
-            <Route path='blog-post' element={<NewPost/>}/>
+            <Route path='news' element={<ManageNews/>}/>
+            <Route path='news-post' element={<NewPost/>}/>
+
+
             <Route path='bid-post' element={<BidPost/>}/>
+            <Route path='questions' element={<NewQuestions/>}/>
 
             <Route path='jobs' element={<ManageJobs/>}/>
             <Route path='job-post' element={<JobPost/>}/>

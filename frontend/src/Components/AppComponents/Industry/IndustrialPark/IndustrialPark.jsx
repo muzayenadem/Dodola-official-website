@@ -35,11 +35,16 @@ function IndustrialPark() {
      return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
    }
  
+   const latest = industrialPark.length > 0 && industrialPark.slice(-1)
 
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopIndustry/>
+     <TopIndustry
+         title={'Industrial in Dodola city'}
+         description={'Dodola is the best city for any Industry'}
+         latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
           <IndustrialParkCard industrialPark={industrialPark}/>

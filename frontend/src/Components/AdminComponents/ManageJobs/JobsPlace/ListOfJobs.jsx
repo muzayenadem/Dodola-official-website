@@ -29,7 +29,7 @@ function ListOfJobs({jobs,data}) {
             const response = await axios.post(`${serverLink}/delete-job`,{id:openId})
             if(response.data){
                 setOpenDelete(false)
-                window.location.href = 'http://localhost:5173/admin/jobs'
+                window.location.href = '/admin/jobs'
             }
         } catch (error) {
             if(error.response.data){

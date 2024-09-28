@@ -2,7 +2,7 @@ import React from 'react'
 
 function TopEducation({title,description,latest}) {
   return (
-    <section class="bg-white dark:bg-gray-900 lg:dark:bg-gray-800">
+    <section class="bg-slate-100 dark:bg-gray-900 lg:dark:bg-gray-800">
     <div class="container px-2 lg:px-6 py-10 mx-auto">
         <div class="lg:-mx-6 lg:flex  lg:items-center">
            {/* <></>  */}

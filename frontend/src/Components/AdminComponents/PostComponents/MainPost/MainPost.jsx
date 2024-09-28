@@ -63,7 +63,7 @@ function MainPost() {
               <button onClick={()=>setMethod({...method,submitPage:false,reviewPage:true})}  className='bg-blue-800  text-white  py-2 px-5 rounded-md hover:bg-blue-900 text-center items-center '>Back</button>
           }
         <div className="flex gap-6">
-        <Link to='/admin'>
+        <Link to='/admin/content'>
                <button  className='bg-purple-800  text-white  py-2 px-5 rounded-md hover:bg-purple-900 text-center items-center '>Cancel</button>
           </Link>
           {method.inputPage && 

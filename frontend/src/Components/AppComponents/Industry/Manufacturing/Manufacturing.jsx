@@ -13,6 +13,7 @@ function  Manufacturing() {
 
 
    const manufacture = data.data
+   const latest = manufacture.length > 0 && manufacture.slice(-1)
 
  
    if(data.filterLoading){
@@ -39,7 +40,11 @@ function  Manufacturing() {
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
-        <TopIndustry/>
+     <TopIndustry
+         title={'Manufucturing in Dodola city'}
+         description={'Dodola is the best city for any Manufucturing work'}
+         latest={latest}
+        />
      </div>
         <div className=" container py-10 mx-auto ">
           <ManufucturingCard manufacture={manufacture}/>
