@@ -42,7 +42,7 @@ function JobCard({data}) {
               </div>
 
               <div class="mt-2">
-                  <a href="#" class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabindex="0" role="link">Accessibility tools for designers and developers</a>
+                  <a href="#" class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline" tabindex="0" role="link">{job.title}</a>
                   <p class="mt-2 text-gray-600 dark:text-gray-300">{job.description}</p>
               </div>
 
