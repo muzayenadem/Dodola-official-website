@@ -9,14 +9,12 @@ function Home() {
   return (
     <>
       <div className="sticky top-0 left-0 z-50">
-      {/* <HomeSidebar/> */}
       <HomeSideBar2/>
       </div>
     <div className="sticky top-0 left-0 z-40">
     <Navbar/>
     </div>
       <Outlet/>
-      {/* <MainHome/> */}
       <Footer/>
     </>
   )

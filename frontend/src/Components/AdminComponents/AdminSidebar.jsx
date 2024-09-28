@@ -25,7 +25,7 @@ import { MdArrowBack, MdArrowForward, MdClear, MdMenu, MdSpaceDashboard } from "
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { closeAdminSidebarToggle, openAdminSidebarToggle } from "../../Controller/Buttons/ToggleAndminSidebar";
-import { dodoCity, holeCity } from "../AppComponents/Images/images";
+import { dodoCity, dodolaCiityOffice, holeCity, logo1, logo2, water2 } from "../AppComponents/Images/images";
 
 
 function AdminSidebar() {
@@ -57,7 +57,7 @@ function AdminSidebar() {
   const dispatch = useDispatch()
   const AdminToggle = useSelector(state => state.AdminToggle.open)
   return (
-    <div className={` py-1 md:py-0 sticky md:sticky min-h-full flex flex-col  top-0 bg-white dark:bg-gray-900 left-0 z-10  `}>
+    <div className={`-mt-2 md:-mt-5 md:py-0 absolute min-h-full flex flex-col  top-0 bg-white dark:bg-gray-900 left-0 z-10  `}>
             <Sidebar
               className={`h-[100vh] ${AdminToggle == false ? 'hidden lg:block' :'block'}  flex flex-col gap-32 sticky top-2 bg-white dark:bg-gray-950 min-h-full  left-0 md:py-3 `} 
                collapsed={!collapsed}
@@ -65,15 +65,13 @@ function AdminSidebar() {
                breakPoint={''} // Example breakpoint
                rtl={false} // Example RTL setting
                >
-                <div onClick={()=> dispatch(closeAdminSidebarToggle())}  className="flex bg-white  dark:bg-gray-900 dark:text-white/80 md:hidden flex-col justify-end items-end px-6 py-2">
-                  <span className='text-2xl font-bold'><MdClear/></span>
-                </div>
-                  <div className='flex flex-col justify-end items-end px-6 bg-white dark:bg-gray-900 dark:text-white/80 py-5'>
-                    <button>
+                  <div className='flex flex-col justify-end items-end  gap-4 bg-white dark:bg-gray-900 dark:text-white/80'>
+                  { collapsed && <img src={logo1}/>}
+                    <button className={`${!collapsed ?  'px-6 py-2':'px-2 py-2'}`}>
                         {
                             collapsed ?
                             <span onClick={collapseSidebar} className='text-2xl '><FaArrowAltCircleLeft/></span>:
-                            <span onClick={collapseSidebar}  className='text-2xl '><FaArrowAltCircleRight/></span>
+                            <span onClick={collapseSidebar}  className='text-2xl  '><FaArrowAltCircleRight/></span>
 
                         }
                     </button>
@@ -97,9 +95,23 @@ function AdminSidebar() {
       </SubMenu>
     </Menu>
 
-    <div className="w-full h-32">
-    <img src={dodoCity} className={`${collapsed != false ? 'w-full h-40 ' : ' w-12 h-12 rounded-full'}`}/>
-  </div>
+    {
+      collapsed && 
+      <div className="p-3 bg-gray-100 rounded-sm py-5 dark:bg-gray-800">
+                <h2 className="text-sm font-medium text-gray-800 dark:text-white">Latest news in Dodola!</h2>
+
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus harum officia eligendi velit.</p>
+
+                <img className="object-cover w-full h-32 mt-2 rounded-lg" src={water2} alt=""/>
+            </div>
+
+    }
+    {
+      !collapsed &&
+      <div className='bg-white dark:bg-gray-950 py-2'>
+        <img src={dodolaCiityOffice} className="w-full h-16 rounded-lg p-1"/>
+      </div>
+    }
   </Sidebar>
     </div>
   )
