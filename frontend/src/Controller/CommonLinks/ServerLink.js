@@ -1,7 +1,3 @@
-export const serverLink = 'http://localhost:3600'
-//'https://dodola-official-website.onrender.com'
-//
+export const serverLink = 'https://dodola-official-website.onrender.com'
+ //'http://localhost:3600'
 
-
-
- 
