@@ -86,7 +86,7 @@ function AdminSidebar() {
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<IoHome/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='/'/>}>Property </MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<MdOutlinePostAdd/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='content'/>}>Contents</MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaPersonCircleQuestion/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='questions'/>}> Questions </MenuItem>
-      <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}> Reddit </MenuItem>
+      <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>} onClick={()=> dispatch(closeAdminSidebarToggle())}  component={<Link to='admins'/>}>Admins </MenuItem>
       <MenuItem className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}> Facebook </MenuItem>
       <SubMenu className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label='Fix all'>
       <MenuItem  className="bg-white dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}> Google </MenuItem>

@@ -27,6 +27,7 @@ const news = require('../Controller/readData/news')
 const deleteNew = require('../Controller/deleteData/deleteNews')
 const filterNews = require('../Controller/readData/filterNews')
 const searchNews = require('../Controller/readData/searchNews')
+const admins = require('../Controller/readData/admins')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -46,18 +47,20 @@ route.get('/authorized-admin',isLogginedWithEmail,authorizedAdmin)
 route.get('/isadminloggined',isAdminLoggined)
 
 // readdata from database
-route.get('/contents',isLogginedWithEmail,content)
+route.get('/contents',content)
 route.get('/filter-content',filterContent)
 route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)
-route.get('/news',isLogginedWithEmail,news)
+route.get('/news',news)
 route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 
 // POST METHOD 
-route.post('/create-admin',createAdmin)
+route.post('/create-admin',isLogginedWithEmail,createAdmin)
 route.post('/login-admin',loginAdmin)
+//GET METHOD
+route.get('/admins',isLogginedWithEmail,admins)
 
 //POST METHOD
 route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)

@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initailState = {
     data:{
-        category:'ca',
-        subCategory:'su',
-        title:'ti',
-        description:'des',
-        date:'da',
+        category:'',
+        subCategory:'',
+        title:'',
+        name:'',
+        description:'',
+        date:'',
         //postedDate:new Date(),
     },
     images:[]
@@ -19,6 +20,7 @@ const mainPost = createSlice({
         setMainPost:(state,action) =>{
             state.data.title = action.payload.title
             state.data.description = action.payload.description
+            state.data.name = action.payload.name  
             state.data.date = action.payload.date  
             state.data.category = action.payload.category
             state.data.subCategory = action.payload.subCategory    

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 function TopReview({seeMore,setSeeMore}) {
-    const dispatch = useDispatch()
     const images = useSelector(state => state.mainPost.images)
     const mainPost = useSelector(state=> state.mainPost.data)
     const {category,subCategory,title,date,description} = mainPost

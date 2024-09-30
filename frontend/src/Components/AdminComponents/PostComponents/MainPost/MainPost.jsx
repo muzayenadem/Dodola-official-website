@@ -25,6 +25,7 @@ function MainPost() {
     const [postData,setPostData] = useState({
         category:'',
         subCategory:'',
+        name:'',
         title:'',
         description:'',
         date:'',

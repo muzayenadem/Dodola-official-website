@@ -6,6 +6,7 @@ import { axiosToken } from '../AxiosFunctions/axiosToken'
 const initialState ={
     loading:false,
     token:false,
+    data:[],
     error:''    
 }
 
@@ -45,7 +46,8 @@ const adminTokenSlice = createSlice({
         builder.addCase(adminTokenReducer.fulfilled,(state,action)=>{
             state.loading = false
             state.error = 'succed'
-            state.token = action.payload
+            state.token = action.payload.token
+            state.data.length == 0 && state.data.push(action.payload.admin)
         })
         builder.addCase(adminTokenReducer.rejected,(state,action)=>{
             state.loading = false

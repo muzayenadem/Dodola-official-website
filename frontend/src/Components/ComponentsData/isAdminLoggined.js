@@ -8,7 +8,8 @@ function isAdminLoggined() {
     dispatch(adminTokenReducer())
    },[])
   const adminToken = useSelector(state => state.adminToken)
-  return adminToken
+  const admin = useSelector(state => state.adminToken.data)
+  return {adminToken,admin}
 }
 
 export default isAdminLoggined

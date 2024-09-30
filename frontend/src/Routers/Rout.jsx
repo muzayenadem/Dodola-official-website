@@ -36,10 +36,28 @@ import MainJob from '../Components/AppComponents/News/Job/MainJob'
 import MainBidding from '../Components/AppComponents/News/Bidding/MainBidding'
 import NewQuestions from '../Components/AdminComponents/Questions/NewQuestions'
 import ManageNews from '../Components/AdminComponents/ManageNews/ManageNews'
+import Hospitals from '../Components/AppComponents/Services/Hospitals/Hospitals'
+import Hotels from '../Components/AppComponents/Services/Hotels/Hotels'
+import Others from '../Components/AppComponents/Services/Others/Others'
+import Resourts from '../Components/AppComponents/Services/Resourts/Resourts'
+import ManageAdmins from '../Components/AdminComponents/ManageAdmins/ManageAdmins'
+import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdmin'
 
 function Rout() {
-  const adminToken = isAdminLoggined()
+  const {adminToken ,admin}= isAdminLoggined()
+ 
   console.log({adminToken})
+  console.log({admin})
+  
+  const list = ()=>{
+    let adminsRole = {}
+    for (let admins of admin){
+      adminsRole = admins.role
+    }
+    return adminsRole
+  }
+  const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
+   console.log({generalManager}) 
   return (
    <Router>
       <Routes>
@@ -63,6 +81,12 @@ function Rout() {
             <Route path='secondary-school' element={<SecondarySchool/>}/>
             <Route path='college' element={<Depeloma/>}/>
             <Route path='degree' element={<Degree/>}/>
+            {/*services routes*/}
+            <Route path='hospitals' element={<Hospitals/>}/>
+            <Route path='hotels' element={<Hotels/>}/>
+            <Route path='others' element={<Others/>}/>
+            <Route path='resourts' element={<Resourts/>}/>
+
             {/* office educaion */}
             <Route path='mayor-office' element={<Office/>}/>
 
@@ -75,25 +99,29 @@ function Rout() {
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
-            
+            q2
         </Route>
         <Route path='/page-not-found' element={<AdminPageNotFound/>}/>
         <Route path='/admin' element={
+          adminToken.loading ? <>Loading.........</>:
           !adminToken.error  ? <></> :
           adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
-            <Route path='news' element={<ManageNews/>}/>
+            <Route path='admins' element={generalManager ? <ManageAdmins/>:<div>Not general manager</div>}/>
+            <Route path='add-admin' element={<AddAdmin/>}/>
+
+            <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
             <Route path='news-post' element={<NewPost/>}/>
 
 
-            <Route path='bid-post' element={<BidPost/>}/>
-            <Route path='questions' element={<NewQuestions/>}/>
+            <Route path='bid-post' element={generalManager || biddingManager ? <BidPost/>:<div>Not general or bidding manager</div>}/>
+            <Route path='questions' element={generalManager || responseManager ? <NewQuestions/>:<div>Not general or response manager</div>}/>
 
-            <Route path='jobs' element={<ManageJobs/>}/>
+            <Route path='jobs' element={generalManager || jobsManager ? <ManageJobs/>:<div>Not general or jobs manager</div>}/>
             <Route path='job-post' element={<JobPost/>}/>
             <Route path='update-job/:jobId' element={<UpdateJob/>}/>
 
-            <Route path='content' element={<ManageContent/>}/>
+            <Route path='content' element={generalManager || contentManager ? <ManageContent/>:<div>Not general or content manager</div>}/>
             <Route path='main-post' element={<MainPost/>}/>
             <Route path='update-content/:contentId' element={<UpdateContent/>}/>
         </Route>

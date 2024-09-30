@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const schema = mongoose.Schema({
     fname:{
         required:true,
@@ -21,6 +22,13 @@ const schema = mongoose.Schema({
         required:true,
         type:String
     },
+    role:{
+        type:Object,
+        required:true
+    },
+    date:{
+        type:String
+    }
 })
 
 const adminModel = mongoose.model('Admins',schema)

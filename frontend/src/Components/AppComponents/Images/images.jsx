@@ -43,7 +43,9 @@ import senet2 from './senet2.jpg'
 import agri from './agri.jpg'
 import agri2 from './agri2.jpg'
 import br1 from './br1.jpg'
+import hospital1 from './hospital.jpeg'
 export {
+hospital1,
 agri,
 agri2,    
 sport,

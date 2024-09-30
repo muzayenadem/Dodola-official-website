@@ -13,12 +13,14 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import OfficesNav from "./NavComponents/OfficesNav";
 import EducationNav from "./NavComponents/EducationNav";
 import { Link, useNavigate } from "react-router-dom";
+import ServicesNav from "./NavComponents/ServicesNav";
 function Navbar() {
   const [about,setAbout] = useState(false)
   const [industry, setIndustry] = useState(false)
   const [office,setOffice] = useState(false)
   const [education,setEducation] = useState(false)
   const [news,setNews] = useState(false)
+  const [services,setServices] = useState(false)
 
 
   const [theme ,setTheme] = useState(<MdDarkMode/>)
@@ -58,6 +60,7 @@ function Navbar() {
   setOffice(false)
   setEducation(false)
   setNews(false)
+  setServices(false)
   setAbout(true)
  }
  const openIndustry = () => {
@@ -65,6 +68,7 @@ function Navbar() {
   setOffice(false)
   setAbout(false)
   setNews(false)
+  setServices(false)
   setEducation(false)
  }
  
@@ -73,6 +77,7 @@ function Navbar() {
   setEducation(false)
   setOffice(true)
   setNews(false)
+  setServices(false)
   setAbout(false)
  }
 
@@ -82,6 +87,7 @@ function Navbar() {
   setOffice(false)
   setAbout(false)
   setNews(false)
+  setServices(false)
   setEducation(true)
  }
  const openNews = () => {
@@ -89,8 +95,18 @@ function Navbar() {
   setOffice(false)
   setAbout(false)
   setEducation(false)
+  setServices(false)
   setNews(true)
  }
+ const openServices = () => {
+  setIndustry(false)
+  setOffice(false)
+  setAbout(false)
+  setEducation(false)
+  setNews(false)
+  setServices(true)
+ }
+
 const navigate = useNavigate('/')
  const newsLink = [
   {titile:'New Event', func:()=> navigate('/new-events') & setNews(false)},
@@ -125,7 +141,7 @@ const navigate = useNavigate('/')
         </div>
 
        
-        <div  className={`${isOpen ? 'translate-x-0 opacity-100 h-[100vh] ':'opacity-0 -translate-x-full '}absolute inset-x-0 z-20 w-full px-6   py-4  transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
+        <div  className={`${isOpen ? 'translate-x-0 opacity-100 h-[100vh] ':'opacity-0 -translate-x-full '} absolute inset-x-0 z-20 w-full px-6   py-4  transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
             <div className="flex flex-col space-y-4 lg:mt-0 lg:flex-row lg:-px-8 lg:space-y-0">
             <Link to='/' ><div  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" >Home</div></Link>
                 <a onMouseEnter={openAbout} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
@@ -151,6 +167,15 @@ const navigate = useNavigate('/')
                   <span
                     style={{
                       transform: education ? "scaleX(1)" : "scaleX(0)",
+                    }}
+                    className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
+                  />
+                </a>
+                <a onMouseEnter={openServices}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
+                <span className=" flex gap-1 items-center ">Services<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                  <span
+                    style={{
+                      transform: services ? "scaleX(1)" : "scaleX(0)",
                     }}
                     className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
                   />
@@ -188,6 +213,7 @@ const navigate = useNavigate('/')
 {about && <AboutsNav setAbout={setAbout} />}
 {office && <OfficesNav setOffice={setOffice}/>}
 {education && <EducationNav setEducation={setEducation}/>}
+{services && <ServicesNav setServices={setServices}/>}
  
 </>
   )

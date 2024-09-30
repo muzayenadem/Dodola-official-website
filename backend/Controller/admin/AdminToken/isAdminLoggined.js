@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const adminModel = require('../../../Model/adminModel')
 
 const isAdminLoggined = async(req,res) =>{
     try {
@@ -11,8 +12,14 @@ const isAdminLoggined = async(req,res) =>{
     
         if(!assure)
             return res.status(402).send('not aouthorized')
+
+        const admin = await adminModel.findOne({_id:assure.adminId})
+
+        if(!admin)
+        return res.status(403).send('There is no admin with this token')
     
-        res.status(200).send(true)
+        const token = true
+        res.status(200).send({token,admin})
     } catch (error) {
         console.log({error:error.message})
     }

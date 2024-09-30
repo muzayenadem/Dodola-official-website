@@ -145,7 +145,38 @@ function Category({method,setMethod,postData,setPostData}) {
     {
         value:5,
         label:'Services',
-        func : ()=>{alert('Ind4')}
+        func : ()=>setCategory(
+            [
+                {
+                    value:1,
+                    label:'Hospitals'
+
+                },
+                {
+                    value:2,
+                    label:'Hotels'
+                },
+                {
+                    value:3,
+                    label:'Banks'
+                },
+                {
+                    value:4,
+                    label:'Resourts'
+                },
+                {
+                    value:5,
+                    label:'Apartments'
+                },
+                {
+                    value:6,
+                    label:'Rental Houses'
+                },
+                {
+                    value:7,
+                    label:'Others'
+                },
+            ])
     },
   ]
   

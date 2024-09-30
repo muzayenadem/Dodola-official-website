@@ -1,16 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function BidPost() {
+function AdminList() {
   return (
     <section class="container px-4 mx-auto">
     <div class="sm:flex sm:items-center sm:justify-between">
         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Files uploaded</h2>
 
         <div class="flex items-center mt-4 gap-x-3">
-            <button class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
+            {/* <button class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
                 Download all
-            </button>
+            </button> */}
 
+            <Link to={'/admin/add-admin'}>
             <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_3098_154395)">
@@ -23,8 +25,9 @@ function BidPost() {
                     </defs>
                 </svg>
 
-                <span>Upload</span>
+                <span>Add Admin</span>
             </button>
+            </Link>
         </div>
     </div>
 
@@ -140,4 +143,5 @@ function BidPost() {
   )
 }
 
-export default BidPost
+
+export default AdminList
