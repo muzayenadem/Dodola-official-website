@@ -8,21 +8,21 @@ const createAdmin = async (req,res) =>{
     try {
         const {fname,lname,email,phone,password, confirmPassword,roles} = req.body
        
-        // const adminToken = req.cookies.adminToken
+        const adminToken = req.cookies.adminToken
       
-        // if(!adminToken)
-        // return res.status(404).send('there is no token')
+        if(!adminToken)
+        return res.status(404).send('there is no token')
 
-        // const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
+        const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
        
-        // if(!verify)
-        // return res.status(404).send('token is not autorized')
+        if(!verify)
+        return res.status(404).send('token is not autorized')
 
-        // const mainAdmin = await adminModel.findOne({_id:verify.adminId})
-        // const isGeneralManager = mainAdmin.role.generalManager
+        const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+        const isGeneralManager = mainAdmin.role.generalManager
     
-        // if(!isGeneralManager)
-        // return res.status(201).send("the admin is doesn't have general manager role ")
+        if(!isGeneralManager)
+        return res.status(201).send("the admin is doesn't have general manager role ")
  
 
         if(!fname || !lname || !email || !phone || !password || !confirmPassword)
@@ -34,9 +34,9 @@ const createAdmin = async (req,res) =>{
         if(password !== confirmPassword)
         return res.status(403).send('your password must be matched')
 
-        // const admin = await adminModel.findOne({email})
-        // if(admin)
-        // return res.status(404).send('this email is exist as an admin')
+        const admin = await adminModel.findOne({email})
+        if(admin)
+        return res.status(404).send('this email is exist as an admin')
 
         const dat = new Date()
         const date = `${dat.getFullYear()} / ${dat.getMonth()} / ${dat.getDate()}`

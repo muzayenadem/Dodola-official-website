@@ -49,15 +49,15 @@ function Rout() {
   console.log({adminToken})
   console.log({admin})
   
-  // const list = ()=>{
-  //   let adminsRole = {}
-  //   for (let admins of admin){
-  //     adminsRole = admins.role && admins.role
-  //   }
-  //   return adminsRole
-  // }
-  // const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
-  //  console.log({generalManager}) 
+  const list = ()=>{
+    let adminsRole = {}
+    for (let admins of admin){
+      adminsRole = admins.role && admins.role
+    }
+    return adminsRole
+  }
+  const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
+   console.log({generalManager}) 
   return (
    <Router>
       <Routes>
@@ -99,15 +99,23 @@ function Rout() {
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
-
         </Route>
         <Route path='/page-not-found' element={<AdminPageNotFound/>}/>
-        <Route path='/admin' element={<Admin/>}>
+        <Route path='/admin' element={
+          adminToken.loading ?     <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">
+          <div className="w-4 h-4 rounded-full animate-spin px-5 bg-violet-800"></div>
+          <div className="w-3.5 h-3.5 rounded-full animate-spin px-4 bg-violet-700"></div>
+          <div className="w-3 h-3 rounded-full animate-spin px-3 bg-violet-600"></div>
+          <div className="w-2 h-2 rounded-full animate-spin px-2 bg-violet-500"></div>
+          <div className="w-1.5 h-1.5 rounded-full px-2 animate-spin bg-violet-400"></div>
+        </div>:
+          !adminToken.error  ? <></> :
+          adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
-            <Route path='admins' element={<ManageAdmins/>}/>
+            <Route path='admins' element={generalManager ? <ManageAdmins/>:<div>Not general manager</div>}/>
             <Route path='add-admin' element={<AddAdmin/>}/>
 
-            {/* <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
+            <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
             <Route path='news-post' element={<NewPost/>}/>
 
 
@@ -120,7 +128,7 @@ function Rout() {
 
             <Route path='content' element={generalManager || contentManager ? <ManageContent/>:<div>Not general or content manager</div>}/>
             <Route path='main-post' element={<MainPost/>}/>
-            <Route path='update-content/:contentId' element={<UpdateContent/>}/> */}
+            <Route path='update-content/:contentId' element={<UpdateContent/>}/>
         </Route>
       </Routes>
    </Router>
