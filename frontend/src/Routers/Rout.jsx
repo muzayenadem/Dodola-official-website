@@ -49,15 +49,15 @@ function Rout() {
   console.log({adminToken})
   console.log({admin})
   
-  const list = ()=>{
-    let adminsRole = {}
-    for (let admins of admin){
-      adminsRole = admins.role
-    }
-    return adminsRole
-  }
-  const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
-   console.log({generalManager}) 
+  // const list = ()=>{
+  //   let adminsRole = {}
+  //   for (let admins of admin){
+  //     adminsRole = admins.role && admins.role
+  //   }
+  //   return adminsRole
+  // }
+  // const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
+  //  console.log({generalManager}) 
   return (
    <Router>
       <Routes>
@@ -99,18 +99,15 @@ function Rout() {
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
-            q2
+
         </Route>
         <Route path='/page-not-found' element={<AdminPageNotFound/>}/>
-        <Route path='/admin' element={
-          adminToken.loading ? <>Loading.........</>:
-          !adminToken.error  ? <></> :
-          adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
+        <Route path='/admin' element={<Admin/>}>
             <Route path='' element={<div>default page</div>}/>
-            <Route path='admins' element={generalManager ? <ManageAdmins/>:<div>Not general manager</div>}/>
+            <Route path='admins' element={<ManageAdmins/>}/>
             <Route path='add-admin' element={<AddAdmin/>}/>
 
-            <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
+            {/* <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
             <Route path='news-post' element={<NewPost/>}/>
 
 
@@ -123,7 +120,7 @@ function Rout() {
 
             <Route path='content' element={generalManager || contentManager ? <ManageContent/>:<div>Not general or content manager</div>}/>
             <Route path='main-post' element={<MainPost/>}/>
-            <Route path='update-content/:contentId' element={<UpdateContent/>}/>
+            <Route path='update-content/:contentId' element={<UpdateContent/>}/> */}
         </Route>
       </Routes>
    </Router>

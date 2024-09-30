@@ -57,7 +57,7 @@ route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 
 // POST METHOD 
-route.post('/create-admin',isLogginedWithEmail,createAdmin)
+route.post('/create-admin',createAdmin)
 route.post('/login-admin',loginAdmin)
 //GET METHOD
 route.get('/admins',isLogginedWithEmail,admins)
