@@ -1,21 +1,28 @@
 const jwt = require('jsonwebtoken')
 const contentModel = require('../../Model/contentModel')
-
+const adminModel = require('../../Model/adminModel')
 const admin = require('../firebase/admin')
 
 const contentPost = async(req,res) =>{
     const bucket = admin.storage().bucket(); 
     try {
   
-        const adminToken = req.cookies.adminToken
+      const adminToken = req.cookies.adminToken
+      
+      if(!adminToken)
+      return res.status(404).send('there is no token')
 
-        if(!adminToken)
-        return res.status(404).send('not authorized')
+      const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
+     
+      if(!verify)
+      return res.status(404).send('token is not autorized')
 
-        const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
+      const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+      const isContentManager = mainAdmin.role.contentManager
+  
+      if(!isContentManager)
+      return res.status(403).send("you don't have content manager role ")
 
-        if(!verify)
-        return res.status(403).send('not authenticated')
 
         // take data from client
         let {data} = req.body

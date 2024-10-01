@@ -17,6 +17,7 @@ function  JobPost() {
   const [loading,setLoading] = useState('')
   const [open,setOpen] = useState(false)
   const [errMessage,setErrMessage] = useState('')
+  const [err,setErr] = useState('')
   const [errorPage,setErrorPage] = useState(false)
   const [succed,setSucced] = useState(false)
   const [asured, setAsured] = useState(false)
@@ -133,6 +134,7 @@ const submitHundler = async (e) =>{
           setOpen(false)
           setSucced(false)
           setResponse(error.response.data)
+          setErr(error.response.data)
           setErrorPage(true)
           return error.response.data
         } else if (error.request) {
@@ -142,6 +144,7 @@ const submitHundler = async (e) =>{
           setOpen(false)
           setSucced(false)
           setResponse('response not received')
+          setErr('No response resivied')
           setErrorPage(true)
           
           return error.request
@@ -152,6 +155,7 @@ const submitHundler = async (e) =>{
           setOpen(false)
           setSucced(false)
           setResponse('Error setting up request')
+          setErr(error.message)
           setErrorPage(true)
           
           return error.message
@@ -442,7 +446,7 @@ const submitHundler = async (e) =>{
 <dialog open={open} className='fixed top-0 left-0 bg-white py-20 dark:bg-gray-900 w-screen h-screen '>
 <div className="container px-6 py-6 mx-auto text-center">
         <div className="max-w-lg mx-auto">
-          <h1>{}</h1>
+
             <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Almost Done you just have to click the button bellow</h1>
             <p className="mt-6 text-gray-500 dark:text-gray-300">please be sure first that everything is as you want before publish</p>
            {!loading && 
@@ -479,9 +483,35 @@ const submitHundler = async (e) =>{
 <dialog open={errorPage} className='fixed top-0 left-0 bg-white py-20 dark:bg-gray-900 w-screen h-screen '>
 <section className="bg-white dark:bg-gray-900">
     <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
-        <h2 className="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+
+    <h2 className="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
             Something went wrong! <span className="text-blue-500">New job</span> 
         </h2>
+        
+    {err &&
+            <div className="py-3">
+            <div className="w-full text-white bg-red-500 rounded-md">
+            <div className="container flex items-center justify-between px-6 py-4 mx-auto">
+                <div className="flex">
+                    <svg viewBox="0 0 40 40" className="w-6 h-6 fill-current">
+                        <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                        </path>
+                    </svg>
+
+                        <p className="mx-3">{err}</p>
+                    </div>
+
+                    <button onClick={()=> setErr('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            </div>
+          }
+
+        
         <div className="inline-flex w-full mt-10 sm:w-auto">
             <button onClick={()=>  setLoading(false) & setOpen(false) & setSucced(false) & setErrorPage(false) & setResponse('') }  className="inline-flex items-center justify-center w-full px-6 py-2 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                 Close

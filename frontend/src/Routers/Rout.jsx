@@ -42,6 +42,7 @@ import Others from '../Components/AppComponents/Services/Others/Others'
 import Resourts from '../Components/AppComponents/Services/Resourts/Resourts'
 import ManageAdmins from '../Components/AdminComponents/ManageAdmins/ManageAdmins'
 import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdmin'
+import NotGeneralAdmin from '../Components/PageNotFound/NotGeneralAdmin'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -100,7 +101,9 @@ function Rout() {
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
         </Route>
-        <Route path='/page-not-found' element={<AdminPageNotFound/>}/>
+
+
+        
         <Route path='/admin' element={
           adminToken.loading ?     <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">
           <div className="w-4 h-4 rounded-full animate-spin px-5 bg-violet-800"></div>
@@ -112,23 +115,93 @@ function Rout() {
           !adminToken.error  ? <></> :
           adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
-            <Route path='admins' element={generalManager ? <ManageAdmins/>:<div>Not general manager</div>}/>
-            <Route path='add-admin' element={<AddAdmin/>}/>
-
-            <Route path='news' element={generalManager || eventManager ? <ManageNews/>:<div>Not general or event manager</div>}/>
+            {/* <Route path='admins' element={<ManageAdmins/>}/>
+            <Route path='add-admin'  element={<AddAdmin/>}/>
+            <Route path='news' element={<ManageNews/>}/>
             <Route path='news-post' element={<NewPost/>}/>
-
-
-            <Route path='bid-post' element={generalManager || biddingManager ? <BidPost/>:<div>Not general or bidding manager</div>}/>
-            <Route path='questions' element={generalManager || responseManager ? <NewQuestions/>:<div>Not general or response manager</div>}/>
-
-            <Route path='jobs' element={generalManager || jobsManager ? <ManageJobs/>:<div>Not general or jobs manager</div>}/>
+            <Route path='jobs' element={<ManageJobs/>}/>
             <Route path='job-post' element={<JobPost/>}/>
-            <Route path='update-job/:jobId' element={<UpdateJob/>}/>
+            <Route path='content' element={<ManageContent/>}/>
+            <Route path='main-post' element={<MainPost/>}/> */}
 
-            <Route path='content' element={generalManager || contentManager ? <ManageContent/>:<div>Not general or content manager</div>}/>
-            <Route path='main-post' element={<MainPost/>}/>
-            <Route path='update-content/:contentId' element={<UpdateContent/>}/>
+
+            <Route path='admins' element={generalManager ? <ManageAdmins/>:
+              <NotGeneralAdmin
+                title={'You are not general manager'}
+                description={"in this software you can't  access this page if you are not general manager"}
+              />
+            }/>
+            <Route path='add-admin'  element={generalManager ? <AddAdmin/>:
+              <NotGeneralAdmin
+              title={'You are not general manager'}
+              description={"in this software you can't  access this page if you are not general manager"}
+              />
+            }/>
+
+            <Route path='news' element={generalManager || eventManager ? <ManageNews/>:
+              <NotGeneralAdmin
+              title={'You are not general or event manager '}
+              description={"in this software you can't  access this page if you are not general manager or event"}
+              />
+            }/>
+            <Route path='news-post' element={generalManager || eventManager ? <NewPost/>:
+                 <NotGeneralAdmin
+                 title={'You are not general or event manager '}
+                 description={"in this software you can't  access this page if you are not general manager or event manager"}
+                 />
+            }/>
+
+
+            <Route path='bid-post' element={generalManager || biddingManager ? <BidPost/>:
+                 <NotGeneralAdmin
+                 title={'You are not general or bidding manager '}
+                 description={"in this software you can't  access this page if you are not general manager or bidding manager"}
+                 />
+            }/>
+            <Route path='questions' element={generalManager || responseManager ? <NewQuestions/>:
+                 <NotGeneralAdmin
+                 title={'You are not general or response manager '}
+                 description={"in this software you can't  access this page if you are not general manager or response manager"}
+                 />
+            }/>
+
+            <Route path='jobs' element={generalManager || jobsManager ? <ManageJobs/>:
+              <NotGeneralAdmin
+              title={'You are not general or jobs manager'}
+              description={"in this software you can't  access this page if you are not general manager or jobs manager"}
+              />
+            }/>
+            <Route path='job-post' element={generalManager || jobsManager ? <JobPost/>:
+              <NotGeneralAdmin
+              title={'You are not general or jobs manager'}
+              description={"in this software you can't  access this page if you are not general manager or jobs manager"}
+              />
+            }/>
+            <Route path='update-job/:jobId'  element={generalManager || jobsManager ? <UpdateJob/>:
+              <NotGeneralAdmin
+              title={'You are not general or jobs manager'}
+              description={"in this software you can't  access this page if you are not general manager or jobs manager"}
+              />
+            }/>
+
+            <Route path='content' element={generalManager || contentManager ? <ManageContent/>:
+              <NotGeneralAdmin
+              title={'You are not general or content manager'}
+              description={"in this software you can't  access this page if you are not general manager or content manager"}
+              />
+            }/>
+            <Route path='main-post' element={generalManager || contentManager ? <MainPost/>:
+               <NotGeneralAdmin
+               title={'You are not general or content manager'}
+               description={"in this software you can't  access this page if you are not general manager or content manager"}
+               />
+            }/>
+            <Route path='update-content/:contentId' element={generalManager || contentManager ? <UpdateContent/>:
+               <NotGeneralAdmin
+               title={'You are not general or content manager'}
+               description={"in this software you can't  access this page if you are not general manager or content manager"}
+               />
+            }/>
         </Route>
       </Routes>
    </Router>
