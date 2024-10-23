@@ -28,6 +28,8 @@ const deleteNew = require('../Controller/deleteData/deleteNews')
 const filterNews = require('../Controller/readData/filterNews')
 const searchNews = require('../Controller/readData/searchNews')
 const admins = require('../Controller/readData/admins')
+const adminData = require('../Controller/readData/adminData')
+const updateAdminProfile = require('../Controller/updateData/updateAdmin')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -44,6 +46,7 @@ route.get('/unauthorized', unauthorized)
 route.get('/authorized-admin',isLogginedWithEmail,authorizedAdmin)
 
 // is admin loggined
+route.get('/admin-data',isLogginedWithEmail,adminData)
 route.get('/isadminloggined',isAdminLoggined)
 
 // readdata from database
@@ -74,6 +77,9 @@ route.get('/questions',isLogginedWithEmail,questions)
 route.post('/delete-content',isLogginedWithEmail,deleteContent)
 route.post('/delete-job',isLogginedWithEmail,deleteJob)
 route.post('/delete-news',isLogginedWithEmail,deleteNew)
+
+//UPDATE METHODS
+route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)
 
 
 module.exports = route

@@ -9,6 +9,7 @@ import jobPost from "../Posts/jobPost";
 import questions from "../Data/questionsSlice";
 import news from '../Data/newsSlice'
 import admins from '../Data/adminsSlice'
+import adminData from "../Data/adminData";
 const store = configureStore({
     reducer:{
        //buttons 
@@ -23,6 +24,7 @@ const store = configureStore({
        adminToken,
 
        //data from server
+       adminData,
        admins,
        content,
        jobs,

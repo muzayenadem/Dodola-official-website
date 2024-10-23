@@ -4,10 +4,13 @@ import { MdDarkMode, MdLightMode, MdMenu } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeAdminSidebarToggle, openAdminSidebarToggle } from '../../Controller/Buttons/ToggleAndminSidebar';
 import { openHomeSidebarToggle } from '../../Controller/Buttons/ToggleHomeSidebar';
+import AdminProfile from './Admin/AdminProfile/AdminProfile';
 
-function AdminNavbar() {
+function AdminNavbar({admin}) {
     const [theme ,setTheme] = useState(<MdDarkMode/>)
-const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [open,setOpen] = useState(false)
+    
 
 useEffect(() => {
   if (!isDarkMode) {
@@ -46,12 +49,13 @@ const AdminToggle = useSelector(state => state.AdminToggle.open)
                         </svg>
                     </button>
 
-                    <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                   <div className="flex gap-20 relative ">
+                   <button onClick={()=> setOpen(!open)} type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                         <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                             <img src={br1} className="object-cover w-full h-full" alt="avatar"/>
                         </div>
 
-                        <h3 className="mx-2 text-gray-700 dark:text-gray-200 hidden lg:block">Muzayen Adem</h3>
+                        <h3 className="mx-2 text-gray-700 dark:text-gray-200 hidden lg:block">{admin[0].fname} {admin[0].lname}</h3>
                     </button> 
                     <button  type="button" className=" lg:hidden ml-4 text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
                         {!AdminToggle && 
@@ -65,6 +69,14 @@ const AdminToggle = useSelector(state => state.AdminToggle.open)
                     </svg>
                         }
                     </button> 
+
+                    <div className={`${!open && 'hidden'} top-16  absolute  w-[200%]  -left-36   shadow-md bg-white dark:bg-gray-950  `}>
+                      <div className=" absolute -top-2 bg-white  dark:bg-gray-950 w-5 h-5 rotate-45 left-[47%]   "></div>
+                        <div className="">
+                          <AdminProfile admin={admin} setOpen={setOpen}/>
+                        </div>
+                    </div>
+                   </div>
                 </div>
         </div>
         </div>

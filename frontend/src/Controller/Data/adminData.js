@@ -7,30 +7,33 @@ const initialState = {
     loading:false,
     data:[],
     filterLoading:false,
-    error:''
+    error:'',
+    role:{}
 }
 //server side render
-export const fetchAdmins = createAsyncThunk('adminsSlice/fetchAdmins',()=>{
-   return axiosFunction(`${serverLink}/admins`)
-})
 
-const adminsSlice = createSlice({
-    name:'adminsSlice',
+export const fetchAdminData = createAsyncThunk('adminsSlice/fetchAdminData',()=>{
+    return axiosFunction(`${serverLink}/admin-data`)
+ })
+ 
+const adminDataSlice = createSlice({
+    name:'adminData',
     initialState:initialState,
     //servser side render
     extraReducers:(build) =>{
         // collin when the app rendered 
-        build.addCase(fetchAdmins.pending,(state,action) =>{
+        build.addCase(fetchAdminData.pending,(state,action) =>{
             state.loading = true
         })
-        build.addCase(fetchAdmins.fulfilled,(state,action)=>{
+        build.addCase(fetchAdminData.fulfilled,(state,action)=>{
             state.loading = false
             state.data = action.payload
+            state.role = action.payload.role
         })
-        build.addCase(fetchAdmins.rejected,(state,action)=>{
+        build.addCase(fetchAdminData.rejected,(state,action)=>{
             state.loading = false
             state.error = action.error.message
         })
     }
 })
-export default  adminsSlice.reducer
+export default  adminDataSlice.reducer

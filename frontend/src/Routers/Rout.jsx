@@ -43,6 +43,7 @@ import Resourts from '../Components/AppComponents/Services/Resourts/Resourts'
 import ManageAdmins from '../Components/AdminComponents/ManageAdmins/ManageAdmins'
 import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdmin'
 import NotGeneralAdmin from '../Components/PageNotFound/NotGeneralAdmin'
+import EditProfile from '../Components/AdminComponents/Admin/AdminProfile/EditProfile'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -113,7 +114,7 @@ function Rout() {
           <div className="w-1.5 h-1.5 rounded-full px-2 animate-spin bg-violet-400"></div>
         </div>:
           !adminToken.error  ? <></> :
-          adminToken.token === true ? <Admin/> : <AdminPageNotFound/>}>
+          adminToken.token === true ? <Admin admin={admin}/> : <AdminPageNotFound/>}>
             <Route path='' element={<div>default page</div>}/>
             {/* <Route path='admins' element={<ManageAdmins/>}/>
             <Route path='add-admin'  element={<AddAdmin/>}/>
@@ -124,7 +125,7 @@ function Rout() {
             <Route path='content' element={<ManageContent/>}/>
             <Route path='main-post' element={<MainPost/>}/> */}
 
-
+            <Route path='edit-profile' element={<EditProfile/>}/>
             <Route path='admins' element={generalManager ? <ManageAdmins/>:
               <NotGeneralAdmin
                 title={'You are not general manager'}
@@ -137,7 +138,6 @@ function Rout() {
               description={"in this software you can't  access this page if you are not general manager"}
               />
             }/>
-
             <Route path='news' element={generalManager || eventManager ? <ManageNews/>:
               <NotGeneralAdmin
               title={'You are not general or event manager '}
@@ -150,8 +150,6 @@ function Rout() {
                  description={"in this software you can't  access this page if you are not general manager or event manager"}
                  />
             }/>
-
-
             <Route path='bid-post' element={generalManager || biddingManager ? <BidPost/>:
                  <NotGeneralAdmin
                  title={'You are not general or bidding manager '}
@@ -164,7 +162,6 @@ function Rout() {
                  description={"in this software you can't  access this page if you are not general manager or response manager"}
                  />
             }/>
-
             <Route path='jobs' element={generalManager || jobsManager ? <ManageJobs/>:
               <NotGeneralAdmin
               title={'You are not general or jobs manager'}

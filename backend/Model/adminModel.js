@@ -26,6 +26,13 @@ const schema = mongoose.Schema({
         type:Object,
         required:true
     },
+    profileImg:{
+        type:String
+    },
+    coverImg:{
+        type:String
+    },
+   
     date:{
         type:String
     }
