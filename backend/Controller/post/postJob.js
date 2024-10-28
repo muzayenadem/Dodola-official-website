@@ -7,18 +7,9 @@ const JobModel = require('../../Model/jobModel');
 const postJob = async(req,res) =>{
     const bucket = admin.storage().bucket(); 
     try {
-  
-      const adminToken = req.cookies.adminToken
-      
-      if(!adminToken)
-      return res.status(404).send('there is no token')
-
-      const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
+      const {adminId} = req.admin
      
-      if(!verify)
-      return res.status(404).send('token is not autorized')
-
-      const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+      const mainAdmin = await adminModel.findOne({_id:adminId})
       const isJobsManager = mainAdmin.role.jobsManager
   
       if(!isJobsManager)
@@ -60,7 +51,7 @@ const postJob = async(req,res) =>{
         
          console.log({imagesUrl})
         const newJob = new JobModel({
-            adminId:verify.adminId,
+            adminId:adminId,
             job:data.postData,
              images:imagesUrl,
             company:data.company,

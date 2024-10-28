@@ -1,5 +1,4 @@
 const contentModel = require('../../Model/contentModel');
-
 const content = async (req, res) => {
     try {
         const contents = await contentModel.find({});

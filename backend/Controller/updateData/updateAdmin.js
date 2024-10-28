@@ -1,23 +1,17 @@
 const adminModel = require('../../Model/adminModel')
-
-const jwt = require('jsonwebtoken')
 const admin = require('../firebase/admin')
 
 const updateAdminProfile = async (req,res) =>{
     const bucket = admin.storage().bucket(); 
     try {
-        const { adminToken } = req.cookies;
         let {data} = req.body
+        const {adminId} = req.admin
+        console.log({adminId})
         data = JSON.parse(data)
         const files = req.files;
         const {fname,lname,email,phone} = data
         console.log({fname,lname,email,phone})
-   
-
-        if (!adminToken) return res.status(404).send('No token provided.');
-
-        const verify = jwt.verify(adminToken, process.env.ADMINPASSWORD);
-        if (!verify) return res.status(404).send('Token not authorized.');
+        
 
         let profileImgUrl, coverImgUrl;
 
@@ -62,7 +56,7 @@ const updateAdminProfile = async (req,res) =>{
         profileImgUrl && console.log({profileImgUrl})
         //Update admin details here 
         const updateAdmin = await adminModel.findByIdAndUpdate(
-          { _id: verify.adminId },
+          { _id: adminId },
           { $set: {
             fname: fname ? fname : null,
             lname: lname ? lname : null,
@@ -75,6 +69,7 @@ const updateAdminProfile = async (req,res) =>{
         );
         res.status(200).send('Admin profile updated successfully.');
     } catch (error) {
+        res.status(500).send('something is error')
         console.log({error:error.message})
     }
 }

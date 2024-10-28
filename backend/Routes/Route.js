@@ -30,6 +30,7 @@ const searchNews = require('../Controller/readData/searchNews')
 const admins = require('../Controller/readData/admins')
 const adminData = require('../Controller/readData/adminData')
 const updateAdminProfile = require('../Controller/updateData/updateAdmin')
+const changeAdminPassword = require('../Controller/updateData/changeAdminPassword')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -80,6 +81,7 @@ route.post('/delete-news',isLogginedWithEmail,deleteNew)
 
 //UPDATE METHODS
 route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)
+route.put('/change-admin-password',isLogginedWithEmail,changeAdminPassword)
 
 
 module.exports = route

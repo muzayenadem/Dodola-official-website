@@ -7,18 +7,9 @@ const assureEmail = require('../../Middleware/assureEmail')
 const createAdmin = async (req,res) =>{
     try {
         const {fname,lname,email,phone,password, confirmPassword,roles} = req.body
-       
-        const adminToken = req.cookies.adminToken
-      
-        if(!adminToken)
-        return res.status(404).send('there is no token')
+        const {adminId} = req.admin
 
-        const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
-       
-        if(!verify)
-        return res.status(404).send('token is not autorized')
-
-        const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+        const mainAdmin = await adminModel.findOne({_id:adminId})
         const isGeneralManager = mainAdmin.role.generalManager
     
         if(!isGeneralManager)

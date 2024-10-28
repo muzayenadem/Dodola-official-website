@@ -4,6 +4,10 @@ import { serverLink } from '../../../Controller/CommonLinks/ServerLink'
 import { useNavigate } from 'react-router-dom'
 import { logo1, logo2 } from '../../AppComponents/Images/images'
 function LoginAdmin() {
+    const [err,setErr] = useState('')
+	const [loading,setLoading] = useState(false)
+	const [success,setSuccess] = useState('')
+    const [showPassword, setShowPassword] = useState(false) 
     const [admin,setAdmin] = useState({
         email:'',
         password:''
@@ -11,26 +15,43 @@ function LoginAdmin() {
     useEffect(()=>{
         window.document.title = 'admin login page'
     },[])
-
-    const [errMessage,setErrMessage] = useState('')
     const navigate = useNavigate('')
-    const loginHandler = async (e) =>{
-        try {
-            e.preventDefault()
-          const response = await axios.post(`${serverLink}/login-admin`,{email:admin.email,password:admin.password})
-          .then((res) => {
-            setErrMessage(res.data)
-            return res
-          })
-          .catch(err => err.response.data)
-          console.log({response:response})
-          if (response.data !== undefined){
-             window.location.href = '/admin'
-          }
-        } catch (error) {
-            console.log({error:error.message})
+
+    const loginHandler = async (e) => {
+        e.preventDefault();
+
+        // Basic validation for email and password fields
+        if (!admin.email || !admin.password) {
+            return setErr({ type: 'error', message: 'Please fill all required fields.' });
         }
-    }
+
+        try {
+            setLoading(true);
+            const response = await axios.post(
+                `${serverLink}/login-admin`,
+                { email: admin.email, password: admin.password },
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                }
+            );
+
+            // Set success message
+            setSuccess({ type: 'success', message: 'Successfully logged in!' });
+
+            // Redirect to admin dashboard
+            console.log({ response });
+            //navigate('/admin');
+            window.location.href = '/admin'
+
+        } catch (error) {
+            const errorMsg = error.response?.data?.message || 'Login failed. Please try again.';
+            setErr({ type: 'error', message: errorMsg });
+        } finally {
+            setLoading(false);
+        }
+    };
+    
   return (
     <section className="bg-white dark:bg-gray-900">
     <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
@@ -56,13 +77,74 @@ function LoginAdmin() {
                     </svg>
                 </span>
 
-                <input onChange={(e)=> setAdmin({...admin,password:e.target.value})} type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password"/>
+                <input onChange={(e)=> setAdmin({...admin,password:e.target.value})}   type={showPassword ? 'text' : 'password'}  className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password"/>
+
+
+                <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)} // Toggle show/hide password
+                    className="absolute right-3 text-gray-500 focus:outline-none"
+                >
+                    {showPassword ? 'Hide' : 'Show'}
+                </button>
             </div>
 
+          
+
             <div className="mt-6">
-                <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                {/* <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     Sign in
+                </button> */}
+
+                <button
+                    type="submit"
+                    className={`w-full p-4 rounded-lg text-white font-semibold ${loading ? 'bg-gray-500' : 'bg-blue-500'}`}
+                    disabled={loading}
+                >
+                    {loading ? 'Loading...' : 'Sign in'}
                 </button>
+
+
+                {success && 
+                <div class="w-full  text-white mt-5 bg-emerald-500">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
+                                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z">
+                                </path>
+                            </svg>
+
+                            <p class="mx-3">{success.message}</p>
+                        </div>
+
+                        <button onClick={()=> setSuccess('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                }
+			    {err &&
+				<div class="w-full text-white mt-5 bg-red-500">
+					<div class="container flex items-center justify-between px-6 py-4 mx-auto">
+						<div class="flex">
+							<svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
+								<path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+								</path>
+							</svg>
+
+							<p class="mx-3">{err.message}</p>
+						</div>
+
+						<button onClick={()=> setErr('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+							<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			 }
 
                 <p className="mt-4 text-center text-gray-600 dark:text-gray-400">or sign in with</p>
                 <a href={`${serverLink}/auth/google`} className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">

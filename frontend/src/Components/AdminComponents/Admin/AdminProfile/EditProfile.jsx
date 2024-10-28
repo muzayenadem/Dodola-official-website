@@ -3,15 +3,15 @@ import { br1, logo1, logo2 } from '../../../AppComponents/Images/images'
 import axios from 'axios'
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink'
 import adminData from '../../../ComponentsData/adminData'
+import ChangePassword from './ChangePassword'
 
 function EditProfile() {
 
-	const [more,setMore] = useState(false)
 	const [err,setErr] = useState('')
 	const [loading,setLoading] = useState(false)
 	const [succes,setSucces] = useState('')
 
-  const [open,SetOpen] =  useState(false)
+    const [open,setOpen] =  useState(false)
     const [data,setData] = useState({
         fname:'',lname:'',email:'',phone:'',profileImg:'',cover:''
     })
@@ -27,7 +27,7 @@ function EditProfile() {
             fname: fname ? fname : admin.fname,
             lname: lname ? lname : admin.lname,
             email: email ? email : admin.email,
-            phone: phone ? phone : admin.phone
+            phone: phone ? phone : admin.phone,
         }
         formData.append('data',JSON.stringify(datas))
         formData.append('profileImg',data.profileImg[0]) 
@@ -68,7 +68,7 @@ function EditProfile() {
     }
   return (
     <>
-    <section class="py-10 my-auto dark:bg-gray-900">
+    <section class="py-10 my-auto dark:bg-gray-900 relative">
     <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
         <div
             class="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center dark:bg-gray-800/40">
@@ -80,9 +80,9 @@ function EditProfile() {
                     </h1>
                     <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Update Profile</h2>
                 </div>
-                <div className=" self-center bg-fuchsia-800 hover:bg-fuchsia-900 hover:font-normal font-medium px-4 py-2 rounded-md">
+                <button onClick={()=> setOpen(!open)} className=" self-center bg-fuchsia-800 hover:bg-fuchsia-900 hover:font-normal font-medium px-4 py-2 rounded-md">
                     Change Password
-                </div>
+                </button>
               </div>
                 <form onSubmit={submitHundler}>
                     <div
@@ -179,29 +179,27 @@ function EditProfile() {
                             {loading ?    <div className="w-16  h-16 mx-auto  rounded-full border-4 border-dashed  animate-spin border-violet-600"></div> : 'Update'}
                         </button>
                     </div>
-                    {
-				succes && 
-				<div class="w-full text-white mt-5 bg-emerald-500">
-				<div class="container flex items-center justify-between px-6 py-4 mx-auto">
-					<div class="flex">
-						<svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
-							<path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z">
-							</path>
-						</svg>
+                {succes && 
+                <div class="w-full text-white mt-5 bg-emerald-500">
+                    <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                        <div class="flex">
+                            <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
+                                <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z">
+                                </path>
+                            </svg>
 
-						<p class="mx-3">{succes}</p>
-					</div>
+                            <p class="mx-3">{succes}</p>
+                        </div>
 
-					<button onClick={()=> setSucces('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
-						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-						</svg>
-					</button>
-				</div>
-			</div>
-			}
-			{
-				err &&
+                        <button onClick={()=> setSucces('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                }
+			    {err &&
 				<div class="w-full text-white mt-5 bg-red-500">
 					<div class="container flex items-center justify-between px-6 py-4 mx-auto">
 						<div class="flex">
@@ -220,14 +218,16 @@ function EditProfile() {
 						</button>
 					</div>
 				</div>
-			}
+			 }
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-
+<dialog open={open} className=' absolute top-20 '>
+    <ChangePassword setOpen={setOpen}/>
+</dialog>
 </>
   )
 }

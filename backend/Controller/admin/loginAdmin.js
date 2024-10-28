@@ -5,33 +5,47 @@ const assureEmail = require('../../Middleware/assureEmail')
 const loginAdmin = async (req,res) =>{
     try {
         const {email,password} = req.body
-
-        if(!email || !password)
-        return res.status(401).send('please fill all required place')
-
+        console.log({email,password})
 
         if(!assureEmail(email))
-        return res.status(402).send('invalid email address')
+            return res.status(400).json({ message: 'Invalid email address.' });
 
-        const isAdmin = await adminModel.findOne({email})
-        if(!isAdmin)
-        return res.status(404).send('wrong email')
-        
-        const assurePassword = await bcrypt.compare(password, isAdmin.password)
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Please fill all required fields.' });
+        }
 
-        if(!assurePassword)
-        return res.status(403).send('wrong password')
+        // Validate email format
+        if (!assureEmail(email)) {
+            return res.status(400).json({ message: 'Invalid email address.' });
+        }
 
-        const token = jwt.sign({adminId:isAdmin._id},process.env.ADMINPASSWORD)
+        // Check if admin exists
+        const isAdmin = await adminModel.findOne({ email });
+        if (!isAdmin) {
+            return res.status(403).json({ message: 'Incorrect email or password.' });
+        }
+
+        // Validate password
+        const isPasswordValid = await bcrypt.compare(password, isAdmin.password);
+        if (!isPasswordValid) {
+            return res.status(403).json({ message: 'Incorrect email or password.' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ adminId: isAdmin._id }, process.env.ADMINPASSWORD, { expiresIn: '1d' });
+
+        // Set the token in a secure, HTTP-only cookie
         res.cookie('adminToken', token, {
-            maxAge: 24 * 60 * 60 * 1000,
+            maxAge: 24 * 60 * 60 * 1000, // 1 day
             httpOnly: true,
             secure: true,
             sameSite: 'None',
             path: '/'
-        }).send('successfully logined!')
-        console.log({token})
+        }).json({ message: 'Successfully logged in!' });
+
+        console.log({ token });
     } catch (error) {
+        res.status(500).send('something is error')
         console.log({error:error.message})
     }
 }

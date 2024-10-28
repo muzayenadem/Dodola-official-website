@@ -12,7 +12,7 @@ const isLogginedWithEmail = async (req,res,next) =>{
         if(!verify)
         return res.status(404).send('token is not verified')
 
-        req.user = verify.user
+        req.admin = verify
         next()
    } catch (error) {
         console.log({error:error.message})

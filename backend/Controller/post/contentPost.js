@@ -6,18 +6,8 @@ const admin = require('../firebase/admin')
 const contentPost = async(req,res) =>{
     const bucket = admin.storage().bucket(); 
     try {
-  
-      const adminToken = req.cookies.adminToken
-      
-      if(!adminToken)
-      return res.status(404).send('there is no token')
-
-      const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
-     
-      if(!verify)
-      return res.status(404).send('token is not autorized')
-
-      const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+      const {adminId} = req.admin
+      const mainAdmin = await adminModel.findOne({_id:adminId})
       const isContentManager = mainAdmin.role.contentManager
   
       if(!isContentManager)
@@ -55,14 +45,13 @@ const contentPost = async(req,res) =>{
         
           console.log({imagesUrl})
         const newContent = new contentModel({
-            adminId:verify.adminId,
+            adminId:adminId,
             ...data,
             images:imagesUrl,
             postedDate:new Date(),
 
         })
         const savedContent = await newContent.save()
-        console.log({verify})
         if(!data)
         return res.status(403).send('there is no data')
 

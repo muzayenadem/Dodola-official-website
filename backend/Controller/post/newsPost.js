@@ -5,18 +5,9 @@ const adminModel = require('../../Model/adminModel');
 const newsPost = async(req,res) => {
     const bucket = admin.storage().bucket(); 
     try {
-  
-      const adminToken = req.cookies.adminToken
-      
-      if(!adminToken)
-      return res.status(404).send('there is no token')
-
-      const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
-     
-      if(!verify)
-      return res.status(404).send('token is not autorized')
-
-      const mainAdmin = await adminModel.findOne({_id:verify.adminId})
+      const {adminId} = req.admin
+   
+      const mainAdmin = await adminModel.findOne({_id:adminId})
       const isEventManager = mainAdmin.role.eventManager
   
       if(!isEventManager)
@@ -32,7 +23,7 @@ const newsPost = async(req,res) => {
 
 
         console.log({newsData})
-        const loginnedAdmin = await adminModel.findOne({_id:verify.adminId})
+        const loginnedAdmin = await adminModel.findOne({_id:adminId})
         if(!loginnedAdmin)
         return res.status(403).send('not users data')
         
@@ -72,7 +63,6 @@ const newsPost = async(req,res) => {
 
         })
         const savedContent = await newsContent.save()
-        console.log({verify})
         if(!data)
         return res.status(403).send('there is no data')
 
