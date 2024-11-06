@@ -14,6 +14,11 @@ import OfficesNav from "./NavComponents/OfficesNav";
 import EducationNav from "./NavComponents/EducationNav";
 import { Link, useNavigate } from "react-router-dom";
 import ServicesNav from "./NavComponents/ServicesNav";
+
+
+import { useTranslation } from 'react-i18next';
+
+
 function Navbar() {
   const [about,setAbout] = useState(false)
   const [industry, setIndustry] = useState(false)
@@ -27,11 +32,21 @@ function Navbar() {
   const [isOpen,setIsOpen] = useState(false)
   const [me,setMe] = useState('data-twe-carousel-active')
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState(false)
 
 
   useEffect(()=>{
     setMe('data-twe-carousel-active')
   },[])
+
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng); // Persist language choice
+  };
+
 
   useEffect(() => {
     if (!isDarkMode) {
@@ -81,7 +96,9 @@ function Navbar() {
   setAbout(false)
  }
 
- 
+ const openLanguage = () =>{
+  setLanguage(true)
+ }
  const openEducation = () => {
   setIndustry(false)
   setOffice(false)
@@ -109,10 +126,17 @@ function Navbar() {
 
 const navigate = useNavigate('/')
  const newsLink = [
-  {titile:'New Event', func:()=> navigate('/new-events') & setNews(false)},
-  {titile:'New Job', func:()=> navigate('/new-jobs') & setNews(false)},
-  {titile:'New Bidding', func:()=> navigate('/new-bidding') & setNews(false)},
+  {titile:`${t('newEvent')}`, func:()=> navigate('/new-events') & setNews(false)},
+  {titile:`${t('newJob')}`, func:()=> navigate('/new-jobs') & setNews(false)},
+  {titile:`${t('newBid')}`, func:()=> navigate('/new-bidding') & setNews(false)},
  ]
+
+ const languages = [
+  {titile:'English', func:()=> changeLanguage('en') & setLanguage(false)},
+  {titile:'Afaan Oromoo', func:()=> changeLanguage('or') & setLanguage(false)},
+  {titile:'አማርኛ', func:()=> changeLanguage('am') & setLanguage(false)},
+ ]
+
   return (
     <>
     <section className="bg-white w-screen border-b-[1px] dark:border-b-neutral-700  dark:bg-gray-900">
@@ -124,6 +148,20 @@ const navigate = useNavigate('/')
 
         
             <div className="flex lg:hidden gap-2">
+
+                <div className=" ml-5 relative">
+                <a onMouseOver={openLanguage}  className="block px-5 py-2  text-sm text-center text-white capitalize bg-fuchsia-800 rounded-lg lg:mt-0 hover:bg-fuchsia-900 lg:w-auto" href="#">
+                      {t('language')}
+                  </a>
+                  <div onMouseLeave={()=> setNews(false)} className={`${!language && 'hidden'} shadow-md  bg-white dark:bg-gray-800 w-40 xl:w-56 top-15 xl:top-11  rounded-lg absolute`}>
+                    {languages.map(({titile,func},i) =>{
+                      return(<div onClick={func} className="hover:bg-slate-200 dark:hover:bg-gray-900" key={i}>
+                        <p className="py-2 px-2 rounded-sm">{titile}</p>
+                      </div>)
+                    })}
+                </div>
+              </div> 
+
                 <button onClick={toggleDarkMode} className=" dark:text-white text-gray-900  data-theme-light text-2xl font-bold ml-5">{isDarkMode ? <MdDarkMode/> : <MdLightMode/> }</button>
                 <button  type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
                   {!HomeToggle && 
@@ -138,14 +176,16 @@ const navigate = useNavigate('/')
                   }
                 </button>  
             </div>
+
+            
         </div>
 
        
         <div  className={`${isOpen ? 'translate-x-0 opacity-100 h-[100vh] ':'opacity-0 -translate-x-full '} absolute inset-x-0 z-20 w-full px-6   py-4  transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
             <div className="flex flex-col space-y-4 lg:mt-0 lg:flex-row lg:-px-8 lg:space-y-0">
-            <Link to='/' ><div  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" >Home</div></Link>
+            <Link to='/' ><div  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" >{t('home')}</div></Link>
                 <a onMouseEnter={openAbout} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
-                  <span className=" flex gap-1 items-center ">About   <span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                  <span className=" flex gap-1 items-center ">{t('about')} <span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
                       transform: about ? "scaleX(1)" : "scaleX(0)",
@@ -154,7 +194,7 @@ const navigate = useNavigate('/')
                   />
                 </a>
                    <a onMouseEnter={openIndustry}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
-                <span className=" flex gap-1 items-center ">Industry<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                <span className=" flex gap-1 items-center ">{t('industry')}<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
                       transform: industry ? "scaleX(1)" : "scaleX(0)",
@@ -163,7 +203,7 @@ const navigate = useNavigate('/')
                   />
                 </a>
                 <a onMouseEnter={openEducation}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
-                <span className=" flex gap-1 items-center ">Education<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                <span className=" flex gap-1 items-center ">{t('education')}<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
                       transform: education ? "scaleX(1)" : "scaleX(0)",
@@ -172,7 +212,7 @@ const navigate = useNavigate('/')
                   />
                 </a>
                 <a onMouseEnter={openServices}  className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
-                <span className=" flex gap-1 items-center ">Services<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                <span className=" flex gap-1 items-center ">{t('services')}<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
                       transform: services ? "scaleX(1)" : "scaleX(0)",
@@ -180,9 +220,9 @@ const navigate = useNavigate('/')
                     className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
                   />
                 </a>
-                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Constructions</a>
+                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">{t('construction')}</a>
                 <a onMouseEnter={openOffice} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
-                <span className=" flex gap-1 items-center ">Offices<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
+                <span className=" flex gap-1 items-center ">{t('offices')}<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span
                     style={{
                       transform: office ? "scaleX(1)" : "scaleX(0)",
@@ -194,7 +234,7 @@ const navigate = useNavigate('/')
 
           <div className="relative">
           <a onMouseOver={openNews}  className="block px-5 py-2 mt-4 text-sm text-center text-white capitalize bg-blue-600 rounded-lg lg:mt-0 hover:bg-blue-500 lg:w-auto" href="#">
-                See News
+                {t('news')}
             </a>
             <div onMouseLeave={()=> setNews(false)} className={`${!news && 'hidden'} shadow-md  bg-white dark:bg-gray-800 w-40 xl:w-56 top-15 xl:top-11  rounded-lg absolute`}>
               {newsLink.map(({titile,func},i) =>{
@@ -203,9 +243,23 @@ const navigate = useNavigate('/')
                 </div>)
               })}
             </div>
-          </div>
-            
+
+          </div> 
             <button onClick={toggleDarkMode} className=" border-[1px] bg-gray-500 dark:bg-slate-700 border-gray-700 dark:border-neutral-200 w-10 h-10 items-center lg:flex rounded-full justify-center  dark:text-white hidden  text-gray-900  data-theme-light text-2xl font-bold ml-5">{isDarkMode ? <MdDarkMode/>: <MdLightMode/> }</button>
+
+            <div className=" ml-5 relative">
+             <a onMouseOver={openLanguage}  className="block px-5 py-2 mt-4 text-sm text-center text-white capitalize bg-fuchsia-800 rounded-lg lg:mt-0 hover:bg-fuchsia-900 lg:w-auto" href="#">
+                  {t('language')}
+              </a>
+              <div onMouseLeave={()=> setNews(false)} className={`${!language && 'hidden'} shadow-md  bg-white dark:bg-gray-800 w-40 xl:w-56 top-15 xl:top-11  rounded-lg absolute`}>
+                {languages.map(({titile,func},i) =>{
+                  return(<div onClick={func} className="hover:bg-slate-200 dark:hover:bg-gray-900" key={i}>
+                    <p className="py-2 px-2 rounded-sm">{titile}</p>
+                  </div>)
+                })}
+            </div>
+          </div> 
+
         </div>
     </nav>
 </section>

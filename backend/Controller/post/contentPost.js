@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const contentModel = require('../../Model/contentModel')
 const adminModel = require('../../Model/adminModel')
 const admin = require('../firebase/admin')
+//const  translate = require('./translate');
 
 const contentPost = async(req,res) =>{
     const bucket = admin.storage().bucket(); 
@@ -13,12 +14,26 @@ const contentPost = async(req,res) =>{
       if(!isContentManager)
       return res.status(403).send("you don't have content manager role ")
 
+   
 
         // take data from client
         let {data} = req.body
         data = JSON.parse(data)
         const files = req.files
 
+        // console.log('Attempting translation...');
+        
+        // const translatedText = await translate(data.title, 'en', 'fr');
+        
+        // console.log('Translation result:', translatedText);
+        
+        // if (translatedText) {
+        //     return res.status(200).json({ normalText: translatedText });
+        // } else {
+        //     throw new Error('Empty translation response');
+        // }
+
+  
         const uploadPromises = files.map(async (file) => {
             const fileName = `${Date.now()}-${file.originalname}`;
             const fileRef = bucket.file(`contentImages/${fileName}`);

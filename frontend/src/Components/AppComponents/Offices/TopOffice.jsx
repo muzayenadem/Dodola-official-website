@@ -3,7 +3,7 @@ import React from 'react'
 function TopOffice({title,description,latest}) {
   return (
     <div>
-      <header class="bg-white dark:bg-gray-800">
+      <header class="bg-slate-100 dark:bg-gray-800">
         {latest.map((data,i)=>{
             return(
                 <div key={i} class="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
