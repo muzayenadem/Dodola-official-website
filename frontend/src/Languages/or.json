@@ -4,17 +4,53 @@
  
     "home":"Mana",
     "about":"Waan dodolaa",
-    "industry":"Industirii",
-    "education":"Barnoota",
-    "services":"Tajaajiloota",
-    "construction":"Ijaarsaawwan",
-    "offices":"Biiroo",
+        "history":"Seenaa", 
+        "festivals":"Ayyanote",
+        "theme":"Footoowwan",
+        "features":"Amaloota",
+        "religions":"Amantiiwwan",
+        "sport":"Ispooortii",
+        "adminstrationTeam":"Garee Bulchiinsaa",
+        "question":"Gaaffii",
 
+    "industry":"Industirii",
+        "agriculture":"Qonna",
+        "marketing":"Gabaa",
+        "industrialPark":"Industirii",
+        "manufucture":"Ooomisha",
+   
+
+    
+    "education":"Barnoota",
+        "elemantary":"Mana Barumsaa Sadarkaa Tokkoffaa",
+        "highSchool":"Mana Barumsaa Sadarkaa Lammaffaa",
+        "technicalClass":"Gita Teeknikaa",
+        "college":"Kolleejjii",
+        "degree":"Sagantaa digrii",
+
+    "services":"Tajaajiloota",
+        "hospitals":"Hospitaalota",
+        "hotels":"Hoteelota",
+        "banks":"Baankiiwwan",
+        "apartments":"Apaartaamota",
+        "resorts":"Iddoo bashannanaa",
+        "rentalHouses":"Manneen kiraa",
+        "others":"Kanneen biroo",
+
+    "construction":"Ijaarsaawwan",
+
+    "offices":"Biiroo",
+        "heaOffice":"Waajjira Muummee",
+        "conOffice":"Waajjira Ijaarsaa",
+        "helOffice":"Waajjira fayyaa",
+        "eduOffice":"Waajjira Barnootaa",
+        "culOffice":"Waajjira Aadaa",
+        "humOffice":"Waajjira Qabeenya Namaa",
 
     "news":"Waan Haarawa",
-    "newJob":"Taateewwan",
-    "newEvent":"Hojiiwwan",
-    "newBid":"Caarataa"
+        "newEvent":"Taateewwan",
+        "newJob":"Hojiiwwan",
+        "newBid":"Caarataa"
 
 
 }

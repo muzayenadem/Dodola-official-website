@@ -44,8 +44,10 @@ import agri from './agri.jpg'
 import agri2 from './agri2.jpg'
 import br1 from './br1.jpg'
 import hospital1 from './hospital.jpeg'
+import bank1 from './bank1.webp'
 export {
 hospital1,
+bank1,
 agri,
 agri2,    
 sport,

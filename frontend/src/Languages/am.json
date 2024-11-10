@@ -3,18 +3,56 @@
 
     
     "home":"ዋና",
+
     "about":"ስለ ዶዶላ",
+        "history":"ታሪክ", 
+        "festivals":"ፌስቲቫሎች",
+        "theme":"ጭብጥ",
+        "features":"ባህሪያት",
+        "religions":"ሃይማኖቶች",
+        "sport":"ስፖርት",
+        "adminstrationTeam":"የአስተዳደር ቡድን",
+        "question":"ጥያቄ",
+
+
     "industry":"ኢንዱስትሪ",
+        "agriculture":"ግብርና",
+        "marketing":"ማርኬቲንግ",
+        "industrialPark":"ኢንዱስትሪያል ፓርክ",
+        "manufucture":"ማምረቻ",
+
+
     "education":"ትምህርት",
+        "elemantary":"የመጀመሪያ ደረጃ",
+        "highSchool":"ሁለተኛ ደረጃ ትምህርት ቤት",
+        "technicalClass":"የቴክኒክ ክፍል",
+        "college":"ኮሌጆች",
+        "degree":"የዲግሪ ፕሮግራም",
+    
     "services":"አገልግሎቶች",
+        "hospitals":"ሆስፒታሎች",
+        "hotels":"ሆቴሎች",
+        "banks":"ባንኮች",
+        "apartments":"አፓርታማዎች",
+        "resorts":"ሪዞርቶች",
+        "rentalHouses":"የኪራይ ቤቶች",
+        "others":"ሌሎች",
+    
     "construction":"ግንባታ",
+
     "offices":"ቢሮዎች",
+        "heaOffice":"ዋና ቢሮ",
+        "conOffice":"የግንባታ ቢሮ",
+        "helOffice":"ጤና ቢሮ",
+        "eduOffice":"የትምህርት ቢሮ",
+        "culOffice":"የባህል ቢሮ",
+        "humOffice":"የሰው ሀብት ቢሮ",
 
 
     "news":"ዜና",
-    "newJob":"አዲስ ሥራ",
-    "newEvent":"አዲስ ክስተት",
-    "newBid":"አዲስ ጨረታ"
+        "newJob":"አዲስ ሥራ",
+        "newEvent":"አዲስ ክስተት",
+        "newBid":"አዲስ ጨረታ"
 
     
 }

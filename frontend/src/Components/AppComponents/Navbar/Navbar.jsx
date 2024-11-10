@@ -1,4 +1,5 @@
 import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
+import { MdLanguage } from "react-icons/md";
 import React, { useEffect, useState } from 'react'
 import SliderImage from "../Home/SliderImage";
 import { logo1 } from "../Images/images";
@@ -13,6 +14,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import OfficesNav from "./NavComponents/OfficesNav";
 import EducationNav from "./NavComponents/EducationNav";
 import { Link, useNavigate } from "react-router-dom";
+
 import ServicesNav from "./NavComponents/ServicesNav";
 
 
@@ -151,7 +153,7 @@ const navigate = useNavigate('/')
 
                 <div className=" ml-5 relative">
                 <a onMouseOver={openLanguage}  className="block px-5 py-2  text-sm text-center text-white capitalize bg-fuchsia-800 rounded-lg lg:mt-0 hover:bg-fuchsia-900 lg:w-auto" href="#">
-                      {t('language')}
+                      <span><MdLanguage/></span>
                   </a>
                   <div onMouseLeave={()=> setNews(false)} className={`${!language && 'hidden'} shadow-md  bg-white dark:bg-gray-800 w-40 xl:w-56 top-15 xl:top-11  rounded-lg absolute`}>
                     {languages.map(({titile,func},i) =>{

@@ -3,6 +3,7 @@ import { abdu, dodoCity, head, kantiibaa, mother, tilahun } from '../../Images/i
 import { AnimatePresence,motion } from 'framer-motion'
 import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 function ServicesNav({setServices}){
     return(
         <>
@@ -24,6 +25,7 @@ function ServicesNav({setServices}){
 }
 
 function Navs({setServices}) {
+  const {t} = useTranslation()
 return (
   <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setServices(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
    <div className="flex flex-col py-5 px-16 w-[40%]">
@@ -31,13 +33,13 @@ return (
       <p className='px-4 py-2'>Select the office that you wanted to contact or visit</p>
         <div className="flex p-6">
           <ul className='underline gap-2 flex flex-col'>
-          <Link onClick={()=> setServices(false)} to={'/hospitals'}><li>Hospitals</li></Link>
-          <Link onClick={()=> setServices(false)} to={'/hotels'}><li>Hotels</li></Link>
-            <li>Banks</li>
-            <Link onClick={()=> setServices(false)} to={'/resourts'}><li>Resourts</li></Link>
-            <li>Apartments</li>
-            <li>Rental Houses</li>
-            <Link onClick={()=> setServices(false)} to={'/others'}><li>others</li></Link>
+          <Link onClick={()=> setServices(false)} to={'/hospitals'}><li>{t('hospitals')}</li></Link>
+          <Link onClick={()=> setServices(false)} to={'/hotels'}><li>{t('hotels')}</li></Link>
+          <Link onClick={()=> setServices(false)} to={'/banks'}><li>{t('banks')}</li></Link>
+            <Link onClick={()=> setServices(false)} to={'/resourts'}><li>{t('resorts')}</li></Link>
+            <li>{t('apartments')}</li>
+            <li>{t('rentalHouses')}</li>
+            <Link onClick={()=> setServices(false)} to={'/others'}><li>{t('others')}</li></Link>
           </ul>
         </div>
      </div>

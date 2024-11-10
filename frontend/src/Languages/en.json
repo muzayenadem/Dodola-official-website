@@ -1,18 +1,54 @@
 {
     "language":"English",
 
-    "home":"Mana",
-    "about":"Home",
-    "industry":"Industry",
-    "Education":"Education",
-    "services":"Services",
-    "construction":"Construction",
-    "offices":"offices",
+    "home":"Home",
+    "about":"About",
+        "history":"History", 
+        "festivals":"Festivals",
+        "theme":"Theme",
+        "features":"Features",
+        "religions":"religions",
+        "sport":"Sport",
+        "adminstrationTeam":"Adminstration Team",
+        "question":"FAQ",
 
+    "industry":"Industry",
+        "agriculture":"Agriculture",
+        "marketing":"Marketing",
+        "industrialPark":"industial Park",
+        "manufucture":"Manufucturing",
+    
+
+    "Education":"Education",
+        "elemantary":"Elemantary",
+        "highSchool":"High School",
+        "technicalClass":"Technical Class",
+        "college":"Colleges",
+        "degree":"Degree program",
+
+
+    "services":"Services",
+        "hospitals":"Hospitals",
+        "hotels":"hotels",
+        "banks":"Banks",
+        "apartments":"Apartments",
+        "resorts":"Resorts",
+        "rentalHouses":"Rental Houses",
+        "others":"Others",
+
+    "construction":"Construction",
+
+    "offices":"offices",
+        "heaOffice":"Head Office",
+        "conOffice":"Construction Office",
+        "helOffice":"health Office",
+        "eduOffice":"Education Office",
+        "culOffice":"Cultural Office",
+        "humOffice":"Human Resource Office",
 
     "news":"See News",
-    "newJob":"New Jobs",
-    "newEvent":"New Event",
-    "newBid":"New Bidding"
+        "newJob":"New Jobs",
+        "newEvent":"New Event",
+        "newBid":"New Bidding"
     
 }

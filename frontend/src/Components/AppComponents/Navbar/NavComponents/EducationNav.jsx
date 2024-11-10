@@ -2,7 +2,7 @@ import React from 'react'
 import { dodoCity, students } from '../../Images/images'
 import { AnimatePresence,motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next';
 function  EducationNav({setEducation}){
     return(
   <>
@@ -24,6 +24,7 @@ function  EducationNav({setEducation}){
 }
 
 function Navs({setEducation}) {
+  const {t} = useTranslation()
   return (
     <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setEducation(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
     <div className="flex flex-col px-16 py-5 w-1/2">
@@ -31,11 +32,11 @@ function Navs({setEducation}) {
      <p className='px-4 py-2'>wheather you interested to invest in dodola or not let enjoy with our industries</p>
      <div className="flex p-6">
       <ul className='underline flex flex-col gap-2'>
-        <Link onClick={()=> setEducation(false)} to={'/elemantary'}><li>Elemantry</li></Link>
-        <Link onClick={()=> setEducation(false)} to={'/secondary-school'}><li>Secondary School</li></Link>
-        <Link onClick={()=> setEducation(false)} to={'/technical-class'}><li>Technic class</li></Link>
-        <Link onClick={()=> setEducation(false)} to={'/college'}><li>Colleges</li></Link>
-        <Link onClick={()=> setEducation(false)} to={'/degree'}><li>Degree progams</li></Link>
+        <Link onClick={()=> setEducation(false)} to={'/elemantary'}><li>{t('elemantary')}</li></Link>
+        <Link onClick={()=> setEducation(false)} to={'/secondary-school'}><li>{t('highSchool')}</li></Link>
+        <Link onClick={()=> setEducation(false)} to={'/technical-class'}><li>{t('technicalClass')}</li></Link>
+        <Link onClick={()=> setEducation(false)} to={'/college'}><li>{t('college')}</li></Link>
+        <Link onClick={()=> setEducation(false)} to={'/degree'}><li>{t('degree')}</li></Link>
       </ul>
      </div>
     </div>

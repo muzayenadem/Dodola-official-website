@@ -3,6 +3,7 @@ import { abdu, dodoCity, head, kantiibaa, mother, tilahun } from '../../Images/i
 import { AnimatePresence,motion } from 'framer-motion'
 import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 function OfficesNav({setOffice}){
     return(
         <>
@@ -24,6 +25,7 @@ function OfficesNav({setOffice}){
 }
 
 function Navs({setOffice}) {
+  const {t} = useTranslation()
 return (
   <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setOffice(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
    <div className="flex flex-col py-5 px-16 w-[40%]">
@@ -31,12 +33,12 @@ return (
       <p className='px-4 py-2'>Select the office that you wanted to contact or visit</p>
         <div className="flex p-6">
           <ul className='underline gap-2 flex flex-col'>
-          <Link onClick={()=> setOffice(false)} to={'/mayor-office'}><li>Mayor Office</li></Link>
-            <li>Construction Office</li>
-            <li>Healthy Office</li>
-            <li>Education Office</li>
-            <li>Cultural Office</li>
-            <li>Humanity Office</li>
+          <Link onClick={()=> setOffice(false)} to={'/mayor-office'}><li>{t('heaOffice')}</li></Link>
+            <li>{t('conOffice')}</li>
+            <li>{t('helOffice')}</li>
+            <li>{t('eduOffice')}</li>
+            <li>{t('culOffice')}</li>
+            <li>{t('humOffice')}</li>
           </ul>
         </div>
      </div>

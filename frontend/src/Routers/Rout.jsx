@@ -44,6 +44,7 @@ import ManageAdmins from '../Components/AdminComponents/ManageAdmins/ManageAdmin
 import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdmin'
 import NotGeneralAdmin from '../Components/PageNotFound/NotGeneralAdmin'
 import EditProfile from '../Components/AdminComponents/Admin/AdminProfile/EditProfile'
+import Banks from '../Components/AppComponents/Services/Banks/Banks'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -86,6 +87,7 @@ function Rout() {
             {/*services routes*/}
             <Route path='hospitals' element={<Hospitals/>}/>
             <Route path='hotels' element={<Hotels/>}/>
+            <Route path='banks' element={<Banks/>}/>
             <Route path='others' element={<Others/>}/>
             <Route path='resourts' element={<Resourts/>}/>
 

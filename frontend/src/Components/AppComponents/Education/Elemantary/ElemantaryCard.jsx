@@ -4,10 +4,12 @@ import React from 'react'
 function ElemantaryCard({elemantary}) {
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+    <>
+    {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 
          {elemantary.map((data,i) =>{
             return (
+            
                 <div key={i}>
                  <img className="object-cover object-center w-full h-64 rounded-lg lg:h-80" src={data.images[0]} alt=""/>
     
@@ -24,10 +26,6 @@ function ElemantaryCard({elemantary}) {
     
                     <div className="flex items-center justify-between mt-4">
                         <div> 
-                            {/* <a href="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                                John snow
-                            </a> */}
-    
                             <p className="text-sm text-gray-700 font-semibold dark:text-gray-300">{data.date ? data.date : data.postedDate}</p>
                         </div>
     
@@ -40,7 +38,47 @@ function ElemantaryCard({elemantary}) {
            })}
 
 
+    </div> */}
+
+
+<div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-2">
+  {elemantary.map((data,i)=>{
+    return(
+      <div 
+      key={i}
+    class="flex flex-col sm:flex-row sm:max-w-2xl max-w-xs mx-auto overflow-hidden bg-slate-100  rounded-lg shadow-lg dark:bg-gray-800 p-2">
+    <div class="p-2 sm:w-1/2">
+        <img class="rounded object-cover w-full sm:h-80 h-60" src={data.images[0]} alt="Article" />
     </div>
+    <div class="sm:p-4 p-2 sm:w-1/2 flex flex-col justify-between">
+        <div>
+            <a href="#"
+                class="block sm:mt-2 text-2xl font-semibold text-gray-800  dark:text-white/80 hover:text-gray-600 hover:underline">
+                {data.name}</a>
+                <p class="mt-2 text-xl font-semibold text-gray-700  dark:text-white/80">
+                    {data.title}
+                </p>
+            <p class="mt-2 text-sm text-gray-800  dark:text-white/80">
+              {data.description.slice(0,150)}...
+            </p>
+        </div>
+
+        <div class="mt-4">
+            <div class="flex items-center">
+                <div class="flex items-center">
+                    <img class="object-cover h-10 w-10 rounded-full" src={data.images[0]} alt="Avatar" />
+                    <a href="#" class="mx-2 font-semibold text-gray-50 dark:text-gray-200">{data.subCategory}</a>
+                </div>
+                <span class="mx-1 text-xs text-gray-400 dark:text-gray-300">{data.date}</span>
+                <button className='px-2 ml-4 py-1 hover:bg-neutral-600 text-white bg-neutral-400 rounded-md mr-1 flex justify-center'>More</button>
+            </div>
+        </div>
+    </div>
+</div>
+    )
+  })}
+</div>
+    </>
   )
 }
 
