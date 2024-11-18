@@ -4,6 +4,7 @@ import HomeToggle from '../Buttons/ToggleHomeSidebar'
 import mainPost from '../Posts/MainPostSlicer'
 import adminToken from '../Tokens/adminToken'
 import content from '../Data/contentSlice'
+import employee from '../Data/employeeSlice'
 import jobs from '../Data/jobsSlce'
 import jobPost from "../Posts/jobPost";
 import questions from "../Data/questionsSlice";
@@ -27,6 +28,7 @@ const store = configureStore({
        adminData,
        admins,
        content,
+       employee,
        jobs,
        news,
        questions,

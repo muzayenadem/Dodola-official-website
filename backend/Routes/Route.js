@@ -31,6 +31,9 @@ const admins = require('../Controller/readData/admins')
 const adminData = require('../Controller/readData/adminData')
 const updateAdminProfile = require('../Controller/updateData/updateAdmin')
 const changeAdminPassword = require('../Controller/updateData/changeAdminPassword')
+const employeePost = require('../Controller/post/employeePost')
+const employee = require('../Controller/readData/employee')
+const deleteEmployee = require('../Controller/deleteData/deleteEmployee')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -57,6 +60,7 @@ route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)
 route.get('/news',news)
+route.get('/employee',employee)
 route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 
@@ -70,6 +74,8 @@ route.get('/admins',isLogginedWithEmail,admins)
 route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)
 route.post('/post-job',isLogginedWithEmail,upload.array('files'),postJob)
 route.post('/post-news',isLogginedWithEmail,upload.array('files'),newsPost)
+route.post('/post-employee',isLogginedWithEmail,upload.array('files'),employeePost)
+
 
 //QUESTIONS
 route.post('/ask',askQuestions)
@@ -78,6 +84,7 @@ route.get('/questions',isLogginedWithEmail,questions)
 route.post('/delete-content',isLogginedWithEmail,deleteContent)
 route.post('/delete-job',isLogginedWithEmail,deleteJob)
 route.post('/delete-news',isLogginedWithEmail,deleteNew)
+route.post('/delete-employee',isLogginedWithEmail,deleteEmployee)
 
 //UPDATE METHODS
 route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)

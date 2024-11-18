@@ -45,6 +45,9 @@ import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdm
 import NotGeneralAdmin from '../Components/PageNotFound/NotGeneralAdmin'
 import EditProfile from '../Components/AdminComponents/Admin/AdminProfile/EditProfile'
 import Banks from '../Components/AppComponents/Services/Banks/Banks'
+import RentalHouse from '../Components/AppComponents/Services/RentalHouses/RentalHouse'
+import ManageEmployee from '../Components/AdminComponents/ManageEmployee/ManageEmployee'
+import EmployeePost from '../Components/AdminComponents/PostComponents/EmployeePost/EmployeePost'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -89,6 +92,7 @@ function Rout() {
             <Route path='hotels' element={<Hotels/>}/>
             <Route path='banks' element={<Banks/>}/>
             <Route path='others' element={<Others/>}/>
+            <Route path='rentalHouse' element={<RentalHouse/>}/>
             <Route path='resourts' element={<Resourts/>}/>
 
             {/* office educaion */}
@@ -134,6 +138,21 @@ function Rout() {
                 description={"in this software you can't  access this page if you are not general manager"}
               />
             }/>
+
+            <Route path='employees' element={generalManager ? <ManageEmployee/>:
+              <NotGeneralAdmin
+                title={'You are not general manager'}
+                description={"in this software you can't  access this page if you are not general manager"}
+              />
+            }/>
+
+            <Route path='add-employees' element={generalManager ? <EmployeePost/>:
+              <NotGeneralAdmin
+                title={'You are not general manager'}
+                description={"in this software you can't  access this page if you are not general manager"}
+              />
+            }/>
+
             <Route path='add-admin'  element={generalManager ? <AddAdmin/>:
               <NotGeneralAdmin
               title={'You are not general manager'}

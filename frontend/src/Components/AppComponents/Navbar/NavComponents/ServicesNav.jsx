@@ -38,7 +38,7 @@ return (
           <Link onClick={()=> setServices(false)} to={'/banks'}><li>{t('banks')}</li></Link>
             <Link onClick={()=> setServices(false)} to={'/resourts'}><li>{t('resorts')}</li></Link>
             <li>{t('apartments')}</li>
-            <li>{t('rentalHouses')}</li>
+            <Link onClick={()=> setServices(false)} to={'/rentalHouse'}><li>{t('rentalHouses')}</li></Link>
             <Link onClick={()=> setServices(false)} to={'/others'}><li>{t('others')}</li></Link>
           </ul>
         </div>

@@ -45,7 +45,25 @@ import agri2 from './agri2.jpg'
 import br1 from './br1.jpg'
 import hospital1 from './hospital.jpeg'
 import bank1 from './bank1.webp'
+import galma1 from './New/galma1.jpg'
+import galma2 from './New/galma2.jpg'
+import limat1 from './New/limat1.jpg'
+import meeting1 from './New/meeting1.jpg'
+import meeting2 from './New/meeting2.jpg'
+import plants1 from './New/plants1.jpg'
+import plants2 from './New/plants2.jpg'
+import night1 from './New/night1.jpg'
+import night2 from './New/night2.jpg'
 export {
+galma1,
+galma2,
+plants1,
+plants2,
+limat1,
+meeting1,
+meeting2,
+night1,
+night2,
 hospital1,
 bank1,
 agri,
