@@ -6,6 +6,11 @@ import Feutures from './Feutures'
 import Subscribe from './Subscribe'
 import Contact from './Contact'
 import SlideImage from './SlideImage'
+import VMG from './VMG'
+import Vission from './Vission'
+import Latest from './Latest'
+import LatestContent from './LatestContent'
+import MayorCrd from './MayorCrd'
 
 function MainHome() {
   useEffect(()=>{
@@ -13,13 +18,18 @@ function MainHome() {
   })
   return (
     <section className='bg-white dark:bg-gray-900'>
-      <SlideImage/>
-     <HomeTop/>
-     <BlogHome/>
-     <Feutures/>
-     <QuestionHome/>
-     <Contact/>
-     <Subscribe/>
+        <VMG/>
+        <Vission/>
+        <MayorCrd/>
+        <Latest/>
+        <LatestContent/>
+        <SlideImage/>
+        <Feutures/>
+        <QuestionHome/>
+        <Contact/>
+        <Subscribe/>
+     
+  
     </section>
   )
 }

@@ -11,6 +11,7 @@ function SlideImage() {
         loop:true
     })
 
+ 
 
   return (
         <>
@@ -18,7 +19,7 @@ function SlideImage() {
             <div className=" relative h-auto shadow-lg  rounded-2xl w-full">
               <Marquee  pauseOnHover="true" className={`border-t border-b border-neutral-500 w-full overflow-hidden grid ` }>
 
-              {selected.map((img,i)=>{
+              {shuffledArray.map((img,i)=>{
                 return(
                   <div key={i} className=" flex w-full  flex-col justify-center items-center h-[350px] md:h-[450px]">
                   <img src={img} className="w-full h-full -opacity-30 dark:opacity-50" alt="" />
@@ -65,18 +66,20 @@ function SlideImage() {
 }
 
 export default SlideImage
-const images = [
-  dodoCity,galma1,galma2,dodolaCiityOffice,holeCity,beriso,samson,limat1
-]
 
-let selected = []
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate a random index between 0 and i (inclusive)
+    const randomIndex = Math.floor(Math.random() * (i + 1));
 
-for (let i = 0 ; i < images.length ; i++){
-  const taken = null
-  const select = Math.floor(Math.random() * images.length)
-  const sign = taken !== select && select 
-  selected.push(images[sign])
+    // Swap the elements at i and randomIndex
+    [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+  }
+  return array;
 }
 
-
-console.log({selected})
+// Example usage:
+const myArray =[
+  dodoCity,galma1,galma2,dodolaCiityOffice,holeCity,beriso,samson,limat1
+]
+const shuffledArray = shuffleArray(myArray);

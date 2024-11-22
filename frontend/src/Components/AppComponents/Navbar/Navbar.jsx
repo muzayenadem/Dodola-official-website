@@ -145,7 +145,7 @@ const navigate = useNavigate('/')
     <nav  className="container py-3 px-6 mx-auto lg:flex lg:justify-between lg:items-center">
         <div className="flex items-center justify-between">
             <a href="/">
-                <img className="w-auto h-8 rounded-md sm:h-10" src={logo1} alt=""/>
+                <img className="w-auto h-12 rounded-md sm:h-16" src={logo1} alt=""/>
             </a>
 
         

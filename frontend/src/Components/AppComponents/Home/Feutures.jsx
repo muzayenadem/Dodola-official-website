@@ -3,7 +3,7 @@ import React from 'react'
 function Feutures() {
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white/80">
-	<div className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+	<div className="px-4 py-16 mx-auto max-w-[1500px] sm:px-6 lg:px-8">
 		<div className="max-w-3xl mx-auto text-center">
 			<h2 className="text-3xl font-extrabold sm:text-4xl">the features you will get with living in dodola</h2>
 			<p className="mt-4 text-lg dark:text-neutral-400">Dodola city is naturally gifted beautifull city in oromia region. dodola is known for its stable awsome air condition</p>

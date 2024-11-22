@@ -3,7 +3,7 @@ import React from 'react'
 function QuestionHome() {
   return (
     <section className="bg-white dark:text-white/80 dark:bg-gray-900">
-	<div className="container flex flex-col justify-center lg:px-24 xl:px-48 py-10 mx-auto md:p-8">
+	<div className="container flex flex-col justify-center lg:px-14 xl:px-24 py-10 mx-auto md:p-8">
 		<h2 className="text-2xl font-semibold sm:text-4xl">Frequently Asked Questions About dodola city</h2>
 		<p className="mt-4 mb-8 dark:text-neutral-400">You will get answers for  all the questions that in your mind about dodola city which we assumed</p>
 		<div className="space-y-4">
