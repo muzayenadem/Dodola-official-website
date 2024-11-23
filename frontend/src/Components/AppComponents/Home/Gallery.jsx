@@ -1,5 +1,6 @@
 import React from 'react'
 import { agri, agri2, beriso, galma1, galma2, industrial, limat1, mainEnter, mainEnter3, night1, night2, plants1, plants2, samson, wheat2 } from '../Images/images'
+import { Link } from 'react-router-dom'
 
 function Gallery() {
   const gallery = [galma1,plants1,galma2,limat1,samson,beriso,night1,agri, night2,plants2,industrial,wheat2,]
@@ -17,9 +18,11 @@ function Gallery() {
               class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
             />
             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
-                View
-              </button>
+              <Link to={'/theme'}>
+                <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                  View
+                </button>
+              </Link>
             </div>
           </div>  
         )
