@@ -30,7 +30,7 @@ function Latest() {
  
   return (
     <section class="bg-white dark:bg-gray-900">
-    <div class="container px-4 py-10 mx-auto">
+    <div class="container py-10 mx-auto">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">recent posts </h1>
 

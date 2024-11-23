@@ -11,6 +11,7 @@ import Vission from './Vission'
 import Latest from './Latest'
 import LatestContent from './LatestContent'
 import MayorCrd from './MayorCrd'
+import Gallery from './Gallery'
 
 function MainHome() {
   useEffect(()=>{
@@ -23,6 +24,7 @@ function MainHome() {
         <MayorCrd/>
         <Latest/>
         <LatestContent/>
+        <Gallery/>
         <SlideImage/>
         <Feutures/>
         <QuestionHome/>

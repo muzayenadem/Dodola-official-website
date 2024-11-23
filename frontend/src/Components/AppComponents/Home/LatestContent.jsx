@@ -31,7 +31,7 @@ function LatestContent() {
     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
   }
   return (
-    <section class="bg-white dark:bg-gray-900 px-4 py-10 mx-auto lg:max-w-screen-2xl sm:max-w-xl md:max-w-full sm:px-12 md:px-16 lg:py-20 sm:py-16">
+    <section class="container py-4 mx-auto">
         <div class="flex items-center justify-between">
             <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">recent content </h1>
 

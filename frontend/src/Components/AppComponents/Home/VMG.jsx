@@ -42,7 +42,7 @@ function VMG() {
                    
                     <div class="w-full md:w-1/2 md:pl-12">
                         <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl p-8 shadow-2xl">
-                            <h2 class="text-2xl font-semibold mb-6">Why Dodola City?</h2>
+                            <h2 class="text-2xl font-semibold mb-6">Why Dodola City Adminstration?</h2>
                             <ul class="space-y-4">
                                 <li class="flex items-center">
                                     <svg class="w-6 h-6 mr-3 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
