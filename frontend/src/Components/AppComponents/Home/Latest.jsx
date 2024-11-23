@@ -44,7 +44,7 @@ function Latest() {
         <hr class="my-8 border-gray-200 dark:border-gray-700"/>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {news.slice(0, 6).reverse().map((data,i)=>{
+            {news.slice(-6).reverse().map((data,i)=>{
                 return(
                     <div key={i}>
                 <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src={data.files[0]} alt=""/>
