@@ -21,7 +21,7 @@ function MayorCrd() {
             I extend my gratitude to the dedicated volunteers driving this project, showcasing the strength and innovation of our people. Together, we are shaping Dodola’s future—where tradition meets progress. Thank you for your commitment to our city.
             </p>
             <div class="mt-8">
-                <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Start Now</a>
+                <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Read More</a>
             </div>
         </div>
     </div>
