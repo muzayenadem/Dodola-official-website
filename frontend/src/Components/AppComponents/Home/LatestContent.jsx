@@ -45,7 +45,7 @@ function LatestContent() {
 
   <div class=" ">
     <div class="grid gap-x-8 gap-y-12 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-      {content.slice(0,6).map((data,i)=>{
+      {content.slice(0, 6).reverse().map((data,i)=>{
         return (
           <div key={i} class="relative">
           <a href="#_" class="block overflow-hidden group rounded-xl shadow-lg">
