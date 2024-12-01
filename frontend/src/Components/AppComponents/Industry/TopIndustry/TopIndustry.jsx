@@ -18,7 +18,7 @@ function TopIndustry({title,description,latest}) {
                     </div>
 
                     <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                        <img class="w-full h-full lg:max-w-3xl" src={data.images[0]} alt="Catalogue-pana.svg"/>
+                        <img class="w-full rounded-xl max-h-[600px] lg:max-w-3xl" src={data.images[0]} alt="Catalogue-pana.svg"/>
                     </div>
                 </div>
                 )

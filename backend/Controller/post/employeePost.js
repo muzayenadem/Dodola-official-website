@@ -10,11 +10,11 @@ const employeePost = async(req,res) =>{
       const {adminId} = req.admin
      
       const mainAdmin = await adminModel.findOne({_id:adminId})
-      const isJobsManager = mainAdmin.role.jobsManager
+      const isGeneralManager = mainAdmin.role.generalManager
    
 
 
-      if(!isJobsManager)
+      if(!isGeneralManager)
       return res.status(403).send("you don't have jobs manager role ")
 
 
@@ -24,7 +24,10 @@ const employeePost = async(req,res) =>{
         const files = req.files
         const   {category,title,description,date,employeeName,employeeEmail,employeePhone} = data.postData
 
-        const isAlreadyEmployee = EmployeeModel.findOne({$or:[employeeEmail,employeePhone]})
+        const isAlreadyEmployee = await EmployeeModel.findOne({
+          $or: [{ email: employeeEmail }, { phone: employeePhone }]
+        });
+        
 
         if(isAlreadyEmployee)
         return res.status(402).send("this employee is already exist")
