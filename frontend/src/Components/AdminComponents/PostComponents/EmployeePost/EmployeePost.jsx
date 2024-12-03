@@ -22,6 +22,7 @@ function  EmployeePost() {
   const [succed,setSucced] = useState(false)
   const [asured, setAsured] = useState(false)
   const [postData,setPostData] = useState({
+    office:'',
     category:'',
     title:'',
     description:'',
@@ -46,8 +47,10 @@ function  EmployeePost() {
 
   const changeHandler = value =>{
      setPostData({...postData,category:value.label})
-  }
- 
+  }   
+ const officeChange = value =>{
+   setPostData({...postData,office:value.label})
+ }
   const data = [
     {value:1,label:'Goverbment & public Adminstration'},
     {value:2,label:'Healthycare'},
@@ -59,6 +62,18 @@ function  EmployeePost() {
     {value:8,label:'Environmental and Natural Resources',},
     {value:9,label:'Social Services'},
     {value:10,label:'Media and Communication'}
+]
+const officeData = [
+  {value:1,label:'Mayor Office'},
+  {value:2,label:'Construction Office'},
+  {value:3,label:'Education Office'},
+  {value:4,label:'Health Office'},
+  {value:5,label:'Information Technology Office'},
+  {value:6,label:'Police Department Offiec',},
+  {value:7,label:'Bussiness and Finance Office'},
+  {value:8,label:'Environmental and Natural Resources Office',},
+  {value:9,label:'Social Services Office'},
+  {value:10,label:'Media and Communication Office'}
 ]
 //console.log({postData,address,campany})
 console.log({response})
@@ -133,7 +148,7 @@ const submitHundler = async (e) =>{
     setAsured(true)
 
     if(
-      postData.title && postData.description && postData.category && postData.date
+      postData.title && postData.description && postData.category && postData.date && postData.office
       && postData.employeeName && postData.employeeEmail && postData.employeePhone && images.length
     ){
       setAsured(false)
@@ -185,6 +200,24 @@ const submitHundler = async (e) =>{
 
 
     <div className="w-full grid grid-cols-1 xl:gap-4  xl:grid-cols-2 2xl:grid-cols-3">
+
+    <div className="flex flex-col gap-2 py-6">
+    <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Office</p>
+    <Select
+        className={` ${asured == true & postData.office    == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
+        classNamePrefix="select"
+        defaultValue={{value:0,label:'Select Office'}}
+        isDisabled={isDisabled}
+        isLoading={true}
+        onChange={officeChange}
+       isClearable={isClearable}
+        isRtl={isRtl}
+        isSearchable={isSearchable}
+        name="color"
+        options={officeData}
+      />
+    </div>
+
     <div className="flex flex-col py-6 gap-2">
     <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">	Job Category</p>
     <Select
@@ -201,23 +234,8 @@ const submitHundler = async (e) =>{
         options={data}
       />
     </div>
+    
     {/* <div className="flex flex-col gap-2 py-6">
-    <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Experience Level</p>
-    <Select
-        className={` ${asured == true & postData.experience == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
-        classNamePrefix="select"
-        defaultValue={{value:0,label:'Select Exprience'}}
-        isDisabled={isDisabled}
-        isLoading={true}
-       onChange={exprienceHandler}
-       isClearable={isClearable}
-        isRtl={isRtl}
-        isSearchable={isSearchable}
-        name="color"
-        options={exprienceLevel}
-      />
-    </div>
-    <div className="flex flex-col gap-2 py-6">
     <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Job Type</p>
     <Select
          className={` ${asured == true & postData.type == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
@@ -242,7 +260,7 @@ const submitHundler = async (e) =>{
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
         <div className="sm:col-span-4">
-          <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">	Job Title</label>
+          <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Posission </label>
  		      <div className="mt-2">
             <input onChange={(e)=> setPostData({...postData,title:e.target.value})} type="text"  autoComplete="given-name" 
             className={`${asured == true & postData.title == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>

@@ -17,6 +17,10 @@ const shema = mongoose.Schema({
         required:true,
         type:String,
     },
+    office:{
+        type:String,
+        required:true
+    },
     category:{
         required:true,
         type:String,

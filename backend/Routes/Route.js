@@ -34,6 +34,7 @@ const changeAdminPassword = require('../Controller/updateData/changeAdminPasswor
 const employeePost = require('../Controller/post/employeePost')
 const employee = require('../Controller/readData/employee')
 const deleteEmployee = require('../Controller/deleteData/deleteEmployee')
+const filterEmployee = require('../Controller/readData/filterEmployee')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -61,6 +62,7 @@ route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)
 route.get('/news',news)
 route.get('/employee',employee)
+route.get('/filter-employee', filterEmployee)
 route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 

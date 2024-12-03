@@ -22,7 +22,7 @@ const employeePost = async(req,res) =>{
         let {data} = req.body
         data = JSON.parse(data)
         const files = req.files
-        const   {category,title,description,date,employeeName,employeeEmail,employeePhone} = data.postData
+        const   {office,category,title,description,date,employeeName,employeeEmail,employeePhone} = data.postData
 
         const isAlreadyEmployee = await EmployeeModel.findOne({
           $or: [{ email: employeeEmail }, { phone: employeePhone }]
@@ -69,6 +69,7 @@ const employeePost = async(req,res) =>{
              fullName:employeeName,
              email:employeeEmail,
              phone:employeePhone,
+             office,
              category,
              title,
              detail:description,

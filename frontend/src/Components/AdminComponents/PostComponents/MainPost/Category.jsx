@@ -79,42 +79,6 @@ function Category({method,setMethod,postData,setPostData}) {
             ])
       },
       {
-          value:3,
-          label:'Offices',
-          func : ()=> setCategory(
-            [
-                {
-                    value:1,
-                    label:'Mayor Office'
-                },
-                {
-                    value:2,
-                    label:'Healthy Office'
-                },
-                {
-                    value:3,
-                    label:'Education Office'
-                },
-                {
-                    value:4,
-                    label:'Construction Office '
-                },
-                {
-                    value:5,
-                    label:'Human Resourse Office'
-                },
-                {
-                    value:6,
-                    label:'Agricultural Office'
-                },
-                {
-                    value:7,
-                    label:'Police Department Office'
-                },
-
-            ])
-      },
-      {
         label:'Education',
         value:4,
         func : ()=>setCategory(
@@ -180,6 +144,42 @@ function Category({method,setMethod,postData,setPostData}) {
     },
   ]
   
+//   {
+//     value:3,
+//     label:'Offices',
+//     func : ()=> setCategory(
+//       [
+//           {
+//               value:1,
+//               label:'Mayor Office'
+//           },
+//           {
+//               value:2,
+//               label:'Healthy Office'
+//           },
+//           {
+//               value:3,
+//               label:'Education Office'
+//           },
+//           {
+//               value:4,
+//               label:'Construction Office '
+//           },
+//           {
+//               value:5,
+//               label:'Human Resourse Office'
+//           },
+//           {
+//               value:6,
+//               label:'Agricultural Office'
+//           },
+//           {
+//               value:7,
+//               label:'Police Department Office'
+//           },
+
+//       ])
+// },
 
   const dispatch = useDispatch()
   const changeHandler = value =>{

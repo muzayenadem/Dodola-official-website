@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react'
-import filteredContentData from '../../ComponentsData/filteredContentData'
+import React, { useEffect, useState } from 'react'
 import TopOffice from './TopOffice'
 import OfficeCard from './OfficeCard'
+import { useSelector } from 'react-redux'
+import filteredEmployeeData from '../../ComponentsData/filteredEmloyeeData'
+import { useParams } from 'react-router-dom'
 
 
 function  Office() {
 
+  const {officeId} = useParams()
+  const data = filteredEmployeeData(officeId)
+  const office = data.data
 
-   const data = filteredContentData('Mayor Office')
-
-
-
- 
-   const office = data.data
-
-   const latest = office.length > 0 && office.slice(-1)
+  const latest = office.length > 0 && office.slice(-1)
  
    if(data.filterLoading){
      return (

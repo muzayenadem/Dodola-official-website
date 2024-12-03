@@ -4,6 +4,8 @@ import { AnimatePresence,motion } from 'framer-motion'
 import { HiOutlinePhoneOutgoing } from "react-icons/hi";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { filterEmployeeFromServer } from '../../../../Controller/Data/employeeSlice';
+import { useDispatch } from 'react-redux';
 function OfficesNav({setOffice}){
     return(
         <>
@@ -26,6 +28,20 @@ function OfficesNav({setOffice}){
 
 function Navs({setOffice}) {
   const {t} = useTranslation()
+
+  const dispatch = useDispatch()
+  const links = [
+    {value:'heaOffice',label:'Mayor Office'},
+    {value:'conOffice',label:'Construction Office'},
+    {value:'eduOffice',label:'Education Office'},
+    {value:'helOffice',label:'Health Office'},
+    {value:5,label:'Information Technology Office'},
+    {value:6,label:'Police Department Offiec',},
+    {value:7,label:'Bussiness and Finance Office'},
+    {value:'culOffice',label:'Environmental and Natural Resources Office',},
+    {value:9,label:'Social Services Office'},
+    {value:10,label:'Media and Communication Office'}
+    ]
 return (
   <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setOffice(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">
    <div className="flex flex-col py-5 px-16 w-[40%]">
@@ -33,12 +49,13 @@ return (
       <p className='px-4 py-2'>Select the office that you wanted to contact or visit</p>
         <div className="flex p-6">
           <ul className='underline gap-2 flex flex-col'>
-          <Link onClick={()=> setOffice(false)} to={'/mayor-office'}><li>{t('heaOffice')}</li></Link>
-            <li>{t('conOffice')}</li>
-            <li>{t('helOffice')}</li>
-            <li>{t('eduOffice')}</li>
-            <li>{t('culOffice')}</li>
-            <li>{t('humOffice')}</li>
+            {
+              links.map(({value,label},i)=>{
+                return(
+                  <Link key={i} onClick={()=> setOffice(false) & dispatch(filterEmployeeFromServer(label))} to={`office/${label}`}><li>{t(value)}</li></Link>
+                )
+              })
+            }
           </ul>
         </div>
      </div>

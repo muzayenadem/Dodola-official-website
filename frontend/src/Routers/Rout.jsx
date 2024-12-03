@@ -64,6 +64,20 @@ function Rout() {
   }
   const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
    console.log({generalManager}) 
+
+   const [real,setReal] = useState('')
+   useEffect(()=>{
+
+   const currentPage = window.location.href
+   console.log({currentPage})
+
+   const split = currentPage.split('/')
+   console.log({split:split[split.length-1]})
+   const rea = split[split.length-1].replace('%20', ' ')
+   setReal(rea)
+   console.log({real})
+   },[])
+ 
   return (
    <Router>
       <Routes>
@@ -96,7 +110,7 @@ function Rout() {
             <Route path='resourts' element={<Resourts/>}/>
 
             {/* office educaion */}
-            <Route path='mayor-office' element={<Office/>}/>
+            <Route path='office/:officeId' element={<Office/>}/>
 
 
             {/* news routes */}
