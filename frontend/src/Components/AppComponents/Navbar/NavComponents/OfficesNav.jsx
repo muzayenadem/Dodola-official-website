@@ -35,12 +35,14 @@ function Navs({setOffice}) {
     {value:'conOffice',label:'Construction Office'},
     {value:'eduOffice',label:'Education Office'},
     {value:'helOffice',label:'Health Office'},
-    {value:5,label:'Information Technology Office'},
-    {value:6,label:'Police Department Offiec',},
-    {value:7,label:'Bussiness and Finance Office'},
-    {value:'culOffice',label:'Environmental and Natural Resources Office',},
-    {value:9,label:'Social Services Office'},
-    {value:10,label:'Media and Communication Office'}
+    {value:"culOffice",label:"Cultural Office"},
+    {value:"humResOffice",label:"Human Resource Office"},
+    {value:"infTechOffice",label:'Information Technology Office'},
+    {value:"polDepOffice",label:'Police Department Offiec',},
+    {value:"busFinOffice",label:'Bussiness and Finance Office'},
+    {value:'envOffice',label:'Environmental and Natural Resources Office',},
+    {value:"socOffice",label:'Social Services Office'},
+    {value:"medComOffice",label:'Media and Communication Office'}
     ]
 return (
   <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}} onMouseLeave={()=> setOffice(false)} className=" flex py-6 px-10 w-screen bg-white dark:bg-gray-900 dark:text-white/80 ">

@@ -41,13 +41,18 @@
     "construction":"ግንባታ",
 
     "offices":"ቢሮዎች",
-        "heaOffice":"ዋና ቢሮ",
+        "heaOffice":"ከንቲባ ቢሮ",
         "conOffice":"የግንባታ ቢሮ",
         "helOffice":"ጤና ቢሮ",
         "eduOffice":"የትምህርት ቢሮ",
         "culOffice":"የባህል ቢሮ",
         "humOffice":"የሰው ሀብት ቢሮ",
-
+        "infTechOffice":"የመረጃ ቴክኖሎጂ ቢሮ",
+        "polDepOffice":"የፖሊስ መምሪያ ቢሮ",
+        "busFinOffice":"ቢዝነስ እና ፋይናንስ ቢሮ",
+        "envOffice":"የአካባቢ እና ተፈጥሮ ሀብት ቢሮ",
+        "socOffice":"የማህበራዊ አገልግሎት ቢሮ",
+        "medComOffice":"የሚዲያ እና ኮሙኒኬሽን ቢሮ",
 
     "news":"ዜና",
         "newJob":"አዲስ ሥራ",

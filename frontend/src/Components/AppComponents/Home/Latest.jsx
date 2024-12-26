@@ -1,5 +1,6 @@
 import React from 'react'
 import newsData from '../../ComponentsData/newsData'
+import { Link } from 'react-router-dom'
 
 function Latest() {
     const data = newsData()
@@ -65,7 +66,7 @@ function Latest() {
                             <p class="text-sm text-gray-500 dark:text-gray-400">{data.eventDate}</p>
                         </div>
 
-                        <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400">Read more</a>
+                        <Link to={`news-detail/${data._id}`} class="inline-block text-blue-500 underline hover:text-blue-400">Read more</Link>
                     </div>
 
                 </div>

@@ -68,12 +68,14 @@ const officeData = [
   {value:2,label:'Construction Office'},
   {value:3,label:'Education Office'},
   {value:4,label:'Health Office'},
-  {value:5,label:'Information Technology Office'},
-  {value:6,label:'Police Department Offiec',},
-  {value:7,label:'Bussiness and Finance Office'},
-  {value:8,label:'Environmental and Natural Resources Office',},
-  {value:9,label:'Social Services Office'},
-  {value:10,label:'Media and Communication Office'}
+  {value:5,label:"Cultural Office"},
+  {value:6,label:"Human Resource Office"},
+  {value:7,label:'Information Technology Office'},
+  {value:8,label:'Police Department Offiec',},
+  {value:9,label:'Bussiness and Finance Office'},
+  {value:10,label:'Environmental and Natural Resources Office',},
+  {value:11,label:'Social Services Office'},
+  {value:12,label:'Media and Communication Office'}
 ]
 //console.log({postData,address,campany})
 console.log({response})

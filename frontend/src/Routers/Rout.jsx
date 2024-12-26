@@ -48,6 +48,7 @@ import Banks from '../Components/AppComponents/Services/Banks/Banks'
 import RentalHouse from '../Components/AppComponents/Services/RentalHouses/RentalHouse'
 import ManageEmployee from '../Components/AdminComponents/ManageEmployee/ManageEmployee'
 import EmployeePost from '../Components/AdminComponents/PostComponents/EmployeePost/EmployeePost'
+import DetailNews from '../Components/AppComponents/News/DetailNews/DetailNews'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -118,6 +119,9 @@ function Rout() {
             <Route path='new-events' element={<MainEvents/>}/>
             <Route path='new-jobs' element={<MainJob/>}/>
             <Route path='new-bidding' element={<MainBidding/>}/>
+
+            {/*  detail routes */}
+            <Route path='news-detail/:newsId' element={<DetailNews/>}/>
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
