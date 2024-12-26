@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MdShare } from "react-icons/md";
 
 function ShareArea() {
   const [showOptions, setShowOptions] = useState(false);
@@ -32,18 +33,21 @@ function ShareArea() {
   };
 
   return (
-    <div className="relative">
+    <div className="">
       {/* Share Button */}
       <button
-        className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+        className="dark:bg-gray-500 bg-slate-200 dark:hover:bg-gray-700 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
         onClick={() => setShowOptions(!showOptions)}
       >
-        Share
+         <div className="flex gap-2 items-center content-center ">
+            <span className='text-gray-500 dark:text-white/50'><MdShare/></span>
+            <p className=' text-gray-500 hidden md:block items-center self-center text-sm dark:text-white/50'>Share</p>
+        </div>
       </button>
 
       {/* Sharing Options */}
       {showOptions && (
-        <div className="absolute bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-2 space-y-2">
+        <div className="fixed top-[30%] left-[30%] bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-2 space-y-2">
           <button
             className="block w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
             onClick={() => handleShare("facebook")}

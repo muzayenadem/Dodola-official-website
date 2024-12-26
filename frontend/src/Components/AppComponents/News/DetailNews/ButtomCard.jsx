@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { MdShare } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
@@ -27,12 +26,8 @@ function ButtomCard({data}) {
                 <span className=''><BiLike/></span>
                 <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>532</p>
             </div>
-            <div className="flex gap-2 items-center content-center ">
-                <span><MdShare/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>Share</p>
-            </div>
+            <ShareArea/>
         </div>
-        <ShareArea/>
         <div className={` ${open ? '' : 'hidden'}`}>
                 <NewsComments/>
         </div>
