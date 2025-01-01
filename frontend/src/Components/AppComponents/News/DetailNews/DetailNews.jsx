@@ -1,30 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import newsData from '../../../ComponentsData/newsData'
 import WelomeToNews from './WelomeToNews'
 import ButtomCard from './ButtomCard'
+import { fetchSingleNews } from '../../../../Controller/Data/newsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 function DetailNews() {
 
+
+
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchSingleNews(newsId))
+   },[])
     const {newsId} = useParams()
     //console.log({newsId})
     const data = newsData()
 
     console.log({data})
     const news = data.data
-
-    console.log({data})
-    const detail = news.filter((single) => single._id == newsId)
+    const detail = data.single
+    const comment = data.comment
+    console.log({comment})
     console.log({detail})
+ 
+    // console.log({data})
+    // const detail = news.filter((single) => single._id == newsId)
+    //
 
-    const latest = news.length > 0 && news.slice(-3)
+    //const latest = news.length > 0 && news.slice(-3)
 
-    
 
  
     
     console.log({dataaaa:news[0]})
-   if(data.loading){
+   if(data.singleLoading){
      return (
        <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">
        <div className="w-4 h-4 rounded-full animate-spin px-5 bg-violet-800"></div>
@@ -35,7 +46,7 @@ function DetailNews() {
      </div>
      )
    }
-   if(data.error){
+   if(data.singleError){
      return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
    
    }
@@ -83,11 +94,11 @@ function DetailNews() {
           
            
             </div>
-               <ButtomCard data={data}/>
+               <ButtomCard data={data} comment={comment}/>
                     </div>
                     <div className=" flex flex-col col-span-3">
                     <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>
-                    {/* <h1 className='text-sm text-gray-800 mb-4 dark:text-white/70'>{data.eventDate}</h1> */}
+                    
                     {news.slice(-6).reverse().map((single,i)=>{
                             return(
                                 <div key={i} class="flex items-start mb-3 pb-3">

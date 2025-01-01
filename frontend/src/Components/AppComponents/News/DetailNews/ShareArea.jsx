@@ -3,6 +3,7 @@ import { MdShare } from "react-icons/md";
 
 function ShareArea() {
   const [showOptions, setShowOptions] = useState(false);
+  const [open,setOPen] = useState(false)
 
   const handleShare = (platform) => {
     const shareURL = window.location.href; // Dynamically fetch the current URL
@@ -24,7 +25,11 @@ function ShareArea() {
         break;
       case "copy":
         navigator.clipboard.writeText(shareURL);
-        alert("Link copied to clipboard!");
+        //alert("Link copied to clipboard!");
+        setOPen(true)
+        setTimeout(() => {
+          setOPen(false)
+        }, 1000);
         break;
       default:
         break;
@@ -86,6 +91,16 @@ function ShareArea() {
           </button>
         </div>
       )}
+      <dialog open={open} className='fixed top-[30%] left-[30%]'>
+      <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+            <p class="font-bold">
+                Copied
+            </p>
+            <p>
+              The link of content has been copied successfully.
+            </p>
+        </div>
+      </dialog>
     </div>
   );
 }

@@ -2,10 +2,16 @@ import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { axiosFunction } from '../AxiosFunctions/axiosFunction'
 import { serverLink } from '../CommonLinks/ServerLink'
 import { axiosFilterFunction } from '../AxiosFunctions/axiosFilterFunction'
+import { axiosSingleDataFetchingNews } from '../AxiosFunctions/AxiosSingleDataFetchingFunction'
 
 const initialState = {
     loading:false,
     data:[],
+
+    single:[],
+    comment:[],
+    singleLoading:false,
+    singleError:'',
     filterLoading:false,
     error:''
 }
@@ -20,8 +26,11 @@ export const reFetchNews = createAsyncThunk('newsSlice/reFetchNews',()=>{
     return axiosFunction(`${serverLink}/news`)
  })
 
-export const searchNews = createAsyncThunk('jobsSlice/searchJobs',(value)=>{
+export const searchNews = createAsyncThunk('newsSlice/searchNews',(value)=>{
     return axiosFilterFunction(`${serverLink}/search-news`,value)
+})
+export const fetchSingleNews = createAsyncThunk('newsSlice/fetchSingleNews',(newsId)=>{
+    return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
 })
 
 const newsSlice = createSlice({
@@ -83,6 +92,23 @@ const newsSlice = createSlice({
             state.filterLoading =false
             state.data = action.error.message
         })
+          //for fetching single news
+          build.addCase(fetchSingleNews.pending,(state,action)=>{
+            state.singleLoading = true
+            state.loading = false
+        })
+        build.addCase(fetchSingleNews.fulfilled,(state,action)=>{
+            state.loading = false
+            state.singleLoading = false
+            state.comment = action.payload.comment && action.payload.comment
+            state.single.length == 0 && state.single.push(action.payload.news)
+        })
+        build.addCase(fetchSingleNews.rejected,(state,action)=>{
+            state.loading = false
+            state.singleLoading =false
+            state.singleError = action.error.message
+        })
+        
     }
 })
 export default  newsSlice.reducer

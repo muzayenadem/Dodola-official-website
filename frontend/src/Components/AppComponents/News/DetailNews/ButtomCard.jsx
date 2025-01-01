@@ -1,13 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
 import NewsComments from './NewsComments';
 import ShareArea from './ShareArea';
 
+import { io } from 'socket.io-client';
+import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 
-function ButtomCard({data}) {
+const socket = io(serverLink); 
+
+function ButtomCard({data,comment}) {
+    const [commentsLength, setCommentsLength] = useState(comment.length)
     const [open,setOpen] = useState(false)
+
+     useEffect(() => {
+            socket.on('new-comment', (savedComment) => {
+              if (savedComment.newsId === data._id) {
+                setCommentsLength((prev) => prev + 1);
+              }
+            });
+        
+            // Cleanup listener on component unmount
+        return () => socket.off('new-comment');
+          }, [data._id]);
+    
+
+
   return (
     <div className=" container mx-auto p-6">
         <div className="">
@@ -16,7 +35,7 @@ function ButtomCard({data}) {
         <div className="flex gap-6 md:gap-10 py-6">
             <div onClick={()=> setOpen(!open)} className="flex gap-2 items-center content-center">
                 <span className='text-xl'><FaRegComments/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>348</p>
+                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>{commentsLength}</p>
             </div>
             <div className="flex gap-2 items-center content-center ">
                 <span><BiDislike/></span>
@@ -29,7 +48,7 @@ function ButtomCard({data}) {
             <ShareArea/>
         </div>
         <div className={` ${open ? '' : 'hidden'}`}>
-                <NewsComments/>
+                <NewsComments data={data} comment={comment} />
         </div>
     </div>
   )

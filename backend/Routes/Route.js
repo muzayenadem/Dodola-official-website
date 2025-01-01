@@ -35,6 +35,9 @@ const employeePost = require('../Controller/post/employeePost')
 const employee = require('../Controller/readData/employee')
 const deleteEmployee = require('../Controller/deleteData/deleteEmployee')
 const filterEmployee = require('../Controller/readData/filterEmployee')
+const setNewsComment = require('../Controller/ExtraFunctions/Comments/setNewsComment')
+const singleNews = require('../Controller/readData/SingleData/singleNews')
+const { likeComment, dislikeComment } = require('../Controller/ExtraFunctions/Comments/likeAndDeslikeOfComment')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -54,7 +57,7 @@ route.get('/authorized-admin',isLogginedWithEmail,authorizedAdmin)
 route.get('/admin-data',isLogginedWithEmail,adminData)
 route.get('/isadminloggined',isAdminLoggined)
 
-// readdata from database
+// read data from database
 route.get('/contents',content)
 route.get('/filter-content',filterContent)
 route.get('/jobs',jobs)
@@ -65,6 +68,8 @@ route.get('/employee',employee)
 route.get('/filter-employee', filterEmployee)
 route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
+// read single data from database
+route.get('/single-news/:newsId',singleNews)
 
 // POST METHOD 
 route.post('/create-admin',isLogginedWithEmail,createAdmin)
@@ -87,6 +92,14 @@ route.post('/delete-content',isLogginedWithEmail,deleteContent)
 route.post('/delete-job',isLogginedWithEmail,deleteJob)
 route.post('/delete-news',isLogginedWithEmail,deleteNew)
 route.post('/delete-employee',isLogginedWithEmail,deleteEmployee)
+
+//Extra Routes like comments, like and share
+route.post('/new-comment',setNewsComment)
+route.put('/comment/like/:commentId', likeComment)
+route.put('/comment/dislike/:commentId', dislikeComment)
+
+
+
 
 //UPDATE METHODS
 route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)
