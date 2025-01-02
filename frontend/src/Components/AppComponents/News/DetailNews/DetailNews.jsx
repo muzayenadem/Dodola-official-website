@@ -22,6 +22,8 @@ function DetailNews() {
     const news = data.data
     const detail = data.single
     const comment = data.comment
+    const reaction = data.reaction
+    console.log({reaction})
     console.log({comment})
     console.log({detail})
  
@@ -94,7 +96,7 @@ function DetailNews() {
           
            
             </div>
-               <ButtomCard data={data} comment={comment}/>
+               <ButtomCard data={data} comment={comment} reaction={reaction}/>
                     </div>
                     <div className=" flex flex-col col-span-3">
                     <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>

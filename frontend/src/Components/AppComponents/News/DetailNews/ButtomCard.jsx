@@ -7,10 +7,14 @@ import ShareArea from './ShareArea';
 
 import { io } from 'socket.io-client';
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchReaction, fetchSingleNews } from '../../../../Controller/Data/newsSlice';
 
 const socket = io(serverLink); 
 
-function ButtomCard({data,comment}) {
+function ButtomCard({data,comment,reaction}) {
+    const [reactions, setReactions] = useState(reaction);
     const [commentsLength, setCommentsLength] = useState(comment.length)
     const [open,setOpen] = useState(false)
 
@@ -25,7 +29,31 @@ function ButtomCard({data,comment}) {
         return () => socket.off('new-comment');
           }, [data._id]);
     
+        
 
+     
+          const handleReaction = async (type) => {
+            try {
+             const response =  await axios.post(`${serverLink}/news/reaction/${data._id}`, {
+                type,
+              });
+              console.log({newReaction:response.data})
+
+            // socket.on('update-news-reaction', (updatedReaction) => {
+            //   if (updatedReaction.newsId === data._id) {
+            //     setReactions(prev => prev = response.data.reaction)
+            //   }
+            // });
+        
+            setReactions(prev => prev = response.data.reaction)
+            return () => {
+              socket.off('update-news-reaction');
+            };
+            } catch (error) {
+              console.error('Error adding reaction:', error.response?.data || error.message);
+            }
+          };
+        
 
   return (
     <div className=" container mx-auto p-6">
@@ -37,14 +65,14 @@ function ButtomCard({data,comment}) {
                 <span className='text-xl'><FaRegComments/></span>
                 <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>{commentsLength}</p>
             </div>
-            <div className="flex gap-2 items-center content-center ">
-                <span><BiDislike/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>23</p>
-            </div>
-            <div className="flex gap-2 items-center content-center ">
+            <button onClick={() => handleReaction('like')} className="flex gap-2 items-center content-center ">
                 <span className=''><BiLike/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>532</p>
-            </div>
+                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'> {reactions.likes}</p>
+            </button>
+            <button onClick={() => handleReaction('dislike')} className="flex gap-2 items-center content-center ">
+                <span><BiDislike/></span>
+                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'> {reactions.dislikes}</p>
+            </button>
             <ShareArea/>
         </div>
         <div className={` ${open ? '' : 'hidden'}`}>

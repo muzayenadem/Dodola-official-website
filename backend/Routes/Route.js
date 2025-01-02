@@ -38,6 +38,7 @@ const filterEmployee = require('../Controller/readData/filterEmployee')
 const setNewsComment = require('../Controller/ExtraFunctions/Comments/setNewsComment')
 const singleNews = require('../Controller/readData/SingleData/singleNews')
 const { likeComment, dislikeComment } = require('../Controller/ExtraFunctions/Comments/likeAndDeslikeOfComment')
+const { likeAndDislikeNews } = require('../Controller/ExtraFunctions/Likes/LikeAndDislikeNews')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -97,7 +98,8 @@ route.post('/delete-employee',isLogginedWithEmail,deleteEmployee)
 route.post('/new-comment',setNewsComment)
 route.put('/comment/like/:commentId', likeComment)
 route.put('/comment/dislike/:commentId', dislikeComment)
-
+//like news
+route.post('/news/reaction/:newsId', likeAndDislikeNews)
 
 
 

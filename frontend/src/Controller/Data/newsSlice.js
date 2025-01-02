@@ -9,7 +9,9 @@ const initialState = {
     data:[],
 
     single:[],
+
     comment:[],
+    reaction:{},
     singleLoading:false,
     singleError:'',
     filterLoading:false,
@@ -30,6 +32,9 @@ export const searchNews = createAsyncThunk('newsSlice/searchNews',(value)=>{
     return axiosFilterFunction(`${serverLink}/search-news`,value)
 })
 export const fetchSingleNews = createAsyncThunk('newsSlice/fetchSingleNews',(newsId)=>{
+    return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
+})
+export const fetchReaction = createAsyncThunk('newsSlice/fetchReaction',(newsId)=>{
     return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
 })
 
@@ -100,6 +105,7 @@ const newsSlice = createSlice({
         build.addCase(fetchSingleNews.fulfilled,(state,action)=>{
             state.loading = false
             state.singleLoading = false
+            state.reaction = action.payload.reaction
             state.comment = action.payload.comment && action.payload.comment
             state.single.length == 0 && state.single.push(action.payload.news)
         })
@@ -107,6 +113,9 @@ const newsSlice = createSlice({
             state.loading = false
             state.singleLoading =false
             state.singleError = action.error.message
+        })
+        build.addCase(fetchReaction.fulfilled,(state,action)=>{
+            state.reaction = action.payload.reaction
         })
         
     }
