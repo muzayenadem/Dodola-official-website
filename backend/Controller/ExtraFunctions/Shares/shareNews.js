@@ -39,7 +39,7 @@ const shareNews =  async (req, res) => {
       </head>
       <body>
         <script>
-          window.location.href = "https://dodola-official-website.vercel.app/news-detai;/${newsId}";
+          window.location.href = "https://dodola-official-website.vercel.app/news-detail/${newsId}";
         </script>
         <h1>Redirecting to ${news.title}...</h1>
         <p>If you are not redirected, <a href="https://dodola-official-website.vercel.app/news-detail/${newsId}">click here</a>.</p>
