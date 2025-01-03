@@ -73,7 +73,7 @@ function ButtomCard({data,comment,reaction}) {
                 <span><BiDislike/></span>
                 <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'> {reactions.dislikes}</p>
             </button>
-            <ShareArea/>
+            <ShareArea data={data}/>
         </div>
         <div className={` ${open ? '' : 'hidden'}`}>
                 <NewsComments data={data} comment={comment} />

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { MdShare } from "react-icons/md";
+import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 
-function ShareArea() {
+function ShareArea({data}) {
   const [showOptions, setShowOptions] = useState(false);
   const [open,setOPen] = useState(false)
 
   const handleShare = (platform) => {
-    const shareURL = window.location.href; // Dynamically fetch the current URL
+    const shareURL = `${serverLink}/news/${data._id}/share`;
+    console.log({shareURL})
+
     switch (platform) {
       case "facebook":
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`, "_blank");

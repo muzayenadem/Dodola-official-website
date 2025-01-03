@@ -39,6 +39,7 @@ const setNewsComment = require('../Controller/ExtraFunctions/Comments/setNewsCom
 const singleNews = require('../Controller/readData/SingleData/singleNews')
 const { likeComment, dislikeComment } = require('../Controller/ExtraFunctions/Comments/likeAndDeslikeOfComment')
 const { likeAndDislikeNews } = require('../Controller/ExtraFunctions/Likes/LikeAndDislikeNews')
+const shareNews = require('../Controller/ExtraFunctions/Shares/shareNews')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -100,7 +101,8 @@ route.put('/comment/like/:commentId', likeComment)
 route.put('/comment/dislike/:commentId', dislikeComment)
 //like news
 route.post('/news/reaction/:newsId', likeAndDislikeNews)
-
+//share routes
+route.get('/news/:id/share',shareNews)
 
 
 //UPDATE METHODS
