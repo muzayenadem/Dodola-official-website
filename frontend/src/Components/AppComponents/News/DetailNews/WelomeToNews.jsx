@@ -8,7 +8,7 @@ function WelomeToNews({detail}) {
       Welcome to <span class="text-pink-300">Our</span><span class="text-purple-300">News</span><span class="text-blue-300">Page</span>
     </h1>
     <p class="text-lg sm:text-xl lg:text-2xl font-medium text-white leading-tight mb-8">
-      We're so excited to have you here! Check out our latest news about Adama city 
+      We're so excited to have you here! Check out our latest news about Dodola city 
       
     </p>
     <a href="#" class="inline-block bg-white text-pink-500 hover:text-pink-600 font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition duration-200">
