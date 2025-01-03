@@ -33,7 +33,7 @@ function Navbar() {
   const [theme ,setTheme] = useState(<MdDarkMode/>)
   const [isOpen,setIsOpen] = useState(false)
   const [me,setMe] = useState('data-twe-carousel-active')
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [language, setLanguage] = useState(false)
 
 

@@ -103,15 +103,15 @@ function DetailNews() {
                     
                     {news.slice(-6).reverse().map((single,i)=>{
                             return(
-                                <div key={i} class="flex items-start mb-3 pb-3">
+                                <div key={i} class="flex items-start mb-3 pb-3 dark:text-white/80">
                                     <a href="#" class="inline-block mr-3">
                                         <div class="w-20 h-20 bg-cover bg-center rounded-sm"
                                             style={{backgroundImage:`url(${single.files[0]})`}}>
                                         </div>
                                     </a>
                                     <div class="text-sm">
-                                        <p class="text-gray-600 text-xs">Aug 18</p>
-                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 leading-none">Cristiano Ronaldo
+                                        <p class="text-gray-600 text-xs dark:text-white/60">Aug 18</p>
+                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">Cristiano Ronaldo
                                             of Juventus FC looks dejected during the...</a>
                                     </div>
                                 </div>
