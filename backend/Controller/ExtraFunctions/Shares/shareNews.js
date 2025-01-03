@@ -30,7 +30,7 @@ const shareNews =  async (req, res) => {
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="${news.title}" />
-        <meta name="twitter:description" content="${news.description.substring(0, 150)}... Read more!" />
+        <meta name="twitter:description" content="${news.description.substring(0, 200)}... Read more!" />
         <meta name="twitter:image" content="${news.files[0]}" />
         <meta name="twitter:site" content="@DodolaCity" />
 
