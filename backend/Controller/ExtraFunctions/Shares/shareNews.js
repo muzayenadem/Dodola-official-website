@@ -12,24 +12,39 @@ const shareNews =  async (req, res) => {
   
       // Send an HTML response with Open Graph meta tags
       res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>${news.title}</title>
-          <meta property="og:title" content="${news.title}" />
-          <meta property="og:description" content="${news.description}" />
-          <meta property="og:image" content="${news.files[0]}" />
-          <meta property="og:url" content="https://dodola-official-website.vercel.app/news-detail/${newsId}" />
-          <meta property="og:type" content="article" />
-        </head>
-        <body>
-          <h1>${news.title}</h1>
-          <p>${news.description}</p>
-          <img src="${news.files[0]}" alt="${news.title}" />
-        </body>
-        </html>
+           <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${news.title} | Dodola City</title>
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="${news.title}" />
+        <meta property="og:description" content="${news.description.substring(0, 150)}... Read more!" />
+        <meta property="og:image" content="${news.files[0]}" />
+        <meta property="og:url" content="https://dodola-official-website.vercel.app/news-detail/${newsId}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Dodola City Official" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="${news.title}" />
+        <meta name="twitter:description" content="${news.description.substring(0, 150)}... Read more!" />
+        <meta name="twitter:image" content="${news.files[0]}" />
+        <meta name="twitter:site" content="@DodolaCity" />
+
+        <!-- Additional Meta -->
+        <meta name="theme-color" content="#ffffff" />
+      </head>
+      <body>
+        <script>
+          window.location.href = "https://dodola-official-website.vercel.app/news-detai;/${newsId}";
+        </script>
+        <h1>Redirecting to ${news.title}...</h1>
+        <p>If you are not redirected, <a href="https://dodola-official-website.vercel.app/news-detail/${newsId}">click here</a>.</p>
+      </body>
+      </html>
       `);
     } catch (error) {
       console.error(error);
