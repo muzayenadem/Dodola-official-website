@@ -110,9 +110,8 @@ function DetailNews() {
                                         </div>
                                     </a>
                                     <div class="text-sm">
-                                        <p class="text-gray-600 text-xs dark:text-white/60">Aug 18</p>
-                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">Cristiano Ronaldo
-                                            of Juventus FC looks dejected during the...</a>
+                                        <p class="text-gray-600 text-xs dark:text-white/60">{single.eventDate}</p>
+                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">{single.title}</a>
                                     </div>
                                 </div>
                             )
