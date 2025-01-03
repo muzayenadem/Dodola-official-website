@@ -21,7 +21,7 @@ const shareNews =  async (req, res) => {
           <meta property="og:title" content="${news.title}" />
           <meta property="og:description" content="${news.description}" />
           <meta property="og:image" content="${news.files[0]}" />
-          <meta property="og:url" content="https://dodola-official-website.vercel.app/news/${newsId}" />
+          <meta property="og:url" content="https://dodola-official-website.vercel.app/news-detail/${newsId}" />
           <meta property="og:type" content="article" />
         </head>
         <body>
