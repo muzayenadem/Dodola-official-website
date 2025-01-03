@@ -111,7 +111,8 @@ function DetailNews() {
                                     </a>
                                     <div class="text-sm">
                                         <p class="text-gray-600 text-xs dark:text-white/60">{single.eventDate}</p>
-                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">{single.title}</a>
+                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">{single.title.substring(0,30)}{single.title.length >= 30 && '...'}</a>
+                                        <p>{single.description.substring(0,50)}{single.description.length >= 50 && '...'}</p>
                                     </div>
                                 </div>
                             )
