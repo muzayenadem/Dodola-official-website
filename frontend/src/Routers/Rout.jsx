@@ -55,7 +55,7 @@ function Rout() {
  
   console.log({adminToken})
   console.log({admin})
-  
+  const {newsId} = useParams()
   const list = ()=>{
     let adminsRole = {}
     for (let admins of admin){
@@ -71,7 +71,7 @@ function Rout() {
 
    const currentPage = window.location.href
    console.log({currentPage})
-
+   
    const split = currentPage.split('/')
    console.log({split:split[split.length-1]})
    const rea = split[split.length-1].replace('%20', ' ')
@@ -121,7 +121,7 @@ function Rout() {
             <Route path='new-bidding' element={<MainBidding/>}/>
 
             {/*  detail routes */}
-            <Route path='news-detail/:newsId' element={<DetailNews/>}/>
+            <Route path='news-detail/:newsId' element={<DetailNews key={newsId}/>}/>
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>

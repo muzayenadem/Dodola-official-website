@@ -38,6 +38,7 @@ export const fetchReaction = createAsyncThunk('newsSlice/fetchReaction',(newsId)
     return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
 })
 
+
 const newsSlice = createSlice({
     name:'newsSlice',
     initialState:initialState,
@@ -103,12 +104,14 @@ const newsSlice = createSlice({
             state.loading = false
         })
         build.addCase(fetchSingleNews.fulfilled,(state,action)=>{
+            state.single = []
             state.loading = false
             state.singleLoading = false
             state.reaction = action.payload.reaction
             state.comment = action.payload.comment && action.payload.comment
             state.single.length == 0 && state.single.push(action.payload.news)
         })
+
         build.addCase(fetchSingleNews.rejected,(state,action)=>{
             state.loading = false
             state.singleLoading =false

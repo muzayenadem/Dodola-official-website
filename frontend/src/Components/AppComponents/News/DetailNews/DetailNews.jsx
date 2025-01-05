@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import newsData from '../../../ComponentsData/newsData'
 import WelomeToNews from './WelomeToNews'
 import ButtomCard from './ButtomCard'
 import { fetchSingleNews } from '../../../../Controller/Data/newsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 
 function DetailNews() {
 
-
-
+ const [more,setMore] = useState(false)
+ const {newsId} = useParams()
   const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(fetchSingleNews(newsId))
-   },[])
-    const {newsId} = useParams()
+  useEffect(() => {
+    console.log('Fetching news for ID:', newsId);
+    dispatch(fetchSingleNews(newsId));
+  }, [newsId, dispatch]);
+  
     //console.log({newsId})
     const data = newsData()
 
@@ -52,7 +54,14 @@ function DetailNews() {
      return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
    
    }
- 
+
+
+   if (!detail || detail.length === 0) {
+    return <div>No news details available.</div>;
+    }
+    if (!news || news.length === 0) {
+    return <div>No news available.</div>;
+    }
 
   return (
     
@@ -101,23 +110,29 @@ function DetailNews() {
                     <div className=" flex flex-col col-span-3">
                     <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>
                     
-                    {news.slice(-6).reverse().map((single,i)=>{
+                    {news.slice(more ? -20 : -6).reverse().map((single,i)=>{
                             return(
-                                <div key={i} class="flex items-start mb-3 pb-3 dark:text-white/80">
-                                    <a href="#" class="inline-block mr-3">
-                                        <div class="w-20 h-20 bg-cover bg-center rounded-sm"
-                                            style={{backgroundImage:`url(${single.files[0]})`}}>
+                                <div key={i} className="">
+                                    <Link to={`/news-detail/${single._id}`} onClick={()=> dispatch(fetchSingleNews(single._id))}>
+                                      <div  class="flex items-start mb-3 pb-3 dark:text-white/80">
+                                        <a href="#" class="inline-block mr-3">
+                                            <div class="w-20 h-20 bg-cover bg-center rounded-sm"
+                                                style={{backgroundImage:`url(${single.files[0]})`}}>
+                                            </div>
+                                        </a>
+                                        <div class="text-sm">
+                                            <p class="text-gray-600 text-xs dark:text-white/60">{single.eventDate}</p>
+                                            <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">{single.title.substring(0,30)}{single.title.length >= 30 && '...'}</a>
+                                            <p>{single.description.substring(0,50)}{single.description.length >= 50 && '...'}</p>
                                         </div>
-                                    </a>
-                                    <div class="text-sm">
-                                        <p class="text-gray-600 text-xs dark:text-white/60">{single.eventDate}</p>
-                                        <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 dark:text-white/70 leading-none">{single.title.substring(0,30)}{single.title.length >= 30 && '...'}</a>
-                                        <p>{single.description.substring(0,50)}{single.description.length >= 50 && '...'}</p>
-                                    </div>
+                                     </div>
+                                     </Link>
                                 </div>
                             )
                         })}
-                        <h3 className='text-blue-700 underline px-2 my-3'>More</h3>
+                      <div className="mx-2">
+                      <button onClick={()=> setMore(!more)} className='text-blue-700 justify-start underline px-2  my-3'>{more ? 'Less' :'More'}</button>
+                      </div>
                     </div>
                 </div>
             )
