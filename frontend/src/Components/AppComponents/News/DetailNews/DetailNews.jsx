@@ -68,7 +68,6 @@ function DetailNews() {
     <div class="dark:bg-gray-900 bg-white">
         <WelomeToNews detail={detail}/>
       <div class="container mx-auto px-2 py-8">
-    
         {detail.map((data,i)=>{
             return(
                 <div key={i} className={` xl:grid xl:grid-cols-12 gap-10`}>
@@ -107,6 +106,8 @@ function DetailNews() {
             </div>
                <ButtomCard data={data} comment={comment} reaction={reaction}/>
                     </div>
+
+                    
                     <div className=" flex flex-col col-span-3">
                     <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>
                     
