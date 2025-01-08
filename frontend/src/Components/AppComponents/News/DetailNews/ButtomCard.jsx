@@ -18,10 +18,14 @@ function ButtomCard({data,comment,reaction}) {
     const [commentsLength, setCommentsLength] = useState(comment.length)
     const [open,setOpen] = useState(false)
 
+    
      useEffect(() => {
             socket.on('new-comment', (savedComment) => {
               if (savedComment.newsId === data._id) {
                 setCommentsLength((prev) => prev + 1);
+                setTimeout(() => {
+                  setSucces('')
+                },2000);
               }
             });
         
@@ -62,7 +66,7 @@ function ButtomCard({data,comment,reaction}) {
         </div>
         <div className="flex gap-6 md:gap-10 py-6">
             <div onClick={()=> setOpen(!open)} className="flex gap-2 items-center content-center">
-                <span className='text-xl'><FaRegComments/></span>
+                <span className='text-xl'><FaRegComments /></span>
                 <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>{commentsLength}</p>
             </div>
             <button onClick={() => handleReaction('like')} className="flex gap-2 items-center content-center ">

@@ -28,11 +28,12 @@ function NewsComments({data,comment}) {
 
 			if (response.data){
 				setSucces(response.data)
-			}
             const latest = response.data.comment
             comment.push(latest)
             setPrevComment(latest)
             console.log({succes})
+            
+      }
 
 		} catch (error) {
 			if(error.response){
@@ -73,6 +74,9 @@ function NewsComments({data,comment}) {
           if (savedComment.newsId === data._id) {
             setPrevComment((prev) => [...prev,savedComment]);
            //setPrevComment(prev => prevComment.push(savedComment))
+           setTimeout(() => {
+            setSucces('')
+          },2000);
           }
         });
     

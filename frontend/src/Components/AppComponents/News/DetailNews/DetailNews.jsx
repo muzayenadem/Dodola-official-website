@@ -67,7 +67,7 @@ function DetailNews() {
     
     <div class="dark:bg-gray-900 bg-white">
         <WelomeToNews detail={detail}/>
-    <div class="container mx-auto px-2 py-8">
+      <div class="container mx-auto px-2 py-8">
     
         {detail.map((data,i)=>{
             return(
