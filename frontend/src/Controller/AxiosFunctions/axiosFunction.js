@@ -11,20 +11,19 @@ export const axiosFunction = async (link) =>{
         return response.data;
     
       } catch (error) {
-        // Error handling
+        // Handle different types of errors
         if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error('Server responded with an error:', error.response.data);
-          return error.response.data
+          // Server responded with a status code out of the 2xx range
+          console.error("Server responded with an error:", error.response.data);
+          throw new Error(error.response.data.error || "Server error occurred.");
         } else if (error.request) {
-          // The request was made but no response was received
-          console.error('No response received:', error.request);
-          return error.request
+          // Request was made but no response was received
+          console.error("No response received:", error.request);
+          throw new Error("No response received from the server. Please try again.");
         } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error('Error setting up request:', error.message);
-          return error.message
+          // Error occurred while setting up the request
+          console.error("Error setting up the request:", error.message);
+          throw new Error(error.message || "Request setup error occurred.");
         }
       }
 }

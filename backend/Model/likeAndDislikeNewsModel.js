@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const reactionSchema = new mongoose.Schema({
   newsId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Content',
+    ref: 'News',
     required: true,
   },
   type: {
@@ -13,4 +13,4 @@ const reactionSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Reaction', reactionSchema);
+module.exports = mongoose.model('LikeAndDislikeNews', reactionSchema);

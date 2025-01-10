@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema({
     newsId : {
         required:true,
-        type:String
+        newsId: { type: mongoose.Schema.Types.ObjectId, ref: 'News' },
     },
     like:{
         type:Number,
@@ -12,6 +12,6 @@ const schema = mongoose.Schema({
     timestamp: { type: Date, default: Date.now },
 })
 
-const likeCommentModel = mongoose.model('NewsCommentModel',schema)
+const likeCommentModel = mongoose.model('CommentsLike',schema)
 
 module.exports = likeCommentModel

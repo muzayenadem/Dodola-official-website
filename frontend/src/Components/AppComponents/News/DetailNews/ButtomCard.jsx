@@ -13,12 +13,15 @@ import { fetchReaction, fetchSingleNews } from '../../../../Controller/Data/news
 
 const socket = io(serverLink); 
 
-function ButtomCard({data,comment,reaction}) {
-    const [reactions, setReactions] = useState(reaction);
-    const [commentsLength, setCommentsLength] = useState(comment.length)
+function ButtomCard({data,description}) {
+    const [reactions, setReactions] = useState({
+      likes:data.reactions.filter((single)=>single.type == 'like').length,
+      dislikes:data.reactions.filter((single)=>single.type == 'dislike').length
+    });
+    const [commentsLength, setCommentsLength] = useState(data.comments.length)
     const [open,setOpen] = useState(false)
 
-    
+    console.log({reactttt:data})
      useEffect(() => {
             socket.on('new-comment', (savedComment) => {
               if (savedComment.newsId === data._id) {
@@ -60,9 +63,9 @@ function ButtomCard({data,comment,reaction}) {
         
 
   return (
-    <div className=" container mx-auto p-6">
+    <div className="p-5">
         <div className="">
-            <p className='text-lg'>{data.description}</p>
+            <p className='text-lg'>{description}</p>
         </div>
         <div className="flex gap-6 md:gap-10 py-6">
             <div onClick={()=> setOpen(!open)} className="flex gap-2 items-center content-center">
@@ -71,16 +74,20 @@ function ButtomCard({data,comment,reaction}) {
             </div>
             <button onClick={() => handleReaction('like')} className="flex gap-2 items-center content-center ">
                 <span className=''><BiLike/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'> {reactions.likes}</p>
+                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>
+                   {reactions.likes}
+                </p>
             </button>
             <button onClick={() => handleReaction('dislike')} className="flex gap-2 items-center content-center ">
                 <span><BiDislike/></span>
-                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'> {reactions.dislikes}</p>
+                <p className=' text-gray-500 items-center self-center text-sm dark:text-white/50'>
+                   {reactions.dislikes}
+                </p>
             </button>
             <ShareArea data={data}/>
         </div>
         <div className={` ${open ? '' : 'hidden'}`}>
-                <NewsComments data={data} comment={comment} />
+                <NewsComments data={data} comment={data.comments} />
         </div>
     </div>
   )

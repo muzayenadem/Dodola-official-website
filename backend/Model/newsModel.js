@@ -32,7 +32,7 @@ const schema = mongoose.Schema({
     admin:{
         required:true,
         type:Object
-    }
+    },
 })
 
 const newsModel = mongoose.model('News',schema)

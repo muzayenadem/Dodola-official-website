@@ -18,28 +18,18 @@ function DetailNews() {
   }, [newsId, dispatch]);
   
     //console.log({newsId})
-    const data = newsData()
+    const allData = newsData()
 
-    console.log({data})
-    const news = data.data
-    const detail = data.single
-    const comment = data.comment
-    const reaction = data.reaction
-    console.log({reaction})
-    console.log({comment})
+    //console.log({data})
+    const news = allData.data
+    const detail = allData.single
+
     console.log({detail})
- 
-    // console.log({data})
-    // const detail = news.filter((single) => single._id == newsId)
-    //
-
-    //const latest = news.length > 0 && news.slice(-3)
-
 
  
     
     console.log({dataaaa:news[0]})
-   if(data.singleLoading){
+   if(allData.singleLoading){
      return (
        <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">
        <div className="w-4 h-4 rounded-full animate-spin px-5 bg-violet-800"></div>
@@ -50,24 +40,16 @@ function DetailNews() {
      </div>
      )
    }
-   if(data.singleError){
+   if(allData.singleError){
      return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
    
    }
-
-
-   if (!detail || detail.length === 0) {
-    return <div>No news details available.</div>;
-    }
-    if (!news || news.length === 0) {
-    return <div>No news available.</div>;
-    }
 
   return (
     
     <div class="dark:bg-gray-900 bg-white">
         <WelomeToNews detail={detail}/>
-      <div class="container mx-auto px-2 py-8">
+      <div class="container lg:mx-auto px-2 md:mx-2 py-8">
         {detail.map((data,i)=>{
             return(
                 <div key={i} className={` xl:grid xl:grid-cols-12 gap-10`}>
@@ -75,7 +57,7 @@ function DetailNews() {
                     <h1 class="text-4xl font-bold text-start mb-5">{data.title}</h1>
                     <h1 className='text-sm text-gray-800 mb-4 dark:text-white/70'>{data.eventDate}</h1>
                     <div class={` ${data.files.length > 1 ? 'grid grid-cols-1 md:grid-cols-4' : ' container mx-auto'} gap-4`}>
-                        <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-2xl shadow-lg group">
+                        <div class="md:col-span-2 md:row-span-12 relative overflow-hidden rounded-2xl shadow-lg group">
                             <img src={data.files[0]} alt="Nature" class="w-full max-h-[400px] object-cover"/>
                             <div
                                 class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -104,7 +86,7 @@ function DetailNews() {
           
            
             </div>
-               <ButtomCard data={data} comment={comment} reaction={reaction}/>
+               <ButtomCard data={data} description={data.description}/>
                     </div>
 
                     

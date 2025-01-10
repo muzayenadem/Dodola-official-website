@@ -9,7 +9,6 @@ const initialState = {
     data:[],
 
     single:[],
-
     comment:[],
     reaction:{},
     singleLoading:false,
@@ -50,7 +49,7 @@ const newsSlice = createSlice({
         })
         build.addCase(fetchNews.fulfilled,(state,action)=>{
             state.loading = false
-            state.data = action.payload
+            state.data = action.payload.news
         })
         build.addCase(fetchNews.rejected,(state,action)=>{
             state.loading = false
@@ -64,7 +63,7 @@ const newsSlice = createSlice({
         build.addCase(filterNewsFromServer.fulfilled,(state,action)=>{
             state.loading = false
             state.filterLoading = false
-            state.data = action.payload
+            state.data = action.payload.news
         })
         build.addCase(filterNewsFromServer.rejected,(state,action)=>{
             state.loading = false
@@ -80,7 +79,7 @@ const newsSlice = createSlice({
         build.addCase(reFetchNews.fulfilled,(state,action)=>{
             state.loading = false
             state.filterLoading = false
-            state.data = action.payload
+            state.data = action.payload.news
         })
         build.addCase(reFetchNews.rejected,(state,action)=>{
             state.loading = false
@@ -91,7 +90,7 @@ const newsSlice = createSlice({
         build.addCase(searchNews.fulfilled,(state,action) =>{
             state.loading = false
             state.filterLoading =false
-            state.data = action.payload
+            state.data = action.payload.news
         })
         build.addCase(searchNews.rejected,(state,action) =>{
             state.loading = false
@@ -104,12 +103,13 @@ const newsSlice = createSlice({
             state.loading = false
         })
         build.addCase(fetchSingleNews.fulfilled,(state,action)=>{
-            state.single = []
+            //state.single = []
             state.loading = false
             state.singleLoading = false
-            state.reaction = action.payload.reaction
-            state.comment = action.payload.comment && action.payload.comment
-            state.single.length == 0 && state.single.push(action.payload.news)
+            //state.reaction = action.payload.reaction
+            //state.comment = action.payload.comment && action.payload.comment
+            state.single = action.payload
+            //state.single.length == 0 && state.single.push(action.payload.news)
         })
 
         build.addCase(fetchSingleNews.rejected,(state,action)=>{

@@ -51,6 +51,10 @@ function ListOfNews({news,data}) {
       const unPublishHandler = () =>{
         alert('Un Publish handler')
       }
+      if(data.error){
+        return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
+        
+      }
       if(!data.data.length & data.loading == false){
         return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
       }

@@ -27,10 +27,10 @@ function ManageNews() {
       </div>
       )
     }
-    if(data.error){
-      return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
+    // if(data.error){
+    //   return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
       
-    }
+    // }
   return (
     <div className='flex flex-col py-12 gap-5 min-h-[100vh]'> 
        <NewsTopButton/>

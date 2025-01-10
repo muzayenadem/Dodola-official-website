@@ -1,5 +1,4 @@
 const newsModel = require('../../../Model/newsModel')
-const likeAndDislikeNews = require('../../../Model/likeAndDislikeNewsModel')
 const likeAndDislikeNewsModel = require('../../../Model/likeAndDislikeNewsModel')
 
 exports.likeAndDislikeNews = async (req,res) => {
@@ -12,7 +11,7 @@ exports.likeAndDislikeNews = async (req,res) => {
         }
     
         // Create a new reaction
-        const newReaction = await likeAndDislikeNews.create({ newsId: newsId, type });
+        const newReaction = await likeAndDislikeNewsModel.create({ newsId: newsId, type });
     
         // Emit real-time reaction update
         const likes = await likeAndDislikeNewsModel.countDocuments({ newsId: newsId, type: 'like' });
