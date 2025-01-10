@@ -52,9 +52,6 @@ const  searchNews = async (req, res) => {
                 }
             }
         ]);
-      //const come = newsWithDetails.reactions.filter((single)=>single.type == 'like')
-        console.log('this is single data',{newsWithDetails})
-        //console.log({come:come.length})
         return res.status(200).json({news:newsWithDetails});
     } catch (error) {
         console.error({ error: error.message });

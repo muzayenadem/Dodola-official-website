@@ -21,9 +21,11 @@ const news = async (req, res) => {
                 }
             }
         ]);
-        const come = newsWithDetails[0].reactions.filter((single)=>single.type == 'like')
-        console.log({newsWithDetails})
-        console.log({come:come.length})
+        
+        if(!newsWithDetails.length)
+        return res.status(404).json({error:'there is no news data here'})  
+
+   
         return res.status(200).json({news:newsWithDetails});
     } catch (error) {
         console.error('Error:', error.message);
