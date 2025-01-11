@@ -90,8 +90,8 @@ const [seeMore,setSeeMore] = useState({
             return(
                 <div key={i} className={`w-full px-2`}>
                     <div className="">
-                    <h1 class="text-4xl px-5 font-bold text-start my-3">{data.title}</h1>
-                    <h1 className='text-sm  px-5 text-gray-800 my-2 dark:text-white/70'>{data.eventDate}</h1>
+                    <h1 class="text-xl px-1 font-bold text-start my-3">{data.title}</h1>
+                    <h1 className='text-sm  px-1 text-gray-800 my-2 dark:text-white/70'>{data.eventDate}</h1>
                     <div class={`  mx-auto md:px-4'} gap-4`}>
                         <div class=" relative overflow-hidden rounded-md shadow-lg group">
                             <img class="object-cover rounded-md w-full h-72 lg:h-96" src={data.files[0]} alt="Article"/>
@@ -104,15 +104,17 @@ const [seeMore,setSeeMore] = useState({
                             </div>
                         </div>
                      </div>
-                     <ButtomCard data={data} description={
-                        <span>{seeMore.more & data._id == seeMore.id  ? data.description : data.description.substring(0,150)} {data.description.length >150 &&  <span> 
-                            <span>{!seeMore.more && '....'}</span>
-                            <span onClick={()=> setSeeMore({...seeMore, id:data._id, more: !seeMore.more})} className='text-sm text-blue-700 underline'>
-                                {seeMore.more ? 'Less' : 'More'}
+                        <div className="py-4 px-2">
+                            <ButtomCard data={data} description={
+                            <span>{seeMore.more & data._id == seeMore.id  ? data.description : data.description.substring(0,150)} {data.description.length >150 &&  <span> 
+                                <span>{!seeMore.more && '....'}</span>
+                                <span onClick={()=> setSeeMore({...seeMore, id:data._id, more: !seeMore.more})} className='text-sm text-blue-700 underline'>
+                                    {seeMore.more ? 'Less' : 'More'}
+                                </span>
+                                </span>}
                             </span>
-                            </span>}
-                        </span>
-                        }/>
+                            }/>
+                        </div>
                     </div>
                 </div>
             )

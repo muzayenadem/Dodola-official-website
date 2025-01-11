@@ -63,7 +63,7 @@ function ButtomCard({data,description}) {
         
 
   return (
-    <div className="p-5">
+    <div className="">
         <div className="">
             <p className='text-lg'>{description}</p>
         </div>
