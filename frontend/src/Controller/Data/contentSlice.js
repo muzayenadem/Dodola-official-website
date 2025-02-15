@@ -2,10 +2,15 @@ import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { axiosFunction } from '../AxiosFunctions/axiosFunction'
 import { serverLink } from '../CommonLinks/ServerLink'
 import { axiosFilterFunction } from '../AxiosFunctions/axiosFilterFunction'
+import { axiosSingleDataFetching } from '../AxiosFunctions/AxiosSingleDataFetchingFunction'
 
 const initialState = {
     loading:false,
+
+    singleLoading:false,
+    singleError:'',
     data:[],
+    single:[],
     filteredData:[],
     filterLoading:false,
     error:''
@@ -20,6 +25,9 @@ export const  filterContentFromServer = createAsyncThunk('contentSlice/filterCon
 export const reFetchContent = createAsyncThunk('contentSlice/reFetchContent',()=>{
     return axiosFunction(`${serverLink}/contents`)
  })
+export const fetchSingleContent = createAsyncThunk('contentSlice/fetchSingContent',(contentId)=>{
+    return axiosSingleDataFetching(`${serverLink}/single-content/${contentId}`)
+})
 
 const contentSlice = createSlice({
     name:'contentSlice',
@@ -65,6 +73,24 @@ const contentSlice = createSlice({
             state.loading = false
             state.error = action.error.message
         })
+
+        //fetching single content 
+              //for fetching single news
+                  build.addCase(fetchSingleContent.pending,(state,action)=>{
+                    state.singleLoading = true
+                    state.loading = false
+                })
+                build.addCase(fetchSingleContent.fulfilled,(state,action)=>{
+                    state.loading = false
+                    state.singleLoading = false
+                    state.single = action.payload
+                })
+        
+                build.addCase(fetchSingleContent.rejected,(state,action)=>{
+                    state.loading = false
+                    state.singleLoading =false
+                    state.singleError = action.error.message
+                })
     }
 })
 

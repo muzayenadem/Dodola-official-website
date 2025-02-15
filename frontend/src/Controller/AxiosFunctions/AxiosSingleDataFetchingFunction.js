@@ -7,7 +7,7 @@ import axios from "axios";
  * @returns {Promise<any>} The fetched data.
  * @throws {Error} Throws an error if the request fails or if there is an issue with the response.
  */
-export const axiosSingleDataFetchingNews = async (link) => {
+export const axiosSingleDataFetching = async (link) => {
   try {
     // Make the GET request
     const response = await axios.get(link);

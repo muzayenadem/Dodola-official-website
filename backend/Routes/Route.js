@@ -40,6 +40,7 @@ const singleNews = require('../Controller/readData/SingleData/singleNews')
 const { likeComment, dislikeComment } = require('../Controller/ExtraFunctions/Comments/likeAndDeslikeOfComment')
 const { likeAndDislikeNews } = require('../Controller/ExtraFunctions/Likes/LikeAndDislikeNews')
 const shareNews = require('../Controller/ExtraFunctions/Shares/shareNews')
+const singleContent = require('../Controller/readData/SingleData/singleContent')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -72,6 +73,7 @@ route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 // read single data from database
 route.get('/single-news/:newsId',singleNews)
+route.get('/single-content/:contentId',singleContent)
 
 // POST METHOD 
 route.post('/create-admin',isLogginedWithEmail,createAdmin)

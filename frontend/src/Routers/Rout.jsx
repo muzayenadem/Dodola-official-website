@@ -49,6 +49,7 @@ import RentalHouse from '../Components/AppComponents/Services/RentalHouses/Renta
 import ManageEmployee from '../Components/AdminComponents/ManageEmployee/ManageEmployee'
 import EmployeePost from '../Components/AdminComponents/PostComponents/EmployeePost/EmployeePost'
 import DetailNews from '../Components/AppComponents/News/DetailNews/DetailNews'
+import ContentDetail from '../Components/AppComponents/ContentDetail/ContentDetail'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -110,6 +111,7 @@ function Rout() {
             <Route path='rentalHouse' element={<RentalHouse/>}/>
             <Route path='resourts' element={<Resourts/>}/>
 
+            <Route path='content-detail' element={<ContentDetail/>}/>
             {/* office educaion */}
             <Route path='office/:officeId' element={<Office/>}/>
 

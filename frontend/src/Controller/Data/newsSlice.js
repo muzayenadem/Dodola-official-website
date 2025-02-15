@@ -2,7 +2,7 @@ import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { axiosFunction } from '../AxiosFunctions/axiosFunction'
 import { serverLink } from '../CommonLinks/ServerLink'
 import { axiosFilterFunction } from '../AxiosFunctions/axiosFilterFunction'
-import { axiosSingleDataFetchingNews } from '../AxiosFunctions/AxiosSingleDataFetchingFunction'
+import { axiosSingleDataFetching } from '../AxiosFunctions/AxiosSingleDataFetchingFunction'
 
 const initialState = {
     loading:false,
@@ -31,10 +31,10 @@ export const searchNews = createAsyncThunk('newsSlice/searchNews',(value)=>{
     return axiosFilterFunction(`${serverLink}/search-news`,value)
 })
 export const fetchSingleNews = createAsyncThunk('newsSlice/fetchSingleNews',(newsId)=>{
-    return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
+    return axiosSingleDataFetching(`${serverLink}/single-news/${newsId}`)
 })
 export const fetchReaction = createAsyncThunk('newsSlice/fetchReaction',(newsId)=>{
-    return axiosSingleDataFetchingNews(`${serverLink}/single-news/${newsId}`)
+    return axiosSingleDataFetching(`${serverLink}/single-news/${newsId}`)
 })
 
 
