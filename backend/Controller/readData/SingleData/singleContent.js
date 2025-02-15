@@ -1,8 +1,8 @@
-const contentModel = require('../../Model/contentModel');
+const contentModel = require('../../../Model/contentModel');
 const singleContent = async (req, res) => {
     try {
         const {contentId} = req.params;
-        const contents = await contentModel.findById({contentId});
+        const contents = await contentModel.find({_id:contentId});
         console.log({ contents });
         return res.status(200).send(contents);
     } catch (error) {
