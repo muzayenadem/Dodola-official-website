@@ -64,7 +64,7 @@ route.get('/isadminloggined',isAdminLoggined)
 // read data from database
 route.get('/contents',content)
 route.get('/filter-content',filterContent)
-route.get('releated-content', releatedContent)
+route.get('/releated-content', releatedContent)
 route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)
