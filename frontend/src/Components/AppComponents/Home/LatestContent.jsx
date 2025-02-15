@@ -1,5 +1,6 @@
 import React from 'react'
 import filteredContentData from '../../ComponentsData/filteredContentData'
+import { Link } from 'react-router-dom'
 
 function LatestContent() {
 
@@ -61,6 +62,7 @@ function LatestContent() {
             </a>
             <p class="mb-4 text-gray-700 dark:text-gray-300">{data.description.slice(0,180)} {data.description.length > 180 && '....'}</p>
             <a href="#_" class="font-medium underline text-purple-600 dark:text-purple-400">Read More</a>
+            <Link to={`content-detail/${data._id}`} class="inline-block text-blue-500 underline hover:text-blue-400">Read more</Link>
           </div>
         </div>
         )

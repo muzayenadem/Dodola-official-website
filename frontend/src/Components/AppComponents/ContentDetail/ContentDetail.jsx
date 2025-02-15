@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { fetchSingleContent } from '../../../Controller/Data/contentSlice';
+import content from '../../ComponentsData/content';
+import filteredContentData from '../../ComponentsData/filteredContentData';
 
 function ContentDetail() {
+    const [more,setMore] = useState(false)
+    const {contentId} = useParams()
+     const dispatch = useDispatch()
+     useEffect(() => {
+       console.log('Fetching news for ID:', contentId);
+       dispatch(fetchSingleContent(contentId));
+     }, [contentId, dispatch]);
+
+     const contentData = content()
+     const detail = contentData.single
+     const cat = detail.map((a)=>{
+        return a.subCategory
+     })
+     const [category] = cat 
+     console.log({category})
+     const releatedContent = filteredContentData(category)
+     const data = releatedContent
+     console.log({data})
+ 
+     console.log({detailOfContent:detail})
+ 
+
   return (
     <div class="flex flex-col">
     <div class="bg-gray-100 py-8">

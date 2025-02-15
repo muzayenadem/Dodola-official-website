@@ -13,6 +13,7 @@ function Hospitals() {
 
 
    const hospitals = data.data
+   console.log({daaata:data})
    const latest = hospitals.length > 0 && hospitals.slice(-1)
 
    if(data.filterLoading){

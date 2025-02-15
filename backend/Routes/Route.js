@@ -41,6 +41,7 @@ const { likeComment, dislikeComment } = require('../Controller/ExtraFunctions/Co
 const { likeAndDislikeNews } = require('../Controller/ExtraFunctions/Likes/LikeAndDislikeNews')
 const shareNews = require('../Controller/ExtraFunctions/Shares/shareNews')
 const singleContent = require('../Controller/readData/SingleData/singleContent')
+const releatedContent = require('../Controller/readData/releatedContent')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -63,6 +64,7 @@ route.get('/isadminloggined',isAdminLoggined)
 // read data from database
 route.get('/contents',content)
 route.get('/filter-content',filterContent)
+route.get('releated-content', releatedContent)
 route.get('/jobs',jobs)
 route.get('/filter-jobs',filterJobs)
 route.get('/search-jobs',searchJobs)

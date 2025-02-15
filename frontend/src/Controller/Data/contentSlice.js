@@ -20,7 +20,7 @@ export const fetchContent = createAsyncThunk('contentSlice/fetchContent',()=>{
    return axiosFunction(`${serverLink}/contents`)
 })
 export const  filterContentFromServer = createAsyncThunk('contentSlice/filterContentFromServer',(value)=>{
-    return axiosFilterFunction(`${serverLink}/filter-content`,value)
+    return axiosFilterFunction(`${serverLink}/releated-content`,value)
 })
 export const reFetchContent = createAsyncThunk('contentSlice/reFetchContent',()=>{
     return axiosFunction(`${serverLink}/contents`)
@@ -56,6 +56,7 @@ const contentSlice = createSlice({
         build.addCase(filterContentFromServer.fulfilled,(state,action)=>{
             state.loading = false
             state.filterLoading = false
+            state.filteredData = action.payload
             state.data = action.payload
         })
         build.addCase(filterContentFromServer.rejected,(state,action)=>{
@@ -73,8 +74,6 @@ const contentSlice = createSlice({
             state.loading = false
             state.error = action.error.message
         })
-
-        //fetching single content 
               //for fetching single news
                   build.addCase(fetchSingleContent.pending,(state,action)=>{
                     state.singleLoading = true

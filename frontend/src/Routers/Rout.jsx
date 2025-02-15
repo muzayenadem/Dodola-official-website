@@ -111,7 +111,6 @@ function Rout() {
             <Route path='rentalHouse' element={<RentalHouse/>}/>
             <Route path='resourts' element={<Resourts/>}/>
 
-            <Route path='content-detail' element={<ContentDetail/>}/>
             {/* office educaion */}
             <Route path='office/:officeId' element={<Office/>}/>
 
@@ -124,6 +123,7 @@ function Rout() {
 
             {/*  detail routes */}
             <Route path='news-detail/:newsId' element={<DetailNews key={newsId}/>}/>
+            <Route path='content-detail/:contentId' element={<ContentDetail/>}/>
 
             {/* login page admin */}
             <Route path='login-admin' element={<LoginAdmin/>}/>
