@@ -46,7 +46,7 @@ function Vission() {
                 <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">
                 Vision
                 </h3>
-                <p class="text-base font-medium text-body-color">By 2022, good governance will be ensured in our City; converged infrastructure coverage; political and economic activity expanded; improving the lives of its residents and seeing the city as a model of development and good governance.</p>
+                <p class="text-base font-medium text-body-color">By 2025, good governance will be ensured in our City; converged infrastructure coverage; political and economic activity expanded; improving the lives of its residents and seeing the city as a model of development and good governance.</p>
             </div>
         </div>
     </div>
