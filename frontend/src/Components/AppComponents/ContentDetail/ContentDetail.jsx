@@ -54,8 +54,14 @@ function ContentDetail() {
 
     <div class="bg-gray-100 py-8">
             <div class="container mx-auto px-4">
-                <h1 class="text-4xl font-bold text-gray-800 mb-2">Blog Title Here</h1>
-                <p class="text-gray-600">Published on April 4, 2023</p>
+                {detail.map((data,i)=>{
+                    return(
+                        <div className="" key={i}>
+                            <h1 class="text-4xl font-bold text-gray-800 mb-2">{data.category} /- {data.subCategory}</h1>
+                            <p class="text-gray-600">Published on {data.date}</p>
+                        </div>
+                    )
+                })}
             </div>
         </div>
 
@@ -77,31 +83,31 @@ function ContentDetail() {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid px-2 py-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                        {data.images.length != 1 && 
-                            data.images.map((img,i)=>{
-                                return(
-                                    <div class="relative overflow-hidden max-h-m3 max-w-80 rounded-md shadow-lg group">
-                                    <img src={img} alt="Technology" class="w-full max-h-32 object-cover"/>
-                                    <div
-                                        class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                                            <h4 class="text-xl font-bold text-white">{data.category}</h4>
+                            <div className="grid px-2 py-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                {data.images.length != 1 && 
+                                    data.images.map((img,i)=>{
+                                        return(
+                                            <div class="relative overflow-hidden max-h-m3 max-w-80 rounded-md shadow-lg group">
+                                            <img src={img} alt="Technology" class="w-full max-h-32 object-cover"/>
+                                            <div
+                                                class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div class="absolute bottom-0 left-0 right-0 p-4">
+                                                    <h4 class="text-xl font-bold text-white">{data.category}</h4>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                )
-                            })
-                        }
-                    </div>
-                    </div>
-                        <div className="">
-                            <p>{data.description}</p>
+                                        )
+                                    })
+                                }
                         </div>
-                    </div>
+                        </div>
+                            <div className="">
+                                <p className='text-lg'>{data.description}</p>
+                            </div>
+                        </div>
 
                     
-                    <div className=" flex flex-col col-span-3">
+                    <div className=" flex flex-col col-span-3 pt-8 lg:pt-0">
                         <h1 class="text-4xl font-bold text-start mb-5">Releated Contents With This {data.category}</h1>
                     
                         {filterd.slice(more ? -20 : -6).reverse().map((single,i)=>{
