@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -35,7 +35,7 @@ function DepelomaCard({depeloma}) {
                       <a href="#" class="mx-2 font-semibold text-gray-50 dark:text-gray-200">{data.subCategory}</a>
                   </div>
                   <span class="mx-1 text-xs text-gray-400 dark:text-gray-300">{data.date}</span>
-                  <button className='px-2 ml-4 py-1 hover:bg-neutral-600 text-white bg-neutral-400 rounded-md mr-1 flex justify-center'>More</button>
+                  <Link to={`/content-detail/${data._id}`} className='px-2 ml-4 py-1 hover:bg-neutral-600 text-white bg-neutral-400 rounded-md mr-1 flex justify-center'>More</Link>
               </div>
           </div>
       </div>

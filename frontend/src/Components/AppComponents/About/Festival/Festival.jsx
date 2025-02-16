@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { filterContentFromServer } from '../../../../Controller/Data/contentSlice'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopAbout from '../TopAbout/TopAbout'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function Festival() {
@@ -35,7 +36,7 @@ function Festival() {
   }
 
   if(!data.data.length & data.filterLoading == false){
-    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+    return <NoData/>
   }
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>

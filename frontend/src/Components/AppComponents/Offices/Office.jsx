@@ -4,6 +4,7 @@ import OfficeCard from './OfficeCard'
 import { useSelector } from 'react-redux'
 import filteredEmployeeData from '../../ComponentsData/filteredEmloyeeData'
 import { useParams } from 'react-router-dom'
+import NoData from '../../ErrorPages/NoData'
 
 
 function  Office() {
@@ -31,7 +32,7 @@ function  Office() {
    }
  
    if(!data.data.length & data.filterLoading == false){
-     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+     return <NoData/>
    }
 
   return (

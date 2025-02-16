@@ -222,7 +222,7 @@ const navigate = useNavigate('/')
                     className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
                   />
                 </a>
-                <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">{t('construction')}</a>
+                {/* <a className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">{t('construction')}</a> */}
                 <a onMouseEnter={openOffice} className="text-gray-700 transition-colors duration-300 transform lg:mx-8 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">
                 <span className=" flex gap-1 items-center ">{t('offices')}<span className="text-xl"><MdOutlineKeyboardArrowDown/></span> </span>
                   <span

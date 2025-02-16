@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -37,9 +38,11 @@ function BanksCard({banks}) {
             </div>
             <div class="flex justify-between items-center">
                 <span class="text-md font-bold text-gray-800 dark:text-white/60">{data.date}</span>
+                <Link to={`/content-detail/${data._id}`} >
                 <button class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition duration-300 ease-in-out">
-                Detail
+                   Detail
                 </button>
+                </Link>
             </div>
             </div>
         </div>

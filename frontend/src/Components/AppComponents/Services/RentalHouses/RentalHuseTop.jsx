@@ -9,7 +9,7 @@ function RentalHuseTop() {
         </div>
         <div class="w-full mx-auto">
             <form>
-                <div class="xl:w-1/2 lg:w-[60%] md:w-[70%] sm:w-[70%] xs:w-[90%] mx-auto flex gap-2 md:mt-6 xs:mt-4 mx-4">
+                <div class="xl:w-1/2 lg:w-[60%] md:w-[70%] sm:w-[70%] xs:w-[90%] mx-auto flex gap-2 md:mt-6 xs:mt-4 ">
                     <input type="text" class="border border-gray-400 w-full p-2 rounded-md text-xl pl-2"
                             placeholder="" />
                     <button type="submit" class="px-[10px] p-[10px] bg-blue-500 text-lg text-white rounded-md font-semibold">Search</button>

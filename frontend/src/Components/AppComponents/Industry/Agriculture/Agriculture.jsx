@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopIndustry from '../TopIndustry/TopIndustry'
 import AgricultureCard from './AgricultureCard'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function    Agriculture() {
@@ -33,7 +34,7 @@ function    Agriculture() {
    }
  
    if(!data.data.length & data.filterLoading == false){
-     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+     return <NoData/>
    }
  
   return (

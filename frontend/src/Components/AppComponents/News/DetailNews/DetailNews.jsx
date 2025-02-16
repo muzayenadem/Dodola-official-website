@@ -6,6 +6,7 @@ import ButtomCard from './ButtomCard'
 import { fetchSingleNews } from '../../../../Controller/Data/newsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import ScrollToTop from '../../Home/ScrollTop'
 
 function DetailNews() {
 
@@ -92,9 +93,9 @@ function DetailNews() {
 
                     
                     <div className=" flex flex-col col-span-3">
-                    <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>
+                        <h1 class="text-4xl font-bold text-start mb-5">Latest News</h1>
                     
-                    {news.slice(more ? -20 : -6).reverse().map((single,i)=>{
+                        {news.slice(more ? -20 : -6).reverse().map((single,i)=>{
                             return(
                                 <div key={i} className="">
                                     <Link to={`/news-detail/${single._id}`} onClick={()=> dispatch(fetchSingleNews(single._id))}>

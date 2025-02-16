@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopIndustry from '../TopIndustry/TopIndustry'
 import IndustrialParkCard from './IndustrialParkCard'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function IndustrialPark() {
@@ -32,7 +33,7 @@ function IndustrialPark() {
    }
  
    if(!data.data.length & data.filterLoading == false){
-     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+     return <NoData/>
    }
  
    const latest = industrialPark.length > 0 && industrialPark.slice(-1)

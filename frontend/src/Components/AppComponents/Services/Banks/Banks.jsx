@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import BanksCard from './BanksCard'
 import BanksTop from './BanksTop'
+import NoData from '../../../ErrorPages/NoData'
 
 function Banks() {
 
@@ -31,7 +32,7 @@ function Banks() {
   }
 
   if(!data.data.length & data.filterLoading == false){
-    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+    return <NoData/>
   }
   return (
     <section className='dark:bg-gray-900 pb-5 '>

@@ -7,6 +7,7 @@ import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopAbout from '../TopAbout/TopAbout'
 import SportCard from './SportCard'
 import { water } from '../../Images/images'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function Sport() {
@@ -36,7 +37,7 @@ function Sport() {
   }
 
   if(!data.data.length & data.filterLoading == false){
-    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+    return <NoData/>
   }
 
   const sportImage = sport.length > 0 && sport.slice(-1)

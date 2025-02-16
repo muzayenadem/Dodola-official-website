@@ -13,7 +13,7 @@ import Sport from '../Components/AppComponents/About/Sport/Sport'
 import MainPost from '../Components/AdminComponents/PostComponents/MainPost/MainPost'
 import LoginAdmin from '../Components/AdminComponents/LoginAdmin/LoginAdmin'
 import isAdminLoggined from '../Components/ComponentsData/isAdminLoggined'
-import AdminPageNotFound from '../Components/PageNotFound/AdminPageNotFound'
+import AdminPageNotFound from '../Components/ErrorPages/AdminPageNotFound'
 import ManageContent from '../Components/AdminComponents/ManageContent/ManageContent'
 import UpdateContent from '../Components/AdminComponents/UpdateComponents/UpdateContent/UpdateContent'
 import ManageJobs from '../Components/AdminComponents/ManageJobs/ManageJobs'
@@ -42,7 +42,7 @@ import Others from '../Components/AppComponents/Services/Others/Others'
 import Resourts from '../Components/AppComponents/Services/Resourts/Resourts'
 import ManageAdmins from '../Components/AdminComponents/ManageAdmins/ManageAdmins'
 import AddAdmin from '../Components/AdminComponents/ManageAdmins/AddAdmin/AddAdmin'
-import NotGeneralAdmin from '../Components/PageNotFound/NotGeneralAdmin'
+import NotGeneralAdmin from '../Components/ErrorPages/NotGeneralAdmin'
 import EditProfile from '../Components/AdminComponents/Admin/AdminProfile/EditProfile'
 import Banks from '../Components/AppComponents/Services/Banks/Banks'
 import RentalHouse from '../Components/AppComponents/Services/RentalHouses/RentalHouse'
@@ -50,6 +50,8 @@ import ManageEmployee from '../Components/AdminComponents/ManageEmployee/ManageE
 import EmployeePost from '../Components/AdminComponents/PostComponents/EmployeePost/EmployeePost'
 import DetailNews from '../Components/AppComponents/News/DetailNews/DetailNews'
 import ContentDetail from '../Components/AppComponents/ContentDetail/ContentDetail'
+import ScrollToTop from '../Components/AppComponents/Home/ScrollTop'
+import NoData from '../Components/ErrorPages/NoData'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -82,6 +84,7 @@ function Rout() {
  
   return (
    <Router>
+    <ScrollToTop/>
       <Routes>
         <Route path='/' element={<Home/>}>
             <Route path='' element={<MainHome/>}/>
@@ -130,6 +133,7 @@ function Rout() {
         </Route>
 
 
+        <Route path='/no-data' element={<NoData/>}/>
         
         <Route path='/admin' element={
           adminToken.loading ?     <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">

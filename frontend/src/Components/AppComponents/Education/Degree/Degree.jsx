@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopEducation from '../TopEducation/TopEducation'
 import DegreeCard from './DegreeCard'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function Degree() {
@@ -32,7 +33,7 @@ function Degree() {
   }
 
   if(!data.data.length & data.filterLoading == false){
-    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+    return <NoData/>
   }
   return (
     <section className='dark:bg-gray-900 py-5 lg:px-6'>

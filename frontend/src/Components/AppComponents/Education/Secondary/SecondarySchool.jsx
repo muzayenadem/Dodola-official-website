@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopEducation from '../TopEducation/TopEducation'
 import SecondarySchoolCard from './SecondarySchoolCard'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function SecondarySchool() {
@@ -33,7 +34,7 @@ function SecondarySchool() {
    }
  
    if(!data.data.length & data.filterLoading == false){
-     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+     return <NoData/>
    }
  
   return (

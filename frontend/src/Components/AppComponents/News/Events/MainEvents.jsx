@@ -4,6 +4,7 @@ import ButtonsOfNews from './ButtonsOfNews'
 import NewsCard from './NewsCard'
 import LatestNews from './LatestNews'
 import { water, water2 } from '../../Images/images'
+import ScrollToTop from '../../Home/ScrollTop'
 
 
 
@@ -14,7 +15,7 @@ function MainEvents() {
 
     const latest = news.length > 0 && news.slice(-3)
 
-
+ ScrollToTop()
  
    if(data.loading){
      return (

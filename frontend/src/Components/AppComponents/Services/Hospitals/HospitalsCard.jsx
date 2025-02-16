@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -46,10 +47,21 @@ function HospitalsCard({hospitals}) {
                   </div>
                   <h3 class="font-black text-gray-800 md:text-3xl text-xl dark:text-white/80">{data.name}</h3>
                   <p class="md:text-lg text-gray-500 text-base dark:text-white/60">{data.description.slice(0,220)}....</p>
-                  <p class="text-xl font-black text-gray-800 dark:text-white/70">
-                    $110
-                    <span class="font-normal text-gray-600 text-base dark:text-white/60">/night</span>
-                  </p>
+                  <div className="flex  justify-between">
+                    <div className="">
+                        <p class="text-xl font-black text-gray-800 dark:text-white/70">
+                        $110
+                        <span class="font-normal text-gray-600 text-base dark:text-white/60">/night</span>
+                      </p>
+                    </div>
+                    <div className="">
+                      <Link to={`/content-detail/${data._id}`} >
+                        <button class="px-4 py-2 bg-purple-800 text-white font-semibold  rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition duration-300 ease-in-out">
+                          Detail
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             )

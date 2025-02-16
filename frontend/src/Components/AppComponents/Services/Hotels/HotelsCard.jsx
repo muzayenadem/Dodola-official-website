@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -82,9 +83,11 @@ function HotelsCard({hotels}) {
                                     </div>
                                 </div>
                             </div>
+                            <Link to={`/content-detail/${data._id}`} >
                             <button class="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md">
-                      Book Ticket
-                    </button>
+                            Book Ticket
+                            </button>
+                            </Link>
                         </div>
                         <div class="mt-3 text-gray-600 text-sm md:text-sm dark:text-white/60">
                             {data.title}

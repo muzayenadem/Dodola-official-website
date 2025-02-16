@@ -6,6 +6,7 @@ import { filterContentFromServer } from '../../../../Controller/Data/contentSlic
 import filteredContentData from '../../../ComponentsData/filteredContentData'
 import TopAbout from '../TopAbout/TopAbout'
 import ReligionCard from './ReligionCard'
+import NoData from '../../../ErrorPages/NoData'
 
 
 function Religion() {
@@ -34,7 +35,7 @@ function Religion() {
   }
 
   if(!data.data.length & data.filterLoading == false){
-    return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
+    return <NoData/>
   }
 
   const latestR = religion.length > 0 && religion.slice(-1)

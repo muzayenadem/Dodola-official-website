@@ -55,14 +55,13 @@ function LatestContent() {
           <div class="relative mt-5">
           <p class="uppercase font-semibold text-lg mb-2.5 text-purple-900-600">{data.category}</p>
             <p class="uppercase font-semibold text-xs mb-2.5 text-purple-600">{data.date}</p>
-            <a href="#" class="block mb-3 hover:underline">
-              <h2 class="text-2xl font-bold leading-5 text-black dark:text-white transition-colors duration-200 hover:text-purple-700 dark:hover:text-purple-400">
+              <Link to={`/content-detail/${data._id}`} href="#" class="block mb-3 hover:underline">
+              <h2 class="text-2xl font-bold text-black dark:text-white transition-colors duration-200 hover:text-purple-700 dark:hover:text-purple-400">
                {data.title}
               </h2>
-            </a>
+            </Link>
             <p class="mb-4 text-gray-700 dark:text-gray-300">{data.description.slice(0,180)} {data.description.length > 180 && '....'}</p>
-            <a href="#_" class="font-medium underline text-purple-600 dark:text-purple-400">Read More</a>
-            <Link to={`content-detail/${data._id}`} class="inline-block text-blue-500 underline hover:text-blue-400">Read more</Link>
+            <Link to={`/content-detail/${data._id}`} class="font-medium underline text-purple-600 dark:text-purple-400">Read more</Link>
           </div>
         </div>
         )

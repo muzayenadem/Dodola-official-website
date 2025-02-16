@@ -6,12 +6,13 @@ import { axiosSingleDataFetching } from '../AxiosFunctions/AxiosSingleDataFetchi
 
 const initialState = {
     loading:false,
-
     singleLoading:false,
     singleError:'',
     data:[],
     single:[],
     filteredData:[],
+    releatedData:[],
+    releatedLoading:false,
     filterLoading:false,
     error:''
 }
@@ -19,8 +20,12 @@ const initialState = {
 export const fetchContent = createAsyncThunk('contentSlice/fetchContent',()=>{
    return axiosFunction(`${serverLink}/contents`)
 })
+
+export const  filterReleatedContent = createAsyncThunk('contentSlice/filterReleatedContent',(value)=>{
+    return axiosFilterFunction(`${serverLink}/releatd-content`,value)
+})
 export const  filterContentFromServer = createAsyncThunk('contentSlice/filterContentFromServer',(value)=>{
-    return axiosFilterFunction(`${serverLink}/releated-content`,value)
+    return axiosFilterFunction(`${serverLink}/filter-content`,value)
 })
 export const reFetchContent = createAsyncThunk('contentSlice/reFetchContent',()=>{
     return axiosFunction(`${serverLink}/contents`)
@@ -64,6 +69,21 @@ const contentSlice = createSlice({
             state.filterLoading = false
             state.error = action.error.message
         })
+        build.addCase(filterReleatedContent.pending,(state,action)=>{
+            state.releatedLoading = true
+            state.loading = false
+        })
+        build.addCase(filterReleatedContent.fulfilled,(state,action)=>{
+            state.loading = false
+            state.releatedLoading = false
+            state.filteredData = action.payload
+            state.data = action.payload
+        })
+        build.addCase(filterReleatedContent.rejected,(state,action)=>{
+            state.loading = false
+            state.releatedLoading = false
+            state.error = action.error.message
+        })
 
         //for refetchin content
         build.addCase(reFetchContent.fulfilled,(state,action)=>{
@@ -75,21 +95,21 @@ const contentSlice = createSlice({
             state.error = action.error.message
         })
               //for fetching single news
-                  build.addCase(fetchSingleContent.pending,(state,action)=>{
-                    state.singleLoading = true
-                    state.loading = false
-                })
-                build.addCase(fetchSingleContent.fulfilled,(state,action)=>{
-                    state.loading = false
-                    state.singleLoading = false
-                    state.single = action.payload
-                })
-        
-                build.addCase(fetchSingleContent.rejected,(state,action)=>{
-                    state.loading = false
-                    state.singleLoading =false
-                    state.singleError = action.error.message
-                })
+        build.addCase(fetchSingleContent.pending,(state,action)=>{
+            state.singleLoading = true
+            state.loading = false
+        })
+        build.addCase(fetchSingleContent.fulfilled,(state,action)=>{
+            state.loading = false
+            state.singleLoading = false
+            state.single = action.payload
+        })
+
+        build.addCase(fetchSingleContent.rejected,(state,action)=>{
+            state.loading = false
+            state.singleLoading =false
+            state.singleError = action.error.message
+        })
     }
 })
 

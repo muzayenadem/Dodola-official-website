@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -34,7 +35,7 @@ function OthersCard({others}) {
                             <p className="text-sm text-gray-700 font-semibold dark:text-gray-300">{data.date ? data.date : data.postedDate}</p>
                         </div>
     
-                        <a href="#" className="inline-block text-blue-500 underline hover:text-blue-400">Read more</a>
+                        <Link to={`/content-detail/${data._id}`}  className="inline-block text-blue-500 underline hover:text-blue-400">Read more</Link>
                     </div>
     
                 </div>
