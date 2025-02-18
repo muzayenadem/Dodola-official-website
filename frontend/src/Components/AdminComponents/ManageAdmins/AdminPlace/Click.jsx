@@ -13,7 +13,7 @@ import { TbCreditCardPay } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 
-function Clicks({isOpen,setIsOpen,setOpenDelete,setOpenPublish,employeeId}) {
+function Click({isOpen,setIsOpen,setOpenDelete,setOpenPublish,employeeId}) {
     const navigate = useNavigate('')
     const clicks = [
         {title:'Calander',icon:<CgCalendarDates/>,func:()=> alert('delete')},
@@ -50,5 +50,4 @@ function Clicks({isOpen,setIsOpen,setOpenDelete,setOpenPublish,employeeId}) {
   )
 }
 
-
-export default Clicks
+export default Click

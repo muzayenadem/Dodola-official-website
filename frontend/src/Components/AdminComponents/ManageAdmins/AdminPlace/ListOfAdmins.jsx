@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CiMenuKebab } from "react-icons/ci";
-import Clicks from './Clicks'
 import ContentPages from '../../ManageContent/ContentPlace/ContentPages';
 import DeletePopUp from '../../PopUps/DeletePopUp';
 import UnPuplishPopUp from '../../PopUps/UnPuplishPopUp';
@@ -8,7 +7,7 @@ import axios from 'axios';
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { reFetchEmployee } from '../../../../Controller/Data/employeeSlice';
+import Click from './Click';
 function ListOfAdmins({employee,data}) {
     const [openDelete,setOpenDelete] = useState(false)
     const [openPublish,setOpenPublish] = useState(false)
@@ -97,7 +96,7 @@ function ListOfAdmins({employee,data}) {
                         <div className=" hidden md:flex w-[10%] justify-end items-center px-6 relative">
                             <button onClick={()=> openHandler(_id)} className=' text-xl w-10 h-10 rounded-lg text-center flex justify-center hover:bg-slate-200 dark:hover:bg-gray-700 items-center shadow-md dark:shadow-neutral-400 focus:outline-none'><CiMenuKebab/></button>
                             <div onMouseLeave={()=> setIsOpen(false)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10 -bottom-7 right-12 py-3 dark:bg-gray-900   w-48  bg-white ${isOpen == true & _id == openId  ? '':'hidden'} `}>
-                                 <Clicks 
+                                 <Click
                                  isOpen={isOpen} 
                                  setIsOpen={setIsOpen} 
                                  setOpenDelete={setOpenDelete}
@@ -114,7 +113,7 @@ function ListOfAdmins({employee,data}) {
                                 <div className=" flex w-[5%] justify-end items-top relative md:px-6">
                                      <button onClick={()=> openHandler(_id)} className=' text-xl  text-center flex justify-center items-center focus:outline-none'><CiMenuKebab/></button>
                                      <div onMouseLeave={()=> setIsOpen(false)} className={` shadow-lg shadow-neutral-500 rounded-md absolute z-10b -bottom-14 right-12 py-3 dark:bg-gray-900   w-48  bg-white ${isOpen == true & _id == openId  ? '':'hidden'} `}>
-                                        <Clicks 
+                                        <Click
                                         isOpen={isOpen} 
                                         setIsOpen={setIsOpen} 
                                         setOpenDelete={setOpenDelete} 
