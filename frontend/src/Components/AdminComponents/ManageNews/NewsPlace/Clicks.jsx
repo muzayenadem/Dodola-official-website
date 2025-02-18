@@ -21,7 +21,7 @@ function Clicks({isOpen,setIsOpen,setOpenDelete,setOpenPublish,jobId}) {
         {title:'Calander',icon:<CgCalendarDates/>,func:()=> alert('deletp')},
         {title:'Preview',icon:<MdOutlinePreview/>,func:()=>alert('preview')},
         {title:'Edit',icon:<CiEdit/> , func:()=>{
-            navigate(`/admin/update-job/${jobId}`)
+            navigate(`/admin/update-news/${jobId}`)
         }},
         {title:'Duplicate',icon:<HiOutlineDuplicate/>},
         {title:'Unpublish',icon:<MdOutlineUnpublished/>, func:()=>{

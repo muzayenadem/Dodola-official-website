@@ -52,6 +52,7 @@ import DetailNews from '../Components/AppComponents/News/DetailNews/DetailNews'
 import ContentDetail from '../Components/AppComponents/ContentDetail/ContentDetail'
 import ScrollToTop from '../Components/AppComponents/Home/ScrollTop'
 import NoData from '../Components/ErrorPages/NoData'
+import UpdateNews from '../Components/AdminComponents/UpdateComponents/UpdateNews'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -238,9 +239,16 @@ function Rout() {
                description={"in this software you can't  access this page if you are not general manager or content manager"}
                />
             }/>
+            {/* Updates Route */}
             <Route path='update-content/:contentId' element={generalManager || contentManager ? <UpdateContent/>:
                <NotGeneralAdmin
                title={'You are not general or content manager'}
+               description={"in this software you can't  access this page if you are not general manager or content manager"}
+               />
+            }/>
+              <Route path='update-news/:newsId' element={generalManager || eventManager ? <UpdateNews/>:
+               <NotGeneralAdmin
+               title={'You are not general or event manager'}
                description={"in this software you can't  access this page if you are not general manager or content manager"}
                />
             }/>
