@@ -8,7 +8,7 @@ import AdminProfile from './Admin/AdminProfile/AdminProfile';
 
 function AdminNavbar({admin}) {
     const [theme ,setTheme] = useState(<MdDarkMode/>)
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(!false);
     const [open,setOpen] = useState(false)
     
 

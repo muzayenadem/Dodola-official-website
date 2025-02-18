@@ -50,7 +50,7 @@ function TopOffice({title,description,latest}) {
              */}
                                 {links.map((link,i)=>{
                                     return(
-                                        <Link onClick={() => dispatch(filterEmployeeFromServer(link))} to={`/office/${link}`} >
+                                        <Link onClick={() => dispatch(filterEmployeeFromServer(link))} to={`/${link}`} >
                                             <div class="flex items-center text-gray-800 -px-3 dark:text-gray-200">
                                                 <svg class="w-5 h-5 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

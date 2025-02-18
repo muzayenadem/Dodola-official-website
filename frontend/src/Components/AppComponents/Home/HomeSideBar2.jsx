@@ -26,6 +26,7 @@ import { dodoCity, dodolaCiityOffice, dodolaCity2, holeCity, water, water2 } fro
 import { closeHomeSidebarToggle } from "../../../Controller/Buttons/ToggleHomeSidebar";
 
 import { useTranslation } from 'react-i18next'
+import { filterEmployeeFromServer } from "../../../Controller/Data/employeeSlice";
 function HomeSideBar2() {
     const [collapsed, setCollapsed] = useState(false); // Example of managing collapsed state
     const [open,setOpen] = useState(false)
@@ -53,6 +54,23 @@ function HomeSideBar2() {
   }
   const dispatch = useDispatch()
   const HomeToggle = useSelector(state => state.HomeToggle.open)
+
+  const links = [
+    {value:'heaOffice',label:'Mayor Office'},
+    {value:'conOffice',label:'Construction Office'},
+    {value:'eduOffice',label:'Education Office'},
+    {value:'helOffice',label:'Health Office'},
+    {value:"culOffice",label:"Cultural Office"},
+    {value:"humResOffice",label:"Human Resource Office"},
+    {value:"infTechOffice",label:'Information Technology Office'},
+    {value:"polDepOffice",label:'Police Department Offiec',},
+    {value:"busFinOffice",label:'Bussiness and Finance Office'},
+    {value:'envOffice',label:'Environmental and Natural Resources Office',},
+    {value:"socOffice",label:'Social Services Office'},
+    {value:"medComOffice",label:'Media and Communication Office'}
+    ]
+
+
   return (
     <div className={` py-1 md:py-0 absolute min-h-full flex flex-col  top-0 bg-white dark:bg-gray-900 left-0 z-10  `}>
             <Sidebar
@@ -91,8 +109,14 @@ function HomeSideBar2() {
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='festival'/>}>{t('festivals')}</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='theme'/>}>{t('theme')}</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())}component={<Link to='feutures'/>}>{t('features')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='bid-post'/>}>{t('adminstrationTeam')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())}component={<Link to='/sport'/>}>{t('sports')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())}component={<Link to='/religions'/>}>{t('relgions')}</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='question'/>}>{t('question')}</MenuItem>
+      </SubMenu>
+      <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label={t('news')}>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-events'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>{t('newEvent')}</MenuItem>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-jobs'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaQuora/>}>{t('newJob')}</MenuItem>
+        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-bidding'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaInstagram/>}>{t('newBid')}</MenuItem>
       </SubMenu>
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label={t('industry')}>
         <MenuItem  onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/industrial-park'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>{t('industrialPark')}</MenuItem>
@@ -118,28 +142,24 @@ function HomeSideBar2() {
       <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/college'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}>{t('college')}</MenuItem>
       <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/degree'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaReddit/>}>{t('degree')}</MenuItem>
       </SubMenu>
-      <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}>{t('construction')}</MenuItem>
+      {/* <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaFacebook/>}>{t('construction')}</MenuItem> */}
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} label={t('services')}>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/hospitals'/>}> {t('hospitals')}</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/hotels'/>}>{t('hotels')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/others'/>}>{t('banks')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/others'/>}>{t('resorts')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/others'/>}>{t('apartments')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/others'/>}>{t('rentalHouses')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/banks'/>}>{t('banks')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/resourts'/>}>{t('resorts')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} >{t('apartments')}</MenuItem>
+        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/rentalHouse'/>}>{t('rentalHouses')}</MenuItem>
         <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/others'/>}>{t('others')}</MenuItem>
       </SubMenu>
       <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} label={t('offices')}>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('heaOffice')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('conOffice')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('helOffice')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('eduOffice')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('culOffice')}</MenuItem>
-        <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaLinkedin/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/mayor-office'/>}>{t('humOffice')}</MenuItem>
-      </SubMenu>
-      <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaChartArea/>} label={t('news')}>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-events'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGoogle/>}>{t('newEvent')}</MenuItem>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-jobs'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaQuora/>}>{t('newJob')}</MenuItem>
-        <MenuItem onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to='/new-jobs'/>} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaInstagram/>}>{t('newBid')}</MenuItem>
+        {
+          links.map(({value,label},i) =>{
+            return (
+              <MenuItem key={i} className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaGithub/>} onClick={()=> dispatch(closeHomeSidebarToggle()) & dispatch(filterEmployeeFromServer(label))} component={<Link to={`/${label}`}/>}>{t(value)}</MenuItem>
+            )
+          })
+        }
       </SubMenu>
     </Menu>
     {

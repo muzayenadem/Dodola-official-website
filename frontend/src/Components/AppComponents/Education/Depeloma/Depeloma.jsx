@@ -41,7 +41,7 @@ function    Depeloma() {
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
      <TopEducation
-          title={'Dodola city elematry Depeloma program'}
+          title={'Dodola city Depeloma program'}
           description={'this si the dodola city Depeloma program that can be replaced with other discripion'}
           latest={latest}
         />

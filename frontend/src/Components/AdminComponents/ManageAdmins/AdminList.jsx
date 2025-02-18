@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import adminData from '../../ComponentsData/adminData'
+import admins from '../../ComponentsData/adminsData'
 
 function AdminList() {
+    const allData = admins()
+    const data = allData.data
+    console.log({data})
   return (
     <section class="container px-4 mx-auto">
     <div class="sm:flex sm:items-center sm:justify-between">

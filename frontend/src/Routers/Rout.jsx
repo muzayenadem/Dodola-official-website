@@ -115,7 +115,7 @@ function Rout() {
             <Route path='resourts' element={<Resourts/>}/>
 
             {/* office educaion */}
-            <Route path='office/:officeId' element={<Office/>}/>
+            <Route path='/:officeId' element={<Office/>}/>
 
 
             {/* news routes */}

@@ -39,7 +39,7 @@ function Degree() {
     <section className='dark:bg-gray-900 py-5 lg:px-6'>
      <div className="px-5">
      <TopEducation
-          title={'Dodola city elematry Degree program'}
+          title={'Dodola city Degree program'}
           description={'this si the dodola city Degree program that can be replaced with other discripion'}
           latest={latest}
         />

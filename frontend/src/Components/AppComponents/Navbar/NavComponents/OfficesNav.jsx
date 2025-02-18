@@ -54,7 +54,7 @@ return (
             {
               links.map(({value,label},i)=>{
                 return(
-                  <Link key={i} onClick={()=> setOffice(false) & dispatch(filterEmployeeFromServer(label))} to={`office/${label}`}><li>{t(value)}</li></Link>
+                  <Link key={i} onClick={()=> setOffice(false) & dispatch(filterEmployeeFromServer(label))} to={`/${label}`}><li>{t(value)}</li></Link>
                 )
               })
             }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import adminData from '../../../ComponentsData/adminData'
 import { br1 } from '../../../AppComponents/Images/images'
 import { useNavigate } from 'react-router-dom'
@@ -15,11 +15,12 @@ function AdminProfile({setOpen}) {
   console.log({admin})
   const {eventManager,jobsManager,contentManager,responseManager,biddingManager,generalManager} = role
   const navigate = useNavigate('')
+
   const clicks = [
     {title:'Calander',icon:<CgCalendarDates/>,func:()=> alert('deletp')},
     {title:'Porfile',icon:<CiEdit/> , func:()=> setOpen(false) & navigate('/admin/edit-profile') },
     {title:'Payment and tax',icon:<TbCreditCardPay/> , func:()=> alert('payment sysytem')},
-    {title:'Logout',icon:<RiDeleteBinLine/>,func:()=>alert('wow')},
+    {title:'Logout',icon:<RiDeleteBinLine/>,func:()=>alert('logout page')},
    ]
   return (
     <div className="flex flex-col">
