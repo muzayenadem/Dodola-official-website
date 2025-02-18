@@ -280,13 +280,14 @@ const submitHundler = async (e) =>{
                             </div>
                             </div>
                             
-                            {getFileType(file.name) == 'image' &&   <img className='w-[100%] h-[100%] rounded-lg' src={URL.createObjectURL(file)} alt=''/>}
-                            {getFileType(file.name) == 'video' &&
+                            {/* {getFileType(file.name) == 'image/jpeg'  &&   */}
+                             <img className='w-[100%] h-[100%] rounded-lg' src={URL.createObjectURL(file)} alt=''/>
+                            {/* {getFileType(file.name) == 'video' &&
                               <video className='w-[190px] md:w-[220px]' controls  autoPlay>
                               <source src={URL.createObjectURL(file)} type='video/mp4'></source>
                               <source src={URL.createObjectURL(file)} type='video/ogg'></source>
                             </video>
-                            }
+                            } */}
                         </div>
                         )
                     })
