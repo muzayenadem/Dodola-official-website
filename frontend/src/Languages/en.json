@@ -55,6 +55,23 @@
     "news":"See News",
         "newJob":"New Jobs",
         "newEvent":"New Event",
-        "newBid":"New Bidding"
+        "newBid":"New Bidding",
     
+
+        "mission":"Mission",
+        "vision":"Vision",
+        "coreValue":"Core Value",
+        "goal":"Goal",
+        "destination":"Destination",
+
+        "missionDetail":"To establish Good Governance, implement the plans ,support the deficiencies in the implementation and execute them with supremacy to benefit the people of the City and create a city with a well-developed and complete development infrastructure",
+        "visionDetail":"By 2025, good governance will be ensured in our City; converged infrastructure coverage; political and economic activity expanded; improving the lives of its residents and seeing the city as a model of development and good governance.",
+        "coreValueDetail":"Values ​​/ • Responsibility • Priority and respect of the people • Loyalty • Participation • Efficiency • Work in groups",
+        "goalDetail":"To Modernize Dodolaa Town Administration and Compete with World Cities to Digitalize Service Delivery to Ensure Community Satisfaction and Increase the Trust of the People in the Government",
+        "destinationDetail":"The success of our implementation is to see our city become a tourist attraction, clean, safe and improve the lives of the community",
+
+
+        "kantibaName":"Mr Ayub Dule",
+        "kantibaAdvise":"What Mayor is saying",
+        "kantibaSpeach":"As the Mayor of Dodola City, I am proud to support the development of our official website. This initiative is a significant step toward modernizing our city, promoting transparency, and connecting our community with new opportunities. I extend my gratitude to the dedicated volunteers driving this project, showcasing the strength and innovation of our people. Together, we are shaping Dodola’s future—where tradition meets progress. Thank you for your commitment to our city."
 }

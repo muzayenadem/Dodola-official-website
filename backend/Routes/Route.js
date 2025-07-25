@@ -42,6 +42,7 @@ const { likeAndDislikeNews } = require('../Controller/ExtraFunctions/Likes/LikeA
 const shareNews = require('../Controller/ExtraFunctions/Shares/shareNews')
 const singleContent = require('../Controller/readData/SingleData/singleContent')
 const releatedContent = require('../Controller/readData/releatedContent')
+const AddSubscriber = require('../Controller/ExtraFunctions/AddSubscriber')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -78,6 +79,7 @@ route.get('/single-news/:newsId',singleNews)
 route.get('/single-content/:contentId',singleContent)
 
 // POST METHOD 
+route.post('/subscribe',AddSubscriber)
 route.post('/create-admin',isLogginedWithEmail,createAdmin)
 route.post('/login-admin',loginAdmin)
 //GET METHOD

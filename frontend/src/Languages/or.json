@@ -56,7 +56,23 @@
     "news":"Waan Haarawa",
         "newEvent":"Taateewwan",
         "newJob":"Hojiiwwan",
-        "newBid":"Caarataa"
+        "newBid":"Caarataa",
 
 
+        "mission":"Ergama",
+        "vision":"Mul'ata",
+        "coreValue":"Gatii Ijoo", 
+        "goal":"Kaayyoo", 
+        "destination":"Iddoo itti geessan",
+
+        "missionDetail":"Bulchiinsa Gaarii diriirsuun karoora hojiirra oolchuu ,hanqinoota raawwii keessatti mul’atan deeggaruun olaantummaadhaan raawwachuun ummata Magaalattii fayyadamoo taasisuu fi magaalaa bu’uuraalee misoomaa haala gaariin misoomee fi guutuu ta’e uumuun",
+        "visionDetail":"Bara 2025tti Bulchiinsi gaariin Magaalaa keenya keessatti ni mirkanaa'a; uwwisa bu’uuraalee misoomaa walitti qabame; sochiin siyaasaa fi dinagdee babal’ate; jireenya jiraattota ishee fooyyessuu fi magaalattii akka moodeela misoomaa fi bulchiinsa gaariitti ilaaluu.",
+        "coreValueDetail":"Duudhaalee / • Itti gaafatamummaa • Dursa kennuu fi kabaja ummataa • Amanamummaa • Hirmaannaa • Gahumsa • Gareedhaan hojjechuu",
+        "goalDetail":"Bulchiinsa Magaalaa Dodolaa Ammayyeessuun Magaalota Addunyaa Waliin Dorgomuun Kenniinsa Tajaajilaa Dijiitaala gochuun Itti quufinsa Hawaasaa Mirkaneessuu fi Amantaa Ummanni Mootummaa Irratti Qabu Dabaluu",
+        "destinationDetail":"Milkaa’inni hojiirra oolmaa keenyaa magaalaan keenya hawwata turizimii, qulqullaa’aa, nageenya qabduu fi jireenya hawaasaa fooyyessuu akka taate arguudha",
+
+
+        "kantibaName":"Obbo Ayyuub Dulee",
+        "kantibaAdvise":"Waan Kantiibaan jechaa jiru",
+        "kantibaSpeach":"Akka Kantiibaa Magaalaa Dodolaatti guddina marsariitii keenya ofiisaa deeggaruun koo na boonsa. Kaka'umsi kun magaalaa keenya ammayyeessuuf, iftoomina guddisuuf, akkasumas hawaasa keenya carraa haaraa waliin wal qunnamsiisuuf tarkaanfii guddaadha. Tola ooltota of kennanii pirojektii kana oofan, ciminaa fi kalaqa ummata keenyaa agarsiisaniif galata koo nan ibsa. Waliin taanee, bocaa jirra Dodola’s future—bakka duudhaan guddina waliin wal argu Magaalaa keenyaaf kutannoo keessaniif galatoomaa."
 }

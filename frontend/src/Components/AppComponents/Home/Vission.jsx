@@ -1,7 +1,9 @@
 import React from 'react'
 import { logo1 } from '../Images/images'
+import { useTranslation } from 'react-i18next';
 
 function Vission() {
+      const { t } = useTranslation();
   return (
     <div class=" flex flex-wrap   mx-auto max-w-7xl sm:px-6 lg:px-8 bg-white dark:bg-gray-900 dark:text-white/80">
 
@@ -20,9 +22,10 @@ function Vission() {
                 </svg></div>
             <div>
                 <h3 class="mb-4 text-xl font-bold text-black dark:text-white/90 sm:text-2xl lg:text-xl xl:text-2xl">
-                 Mission
+                {t('mission')}
                 </h3>
-                <p class="text-base font-medium text-body-color">To establish Good Governance, implement the plans ,support the deficiencies in the implementation and execute them with supremacy to benefit the people of the City and create a city with a well-developed and complete development infrastructure
+                <p class="text-base font-medium text-body-color">
+                    {t('missionDetail')}
                 </p>
             </div>
         </div>
@@ -44,9 +47,9 @@ function Vission() {
                 </svg></div>
             <div>
                 <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">
-                Vision
+               {t('vision')}
                 </h3>
-                <p class="text-base font-medium text-body-color">By 2025, good governance will be ensured in our City; converged infrastructure coverage; political and economic activity expanded; improving the lives of its residents and seeing the city as a model of development and good governance.</p>
+                <p class="text-base font-medium text-body-color">{t('visionDetail')}</p>
             </div>
         </div>
     </div>
@@ -73,15 +76,9 @@ function Vission() {
                     </rect>
                 </svg></div>
             <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl dark:text-white/90 lg:text-xl xl:text-2xl">Core Values
+                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl dark:text-white/90 lg:text-xl xl:text-2xl">{t('coreValue')}
                 </h3>
-                <p class="text-base font-medium text-body-color">Values ​​/
-    • Responsibility
-    • Priority and respect of the people
-    • Loyalty
-    • Participation
-    • Efficiency
-    • Work in groups</p>
+                <p class="text-base font-medium text-body-color">{t('coreValueDetail')}</p>
             </div>
         </div>
     </div>
@@ -173,8 +170,8 @@ function Vission() {
                     </defs>
                 </svg></div>
             <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">Goal</h3>
-                <p class="text-base font-medium text-body-color"> To Modernize Dodolaa Town Administration and Compete with World Cities to Digitalize Service Delivery to Ensure Community Satisfaction and Increase the Trust of the People in the Government</p>
+                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">{t('goal')}</h3>
+                <p class="text-base font-medium text-body-color">{t('goalDetail')}</p>
             </div>
         </div>
     </div>
@@ -192,8 +189,8 @@ function Vission() {
                         fill="#6A64F1"></path>
                 </svg></div>
             <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">Destination</h3>
-                <p class="text-base font-medium text-body-color">The success of our implementation is to see our city become a tourist attraction, clean, safe and improve the lives of the community</p>
+                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl dark:text-white/90 xl:text-2xl">{t('destination')}</h3>
+                <p class="text-base font-medium text-body-color">{t('destinationDetail')}</p>
             </div>
         </div>
     </div>

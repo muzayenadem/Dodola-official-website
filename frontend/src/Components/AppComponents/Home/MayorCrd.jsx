@@ -1,7 +1,9 @@
 import React from 'react'
 import { kantiibaa } from '../Images/images'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next';
 function MayorCrd() {
+       const { t } = useTranslation();
   return (
     <motion.div  initial={{opacity:0}} animate={{opacity:1, transition:{duration:1}}}
      class="px-2 pt-10 pb-20 w-full flex justify-center">
@@ -12,14 +14,13 @@ function MayorCrd() {
         </div>
         <div class="py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
             <h2 class="text-3xl text-gray-800 font-bold">
-               What Mayor is saying
+               {t('kantibaAdvise')}
                <br/>
-                <span class="text-indigo-600">  Obbo Ayub Dule</span>
+                <span class="text-indigo-600">{t('kantibaName')}</span>
             </h2>
             <p class="mt-4 text-gray-600">
-            As the Mayor of Dodola City, I am proud to support the development of our official website. This initiative is a significant step toward modernizing our city, promoting transparency, and connecting our community with new opportunities.
-            I extend my gratitude to the dedicated volunteers driving this project, showcasing the strength and innovation of our people. Together, we are shaping Dodola’s future—where tradition meets progress. Thank you for your commitment to our city.
-            </p>
+                {t('kantibaSpeach')}
+             </p>
             <div class="mt-8">
                 <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Read More</a>
             </div>
