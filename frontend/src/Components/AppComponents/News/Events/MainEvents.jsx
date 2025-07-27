@@ -39,7 +39,7 @@ function MainEvents() {
            <div className="lg:container py-0 lg:mx-auto md:px-2 min-h-[60vh] ">
            <div className="grid grid-cols-1 gap-3 md:grid-cols-12">
               <div className=" col-span-6 md:col-span-4 2xl:col-span-3 bg-neutral-100  dark:bg-gray-900 h-auto max-h-[56vh]  md:sticky top-16  md:top-24"><ButtonsOfNews latest={latest}/></div>
-              <div className={`col-span-6 md:col-span-8 2xl:col-span-6  bg-white dark:bg-gray-800 ${news.length ? '' : 'min-h-[100vh]'} `}><NewsCard data={data}/></div>
+              <div className={`col-span-6 md:col-span-8 2xl:col-span-6 bg-white dark:bg-gray-800 ${news.length ? '' : 'min-h-[100vh]'} `}><NewsCard data={data}/></div>
               <div className={`hidden 2xl:block  2xl:col-span-3 bg-neutral-100 dark:bg-gray-900 h-auto ${news.length ? ' max-h-[64vh]' : 'max-h-[24vh]'} sticky top-16 md:top-24`}><LatestNews latest={latest}/></div>
            </div>
         </div>
