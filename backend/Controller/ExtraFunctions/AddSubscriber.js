@@ -34,7 +34,7 @@ const AddSubscriber = async (req, res) => {
             res.json({ success: true, message: "Confirmation email sent!" });
           } catch (error) {
             res.status(500).json({ 
-              error: error.message,
+              error: "Failed to send email",
               details: error.message 
             });
           }

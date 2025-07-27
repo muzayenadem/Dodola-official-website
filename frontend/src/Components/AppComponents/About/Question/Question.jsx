@@ -16,31 +16,46 @@ function Question() {
 	})
 
 
-	const submitHandler = async(e) => {
-		e.preventDefault()
-		try {
-			const response = await axios.post(`${serverLink}/ask`,data)
+const submitHandler = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-			if (response.data){
-				setSucces(response.data)
-			}
-			
+  const { fullName, email, question } = data;
 
-		} catch (error) {
-			if(error.response){
-				setErr(error.response.data)
-				return null
-			}
-			if(error.name == 'AxiosError'){
-				setErr(error.message)
-				return null
-			}
-			if(error.request){
-				setErr(error.request)
-				return null
-			}
-		}
-	}
+  if (!fullName) {
+    setLoading(false);
+    return setErr("Provide your name.");
+  }
+
+  if (!email) {
+    setLoading(false);
+    return setErr("Provide your email.");
+  }
+
+  if (!question) {
+    setLoading(false);
+    return setErr("Provide your question.");
+  }
+
+  try {
+    const response = await axios.post(`${serverLink}/ask`, data);
+    if (response.data) {
+      setSucces(response.data);
+    }
+  } catch (error) {
+    if (error.response) {
+      setErr(error.response.data);
+    } else if (error.name === 'AxiosError') {
+      setErr(error.message);
+    } else if (error.request) {
+      setErr(error.request);
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   return (
 	<>
     <section className="bg-white py-5 dark:text-white/80 dark:bg-gray-900">
@@ -143,7 +158,7 @@ function Question() {
 				<p class="mt-3 text-xs text-gray-400 dark:text-gray-600">is dodola suitable for living in?</p>
 			</div>
 			<button class="px-6 py-2 font-medium md:w-72 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-				Submit
+				{ loading ? "Submitting...":"Submit"}
 			</button>
 			{
 				succes && 

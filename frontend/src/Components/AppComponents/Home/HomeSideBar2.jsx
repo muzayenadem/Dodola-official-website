@@ -94,14 +94,14 @@ function HomeSideBar2() {
                         }
                     </button>
                   </div>
-                  <div className="relative py-5 px-5  dark:bg-gray-900">
-                <span onClick={collapseSidebar} className="absolute inset-y-0 mx-5 left-0 flex items-center  pl-3">
-                    <svg className="w-5 h-5 font-bold dark:text-gray-400" viewBox="0 0 24 24" fill="none">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                    </svg>
-                </span>
-                {!collapsed && <input type="text" className="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search" />}
-            </div>
+                  {/* <div className="relative py-5 px-5  dark:bg-gray-900">
+                      <span onClick={collapseSidebar} className="absolute inset-y-0 mx-5 left-0 flex items-center  pl-3">
+                          <svg className="w-5 h-5 font-bold dark:text-gray-400" viewBox="0 0 24 24" fill="none">
+                              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                          </svg>
+                      </span>
+                      {!collapsed && <input type="text" className="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search" />}
+                  </div> */}
     <Menu className={`bg-white   dark:text-gray-400 dark:bg-gray-950 ${!collapsed ? '' : 'min-h-[78vh]'}`}>
     <MenuItem className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<MdSpaceDashboard/>} onClick={()=> dispatch(closeHomeSidebarToggle())} component={<Link to=''/>}>{t('home')} </MenuItem>
     <SubMenu className="bg-white   dark:text-gray-400 dark:bg-gray-900" icon={<FaArrowDown/> && <FaArrowUp/>} label={t('about')}>

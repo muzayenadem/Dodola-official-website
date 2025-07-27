@@ -74,5 +74,24 @@
 
         "kantibaName":"Obbo Ayyuub Dulee",
         "kantibaAdvise":"Waan Kantiibaan jechaa jiru",
-        "kantibaSpeach":"Akka Kantiibaa Magaalaa Dodolaatti guddina marsariitii keenya ofiisaa deeggaruun koo na boonsa. Kaka'umsi kun magaalaa keenya ammayyeessuuf, iftoomina guddisuuf, akkasumas hawaasa keenya carraa haaraa waliin wal qunnamsiisuuf tarkaanfii guddaadha. Tola ooltota of kennanii pirojektii kana oofan, ciminaa fi kalaqa ummata keenyaa agarsiisaniif galata koo nan ibsa. Waliin taanee, bocaa jirra Dodola’s future—bakka duudhaan guddina waliin wal argu Magaalaa keenyaaf kutannoo keessaniif galatoomaa."
-}
+        "kantibaSpeach":"Akka Kantiibaa Magaalaa Dodolaatti guddina marsariitii keenya ofiisaa deeggaruun koo na boonsa. Kaka'umsi kun magaalaa keenya ammayyeessuuf, iftoomina guddisuuf, akkasumas hawaasa keenya carraa haaraa waliin wal qunnamsiisuuf tarkaanfii guddaadha. Tola ooltota of kennanii pirojektii kana oofan, ciminaa fi kalaqa ummata keenyaa agarsiisaniif galata koo nan ibsa. Waliin taanee, bocaa jirra Dodola’s future—bakka duudhaan guddina waliin wal argu Magaalaa keenyaaf kutannoo keessaniif galatoomaa.",
+
+
+
+        "Location":"Iddoo", 
+        "Foundation":"Bu'uura",
+        "Naming":"Maqaa fi Moggaasa Maqaa",
+        "Demographics":"Dimoogiraafii fi Hawaasa",
+        "EconomicLife":"Jireenya Diinagdee",
+        "CulturalS":"Hiika Aadaa", 
+        "ModernDevelopment":"Misooma Ammayyaa",
+
+
+        "LocationDef":"Magaalaan Dodolaa kutaa kibbaa Itiyoophiyaa Naannoo Biyyaalessaa Oromiyaa, zoonii Arsii Lixaa, Addis Ababa irraa km 320 fi Shashemene irraa km 75 fagaattee argamti. Oromiyaa Zoonii Arsii Lixaa keessatti meetira 2,400 irratti kan argamtu Dodolaan daandii Shaashamannee-Goobaa irratti ejjennoo tarsiimoo qaba, marfame by the breathtaking landscapes of the Bale Mountains. Haalli qilleensaa qabbanaa'aa fi biyyeen lalisaa magaalaa olka'aa kun qonnaaf naannoo gaarii kan uumu yoo ta'u, akka karra paarkii biyyoolessaa Itoophiyaa keessaa isa tokko ta'ee tajaajila.",
+        "FoundationDef":"Magaalattiin bara 1902 E.C mana maree magaalattiin hundeeffame .Magaalaa Dodola , magaalota sadarkaa lama Zoonii Arsii Lixaa Godina Biyyoolessaa Oromiyaa keessaa tokko. Akka ragaan sanada kuusaa magaalattii irraa argame agarsiisutti magaalaan Dodolaa jalqaba bara 1902 naannoo gaara “TulluDodola” jedhamutti hundeeffamte_(bakka amma jiru irraa kiiloo meetira 5 fagaatee magaalaan).",
+        "NamingDef":"Maqaan 'Dodola' jedhu biyyee afaanii badhaadhaa Afaan Oromoo irraa kan madde yoo ta'u, waa'ee ka'umsa isaa ilaalchisee yaadota waldorgoman waliin. Hayyoonni tokko tokko biqiltoota naannoo sanaa ('Dodoo') kan eeru ta'uu yaada, kaan immoo jechoota haala qilleensaa naannoo sanaa kan nama haaromsu ('Dhadacha') ibsan waliin walqabsiisu. Iccitiin afaanii kun aadaa magaalattii irratti dabalata, kan of keessaa qabu ummanni Oromoo naannoo isaa waliin walitti dhufeenya gadi fagoo qabu.",
+        "DemographicsDef":"Dodola's population of 140,000-150,000 residents primarily comprises the Oromo, Ethiopia's largest ethnic group. Hawaasni kun duudhaa aadaa cimaa kan eegu yoo ta'u ammayyummaa kan hammate yoo ta'u, jiraattonni irra caalaan isaanii Afaan Oromoo kan dubbatan yoo ta'u, baay'een isaanii afaan Amaaraas kan beekan ta'a. Jireenyi amantii adda addummaa Itoophiyaa kan calaqqisiisu yoo ta'u, lamaan isaanii waliin Duudhaaleen Islaamaa fi Kiristaanummaa walsimsiisuun waliin jiraachuu.",
+        "EconomicLifeDef":"Dinagdeen magaalattii utubaa lama irratti kan hundaa'edha: qonna aadaa fi ikootuurizimii guddachaa jiru. Qonnaan bultoonni nyaata ijoo lafa olka'aa kan akka barbaree, qamadii, fi teff kan misoomsan yoo ta'u, tiksitoonni ammoo loon fi hoolaa kan kunuunsan. Gama biraatiin, beekamaan Dodola-Adaba Bike Trek namoota adventure barbaadan hawwata, carraa haaraa keessummeessitootaa fi... tajaajila qajeelfama bu'uura qonnaa dabalu.",
+        "CulturalDef":"Dodola akka muuziyeemii duudhaa Oromoo jiraataa ta'ee tajaajila, daawwattoonni barmaatilee aadaa dhugaa dhalootaa keessa turanii mudachuu danda'u. Gabaawwan magaalattii torban torbaniin hojii harkaa halluu adda addaa qaban, oomisha haaraa, fi qoosaa daldaltootaatiin dhoo'u, jireenya olka'aa guyyaa guyyaa hundee tiksee ishee waliin hidhata ta'ee hafeef foddaa dhiyeessa.",
+        "ModernDevelopmentDef":"Dodola amala aadaa isaa eeguudhaan waggoota kurnan darban keessa bu'uuraalee misoomaa suuta suutaan fooyya'uu argeera, daandii fooyya'aan wiirtuuwwan naannoo waliin wal qunnamsiisuu fi tajaajila mootummaa fooyya'aa ta'e. Misoomni kun tattaaffii kunuunsa naannoo fi aadaa wajjin of eeggannoodhaan madaaluun eenyummaan addaa magaalattii akka hin badne mirkaneessa."
+    }

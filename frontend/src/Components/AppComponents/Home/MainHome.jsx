@@ -25,7 +25,7 @@ function MainHome() {
         <Latest/>
         <LatestContent/>
         <Gallery/>
-        <SlideImage/>
+        {/* <SlideImage/> */}
         <Feutures/>
         <QuestionHome/>
         <Contact/>
