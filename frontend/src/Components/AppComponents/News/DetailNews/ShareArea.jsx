@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdShare } from "react-icons/md";
+import { MdClear, MdShare } from "react-icons/md";
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 
 function ShareArea({data}) {
@@ -49,7 +49,7 @@ function ShareArea({data}) {
     <div className="">
       {/* Share Button */}
       <button
-        className="dark:bg-gray-500 bg-slate-200 dark:hover:bg-gray-700 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+        className="bg-slate-300 dark:bg-gray-600 dark:hover:bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
         onClick={() => setShowOptions(!showOptions)}
       >
          <div className="flex gap-2 items-center content-center ">
@@ -60,9 +60,12 @@ function ShareArea({data}) {
 
       {/* Sharing Options */}
       {showOptions && (
-        <div className="fixed top-[30%] left-[30%] bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mt-2 space-y-2">
-            <p class="text-indigo-900 text-xl md:text-2xl font-bold border-b-4 border-b-indigo-300">Share this post</p>
-          <div class="bg-white w-full h-auto py-8 flex items-center justify-center gap-4 flex-wrap">
+        <div className="fixed top-[30%] left-[30%] bg-white dark:bg-gray-800 z-50 rounded-lg shadow-md p-4 mt-2 space-y-2">
+          <div className="flex justify-between">
+             <p class="text-indigo-900 dark:text-white/80 text-xl md:text-2xl font-bold border-b-4 border-b-indigo-300">Share this post</p>
+             <button onClick={()=> setShowOptions(!showOptions)} className=' bg-gray-400 dark:bg-gray-500 size-8 justify-center rounded-full p-2 '><MdClear/></button>
+          </div>
+          <div class="bg-white w-full h-auto py-8 flex items-center dark:bg-gray-700 justify-center gap-4 flex-wrap">
       <button onClick={() => handleShare("facebook")} class="group transition-all duration-500 hover:-translate-y-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 93 92" fill="none">
       <rect x="1.13867" width="91.5618" height="91.5618" rx="15" fill="#337FFF"/>

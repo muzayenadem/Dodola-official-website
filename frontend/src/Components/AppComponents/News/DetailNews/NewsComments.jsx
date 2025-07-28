@@ -23,10 +23,20 @@ function NewsComments({data,comment}) {
 
 	const submitHandler = async(e) => {
 		e.preventDefault()
+      if(!comments.name && !comments.comment){
+      return setErr("Please enter your name and comment ")
+      }
+      if(!comments.name){
+        return setErr("Please enter your name ")
+      }
+        if(!comments.comment){
+        return setErr("Please enter your comment ")
+      }
+    
+    setLoading(true)
 		try {
 			const response = await axios.post(`${serverLink}/new-comment`,comments)
-
-			if (response.data){
+      if (response.data){
 				setSucces(response.data)
             const latest = response.data.comment
             comment.push(latest)
@@ -48,7 +58,8 @@ function NewsComments({data,comment}) {
 				setErr(error.request)
 				return null
 			}
-		}
+		} 
+    setLoading(false)
 	}
 
   // Handle like
@@ -154,7 +165,7 @@ function NewsComments({data,comment}) {
                 <button
                     class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit">
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
                 </button>
                 {
 				succes && 
