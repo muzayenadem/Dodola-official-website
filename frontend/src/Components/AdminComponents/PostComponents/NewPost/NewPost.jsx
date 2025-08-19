@@ -184,7 +184,6 @@ const submitHundler = async (e) =>{
         return null;
       }
     };
-  
     const getUrl = (val) =>{
       console.log({val})
     }
@@ -297,7 +296,7 @@ const submitHundler = async (e) =>{
 
         <div className=" flex gap-4 items-center">
         <div className="mt-2 flex items-center">
-            <input onChange={()=> setNewsData({...newsData,asAdmin:true})} type="checkbox"  autoComplete="given-name" 
+            <input onChange={()=> setNewsData({...newsData,asAdmin:!newsData.asAdmin})} type="checkbox"  autoComplete="given-name" 
             className={`${asured == true & newsData.title == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} size-6 block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
           </div>
           <label htmlFor="username" className="block text-sm mt-1 font-medium leading-6 text-gray-900 dark:text-white/80">Show My name as admin posting this content</label>

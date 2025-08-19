@@ -10,6 +10,12 @@ const schema = mongoose.Schema({
     images:Array,
     company:Object,
     address:Object,
+    updatedDate:{
+        type:String,
+    },
+     updatedBy:{
+        type:Object
+    }
 })
 
 const JobModel = mongoose.model('Jobs',schema)

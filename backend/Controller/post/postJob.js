@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken')
 const adminModel = require('../../Model/adminModel')
 
@@ -59,7 +60,6 @@ const postJob = async(req,res) =>{
             postedDate:new Date(),
         })
         const savedJob = await newJob.save()
-        console.log({verify})
      
         res.status(200).send(savedJob)
         console.log({savedJob})

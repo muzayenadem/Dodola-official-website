@@ -17,7 +17,7 @@ const schema = mongoose.Schema({
         type:String
     },
     asAdmin:{
-        type:String,
+        type:Boolean,
     },
     files:{
         type:Array,
@@ -29,10 +29,16 @@ const schema = mongoose.Schema({
         type:String,
         required:true
     },
+    updatedDate:{
+        type:String,
+    },
     admin:{
         required:true,
         type:Object
     },
+    updatedBy:{
+        type:Object
+    }
 })
 
 const newsModel = mongoose.model('News',schema)

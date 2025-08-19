@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
-
 import Select from 'react-select';
 import { removeJobPOstImages, setJobPostImages } from '../../../Controller/Posts/jobPost';
 import Data from '../../ComponentsData/newsData';
 import { serverLink } from '../../../Controller/CommonLinks/ServerLink';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchSingleNews } from '../../../Controller/Data/newsSlice';
+import { fetchSingleNews, manageCheckboxOfNewsPost, removeNewsPostImages, setNewsPostImages } from '../../../Controller/Data/newsSlice';
 import NoData from '../../ErrorPages/NoData';
 function  UpdateNews() {
   const [isClearable, setIsClearable] = useState(true);
@@ -28,27 +27,9 @@ function  UpdateNews() {
     description:'',
     eventDate:'',
     additionalLink:'',
-    asAdmin:false
+    asAdmin: null
   })
    const {newsId} = useParams()
-   console.log({newsId})
-
-  const [address,setAdress] = useState({
-    streate:'',
-    city:'',
-    state:'',
-    postalCode:'',
-  })
-
-  const [company,setCompany] = useState({
-    companyName:'',
-    companyEmail:'',
-    companyPhone:''
-  })
-
-
-  const [more,setMore] = useState(false)
-
    const dispatch = useDispatch()
    useEffect(() => {
      console.log('Fetching news for ID to update:', newsId);
@@ -60,22 +41,24 @@ function  UpdateNews() {
  
      //console.log({data})
      const news = allData.data
-     const detail = allData.single
- 
-     console.log({detail}) 
-     
+    let detail = allData.single
+    console.log({detail})
+    console.log({find})
+     const [files,setFiles] = useState([])
   
      const obj = detail.reduce((accumulator, current) => {
         // Merge the properties of the current object into the accumulator.
         return { ...accumulator, ...current };
       }, {});
-      const [AsAdmin, setAsAdmin] = useState(obj.asAdmin)
-      const {files} = obj
+
+      useEffect(()=>{
+        setNewsData({...newsData,asAdmin:obj.asAdmin})
+      },[detail])
+      useEffect(()=>{
+        setFiles(obj.files)
+      },[detail])
       
-      console.log({obj});
-    //  const {title, description} = datas[0]
-    //  console.log({title})
-     
+     console.log({obj,newsData});
      console.log({dataaaa:news[0]})
 
  
@@ -83,39 +66,17 @@ function  UpdateNews() {
     
   const images = useSelector(state => state.jobPost.images)
 
-  console.log({images})
+  console.log({image:obj.files})
+
 
   const selectImages = (e)=>{
-    dispatch(setJobPostImages(e.target.files))      
+    dispatch(setNewsPostImages(e.target.files))      
   }
 
   const changeHandler = value =>{
      setNewsData({...newsData,category:value.label})
   }
-  const exprienceHandler = (value)=>{
-    setPostData({...postData,experience:value.label})
-  }
-  const typeHandler = (value) =>{
-    setPostData({...postData,type:value.label})
-  }
 
-
-
-  const typeList = [
-    {value:1,label:'Full Time'},
-    {value:2,label:'Part Time'},
-    {value:1,label:'Contract'},
-  ]
-
-  const exprienceLevel = [
-    {label:'0 year',value:1},
-    {label:'1 year',value:2},
-    {label:'2 year',value:3},
-    {label:'3 year',value:4},
-    {label:'4 year',value:5},
-    {label:'5 year',value:6},
-    {label:'6 year',value:7},
-  ]
   const data = [
     {value:1,label:'Goverbment & public Adminstration'},
     {value:2,label:'Healthycare'},
@@ -129,21 +90,36 @@ function  UpdateNews() {
     {value:10,label:'Media and Communication'},
     {value:11,label:'Sport'},
 ]
-//console.log({postData,address,campany})
+
+
 console.log({response})
 const submitHundler = async (e) =>{
   e.preventDefault()
   setLoading(true)
-  const formData = new FormData()
-  formData.append('data',JSON.stringify({newsData}))
-  for(let i = 0; i <= images.length; i++){
-    formData.append('files',images[i]) 
-  }
 
+  let oldFiles = []
+    for( let i = 0; i <= files.length ; i++){
+      if(typeof files[i] === 'string'){
+        if (files[i] != files[i-1]) oldFiles = [...oldFiles,files[i]]
+      }
+    }
+  const formData = new FormData()
+  const updatedData = {
+    category: newsData.category ? newsData.category : obj.category,
+    title:newsData.title ? newsData.title : obj.title,
+    description:newsData.description ? newsData.description : obj.description,
+    eventDate:newsData.eventDate ? newsData.eventDate : obj.eventDate,
+    additionalLink:newsData.additionalLink ? newsData.additionalLink : obj.additionalLink,
+    asAdmin: newsData.asAdmin ? newsData.asAdmin : obj.asAdmin,
+    files:oldFiles
+}
+
+  formData.append('data',JSON.stringify({updatedData}))
+  for(let i = 0; i <= files.length; i++){
+    formData.append('files',files[i]) 
+  }
     try {
-        // Replace with your server URL
-    
-        const response = await axios.post(`${serverLink}/post-news`, formData, {
+        const response = await axios.put(`http://localhost:3600/update/new/${newsId}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -154,10 +130,8 @@ const submitHundler = async (e) =>{
         setOpen(false)
         setErrorPage(false)
         setSucced(true)
-        
         // You can handle the response here, such as updating state in React
         return response.data;
-    
         } catch (error) {
         // Error handling
         if (error.response) {
@@ -178,7 +152,6 @@ const submitHundler = async (e) =>{
           setSucced(false)
           setResponse('response not received')
           setErrorPage(true)
-          
           return error.request
         } else {
           // Something happened in setting up the request that triggered an Error
@@ -188,7 +161,6 @@ const submitHundler = async (e) =>{
           setSucced(false)
           setResponse('Error setting up request')
           setErrorPage(true)
-          
           return error.message
         }
       }
@@ -198,7 +170,7 @@ const submitHundler = async (e) =>{
     e.preventDefault()
     setAsured(true)
 
-    if(newsData.title && newsData.description && newsData.category && newsData.eventDate && images.length){
+    if(newsData.title || obj.title && newsData.description || obj.description && newsData.category || obj.category && newsData.eventDate || obj.eventDate && files.length ){
       setAsured(false)
       setOpen(true)
     }else{
@@ -207,23 +179,23 @@ const submitHundler = async (e) =>{
   }
 
     const getFileType = (url) => {
-    //   const extension = url.split('.').pop();
-    //   const videoFormats = ['mp4', 'mov', 'avi'];
-    //   const imageFormats = ['jpeg', 'jpg', 'png', 'gif'];
+      const extension = url.split('.').pop();
+      const videoFormats = ['mp4', 'mov', 'avi'];
+      const imageFormats = ['jpeg', 'jpg', 'png', 'gif'];
   
-    //   if (imageFormats.includes(extension)) {
-    //     return 'image';
-    //   } else if (videoFormats.includes(extension)) {
-    //     return 'video';
-    //   } else {
-    //     return null;
-    //   }
+      if (imageFormats.includes(extension)) {
+        return 'image';
+      } else if (videoFormats.includes(extension)) {
+        return 'video';
+      } else {
+        return null;
+      }
     };
   
-    const getUrl = (val) =>{
-      console.log({val})
-    }
-   // const fileType = getFileType(fileUrl);
+
+const deletePhoto = (deletedUrl) => {
+    dispatch(removeNewsPostImages(deletedUrl));
+};
 
    if(allData.singleLoading){
     return (
@@ -238,7 +210,6 @@ const submitHundler = async (e) =>{
   }
   if(allData.singleError){
     return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>{data.error}</div>
-  
   }
 
   if(!allData.data.length & allData.data.filterLoading == false){
@@ -264,7 +235,7 @@ const submitHundler = async (e) =>{
             <input 
             value={newsData.title !== obj.title ? newsData.title || ` ${obj.title}` : obj.title}
             onChange={(e)=> setNewsData({...newsData,title:e.target.value})} type="text"  autoComplete="given-name" 
-            className={`${asured == true & newsData.title == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
+            className={`${asured == true & newsData.title == '' || obj.title == ''  && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
           </div>
         </div>
 
@@ -272,9 +243,10 @@ const submitHundler = async (e) =>{
         <div className="flex flex-col lg:col-span-4 py-6 gap-2">
           <p className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">	News Category</p>
           <Select
-              className={` ${asured == true & newsData.category == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
+              className={` ${asured == true & newsData.category ==  '' || obj.category == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} basic-single dark:text-black dark:bg-gray-900  lg:w-96  justify-center items-center`}
               classNamePrefix="select"
-              defaultValue={{value:0,label:'Select Category'}}
+              // defaultValue={{value:0,label:'Select Category'}}
+              defaultValue={data.find(prev => prev.label == obj.category)}
               isDisabled={isDisabled}
               isLoading={true}
               onChange={changeHandler}
@@ -292,7 +264,7 @@ const submitHundler = async (e) =>{
             <textarea
             value={newsData.description !== obj.description ? newsData.description || ` ${obj.description}` : obj.description}
             onChange={(e)=> setNewsData({...newsData,description:e.target.value})}  id="about"  name="about" rows="6" 
-            className={` ${asured == true & newsData.description == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}></textarea>
+            className={` ${asured == true & newsData.description == ''|| obj.description == ''  && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}></textarea>
           </div>
           <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-white/80">Write a few sentences about yourself.</p>
         </div>
@@ -315,7 +287,7 @@ const submitHundler = async (e) =>{
 
     <div className="col-span-3">
           <label htmlFor="cover-photo" className="block text-sm font-medium leading-6 dark:text-white/80 text-gray-900">Cover photo</label>
-          <div className={` ${asured == true & !images.length  && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 dark:border-white/80 px-6 py-10 dark:text-white/80 `}>
+          <div className={` ${asured == true & !files?.length  && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 dark:border-white/80 px-6 py-10 dark:text-white/80 `}>
             <div className="text-center">
               <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clipRule="evenodd" />
@@ -331,62 +303,66 @@ const submitHundler = async (e) =>{
             </div>
           </div>
         </div>
+      
 
         <div className="container flex justify-start flex-wrap overflow-y-auto mt-6">
-
-                 {images.length > 0 ?
-                    images.map((file,i)=>{
-                        return (
-                            <div onClick={()=>getUrl(URL.createObjectURL(file))} key={i} className={` ${getFileType(file.name) == 'video' ? 'w-[220px] h-220px] flex gap-1 justify-between flex-col' : 'relative  w-[120px] h-[120px]'} mb-4 ml-2 `}>
-                            <div className={`${getFileType(file.name) == 'video' && 'flex  justify-end'}`}>
-                            <div className={` ${getFileType(file.name) == 'video' ? '' : 'top-1 right-1'} flex justify-center items-center p-1 w-6 h-6 absolute  bg-white rounded-full`}>
-                            <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> dispatch(removeJobPOstImages(images.indexOf(file))) & console.log({index:images.indexOf(file)})}>&times;</span>
+            {detail.map(({files,i})=>{
+              return(
+                  files.length > 0 &&
+                  files.map((file,i)=>{
+                      return (
+                          <div key={i} className={`relative  w-[120px] h-[120px]'} mb-4 ml-2 `}>
+                            <div className={``}>
+                            <div className={`top-1 right-1 flex justify-center items-center p-1 w-6 h-6 absolute  bg-white rounded-full`}>
+                            <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> deletePhoto(files.indexOf(file))}>&times;</span>
                             </div>
                             </div>
                             
-                            {getFileType(file.name) == 'image' &&   <img className='w-[100%] h-[100%] rounded-lg' src={URL.createObjectURL(file)} alt=''/>}
-                            {getFileType(file.name) == 'video' &&
+                            {/* {getFileType(file.name) == 'image/jpeg'  &&   */}
+                              {typeof file === "string" ? (
+                                // Server image (URL string)
+                                <img
+                                  className="w-full h-full rounded-lg object-cover"
+                                  src={file}
+                                  alt="News content"
+                                />
+                              ) : (
+                                // Newly uploaded file (File object)
+                                file.type.startsWith("image/") ? (
+                                  <img
+                                    className="w-full h-full rounded-lg object-cover"
+                                    src={URL.createObjectURL(file)}
+                                    alt="Uploaded content"
+                                  />
+                                ) : (
+                                  <video
+                                    className="w-full h-full rounded-lg object-cover"
+                                    controls
+                                    src={URL.createObjectURL(file)}
+                                  />
+                                )
+                              )}
+                            {/* {getFileType(file.name) == 'video' &&
                               <video className='w-[190px] md:w-[220px]' controls  autoPlay>
                               <source src={URL.createObjectURL(file)} type='video/mp4'></source>
                               <source src={URL.createObjectURL(file)} type='video/ogg'></source>
                             </video>
-                            }
+                            } */}
                         </div>
-                        )
-                    })  : 
-                    detail.map(({files,i})=>{
-                        return(
-                            files.length > 0 &&
-                            files.map((file,i)=>{
-                                return (
-                                    <div  key={i} className={` ${getFileType(file.name) == 'video' ? 'w-[220px] h-220px] flex gap-1 justify-between flex-col' : 'relative  w-[120px] h-[120px]'} mb-4 ml-2 `}>
-                                    <div className={`${getFileType(file.name) == 'video' && 'flex  justify-end'}`}>
-                                    {/* <div className={` ${getFileType(file.name) == 'video' ? '' : 'top-1 right-1'} flex justify-center items-center p-1 w-6 h-6 absolute  bg-white rounded-full`}>
-                                    <span className='  text-xl font-bold   p-1  text-black rounded-full'  onClick={()=> dispatch(removeJobPOstImages(images.indexOf(file))) & console.log({index:images.indexOf(file)})}>&times;</span>
-                                    </div> */}
-                                    </div>
-                                    
-                                     <img className='w-[100%] h-[100%] rounded-lg' src={file} alt=''/>
-                                    {/* {getFileType(file.name) == 'video' &&
-                                      <video className='w-[190px] md:w-[220px]' controls  autoPlay>
-                                      <source src={URL.createObjectURL(file)} type='video/mp4'></source>
-                                      <source src={URL.createObjectURL(file)} type='video/ogg'></source>
-                                    </video>
-                                    } */}
-                                </div>
-                                )
-                            })
-                        )
-                    })
-                    } 
-                </div>
+                      )
+                  })
+              )
+          })
+        }
+      </div>
 
 
         <div className=" flex gap-4 items-center">
         <div className="mt-2 flex items-center">
-            <input 
-            checked={newsData.asAdmin == true || AsAdmin == 'true' }
-            onChange={()=> setNewsData({...newsData,asAdmin:!newsData.asAdmin}) & setAsAdmin(newsData.asAdmin == true  && 'false' )} type="checkbox"  autoComplete="given-name" 
+            <input  
+            checked={obj.asAdmin}
+            onChange={()=> dispatch(manageCheckboxOfNewsPost())} 
+            type="checkbox"  autoComplete="given-name" 
             className={`${asured == true & newsData.title == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} size-6 block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
           </div>
           <label htmlFor="username" className="block text-sm mt-1 font-medium leading-6 text-gray-900 dark:text-white/80">Show My name as admin posting this content</label>
@@ -394,11 +370,11 @@ const submitHundler = async (e) =>{
 
 
     <div className='w-52'>
-      <label htmlFor="Birthday" className="block text-sm text-gray-500 dark:text-gray-300">Dead Line</label>
+      <label htmlFor="Birthday" className="block text-sm text-gray-500 dark:text-gray-300">Event Date</label>
       <input 
-      value={newsData.eventDate !== obj.eventDate ? newsData.eventDate || ` ${obj.eventDate}` : obj.eventDate}
+      value={newsData.eventDate ? newsData.eventDate : obj.eventDate}
       onChange={(e) => setNewsData({...newsData,eventDate:e.target.value})} type="date" placeholder="Dead Line" 
-      className={` ${asured == true & !newsData.eventDate && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block  mt-2 w-full placeholder-gray-400/70 dark:text-white/80 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border- blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300`} />
+      className={` ${asured == true & !newsData.eventDate || !obj.eventDate && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block  mt-2 w-full placeholder-gray-400/70 dark:text-white/80 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border- blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300`} />
   </div>
     </div>
 
@@ -489,5 +465,7 @@ const submitHundler = async (e) =>{
 </div>
  )
 }
+
+{/* <img className='w-[100%] h-[100%] rounded-lg' src={file} alt=''/> */}
 
 export default UpdateNews

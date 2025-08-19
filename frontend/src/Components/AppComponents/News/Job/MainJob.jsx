@@ -36,9 +36,9 @@ function MainJob() {
     <section className='bg-neutral-100 md:py-5 dark:bg-gray-900'>
         <div className="lg:container py-0 lg:mx-auto md:px-2 min-h-[60vh] ">
            <div className="grid grid-cols-1 gap-3 md:grid-cols-12">
-              <div className=" md:col-span-4 lg:col-span-3 bg-white  dark:bg-gray-800 h-auto max-h-[64vh] sticky top-14  md:top-16"><ButtonsOfJobs/></div>
-              <div className={`md:col-span-6 bg-white dark:bg-gray-800 ${job.length ? '' : 'min-h-[100vh]'} `}><JobCard data={data}/></div>
-              <div className={`hidden md:block md:col-span-2 lg:col-span-3 bg-white dark:bg-gray-800 h-auto ${job.length ? ' max-h-[64vh]' : 'max-h-[24vh]'} sticky top-16`}><LatestJob latest={latest}/></div>
+              <div className=" md:col-span-4 lg:col-span-3 bg-white  dark:bg-gray-800 h-auto max-h-[64vh] sticky top-16  md:top-24"><ButtonsOfJobs/></div>
+              <div className={`md:col-span-6 bg-gray-200 dark:bg-gray-800 ${job.length ? '' : 'min-h-[100vh]'} `}><JobCard data={data}/></div>
+              <div className={`hidden md:block md:col-span-2 lg:col-span-3 bg-white dark:bg-gray-800 h-auto ${job.length ? ' max-h-[64vh]' : 'max-h-[24vh]'} sticky top-24`}><LatestJob latest={latest}/></div>
            </div>
         </div>
     </section>

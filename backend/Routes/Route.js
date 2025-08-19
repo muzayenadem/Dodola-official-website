@@ -43,6 +43,9 @@ const shareNews = require('../Controller/ExtraFunctions/Shares/shareNews')
 const singleContent = require('../Controller/readData/SingleData/singleContent')
 const releatedContent = require('../Controller/readData/releatedContent')
 const AddSubscriber = require('../Controller/ExtraFunctions/AddSubscriber')
+const singleJob = require('../Controller/readData/SingleData/singleJob')
+const updateJob = require('../Controller/updateData/updateJob')
+const updateNews = require('../Controller/updateData/updateNews')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -76,6 +79,7 @@ route.get('/filter-news',filterNews)
 route.get('/search-news',searchNews)
 // read single data from database
 route.get('/single-news/:newsId',singleNews)
+route.get('/single-job/:jobId',singleJob)
 route.get('/single-content/:contentId',singleContent)
 
 // POST METHOD 
@@ -114,6 +118,7 @@ route.get('/news/:id/share',shareNews)
 //UPDATE METHODS
 route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)
 route.put('/change-admin-password',isLogginedWithEmail,changeAdminPassword)
-
+route.put('/update/new/:newsId',isLogginedWithEmail,upload.array('files'),updateNews)
+route.put('/update/job/:jobId',isLogginedWithEmail,upload.array('files'),updateJob)
 
 module.exports = route

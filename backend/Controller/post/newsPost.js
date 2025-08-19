@@ -25,11 +25,11 @@ const newsPost = async(req,res) => {
         console.log({newsData})
         const loginnedAdmin = await adminModel.findOne({_id:adminId})
         if(!loginnedAdmin)
-        return res.status(403).send('not users data')
+        return res.status(403).send('not admin data')
         
 
-        const {fname,lname,email} = loginnedAdmin
-        const admin = {fname,lname,email}
+        const {fname,lname,email,_id} = loginnedAdmin
+        const admin = {fname,lname,email,_id}
         const uploadPromises = files.map(async (file) => {
             const fileName = `${Date.now()}-${file.originalname}`;
             const fileRef = bucket.file(`NewsFile/${fileName}`);
@@ -60,7 +60,7 @@ const newsPost = async(req,res) => {
             files:filesUrl,
             admin,
             postedDate:new Date(),
-
+            updatedDate:new Date()
         })
         const savedContent = await newsContent.save()
         if(!data)

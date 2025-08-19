@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 
@@ -7,6 +7,8 @@ import { removeJobPOstImages, setJobPostImages } from '../../../../Controller/Po
 
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
 import { useNavigate } from 'react-router-dom';
+import { MdClear } from 'react-icons/md';
+import { removeJobRequirements, setJobRequirements } from '../../../../Controller/Data/jobsSlce';
 function  JobPost() {
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
@@ -18,6 +20,7 @@ function  JobPost() {
   const [open,setOpen] = useState(false)
   const [errMessage,setErrMessage] = useState('')
   const [err,setErr] = useState('')
+  const [reqErr,setReqError] = useState('')
   const [errorPage,setErrorPage] = useState(false)
   const [succed,setSucced] = useState(false)
   const [asured, setAsured] = useState(false)
@@ -28,7 +31,7 @@ function  JobPost() {
     salary:'',
     type:'',
     deadline:'',
-    requirement:'',
+    requirement:[],
     experience:'',
   })
   const [address,setAdress] = useState({
@@ -44,7 +47,32 @@ function  JobPost() {
     companyPhone:''
   })
 
+  const [text, setText] = useState('')
   const dispatch = useDispatch()
+  const inputRef = useRef()
+
+
+  const addText = (e) =>{
+      e.preventDefault()
+
+      if(!text) return setReqError("please enter the requirement")
+      if(requirements.includes(text)) return setReqError("this requirement also exists")
+
+      dispatch(setJobRequirements(text))
+      setReqError('')
+      setText("")
+      inputRef.current.value = ""
+    }
+
+  const removeText = (index) =>{
+    dispatch(removeJobRequirements(index))
+  }
+
+const requirements = useSelector(state => state.jobs.requirements)
+
+console.log({requirements})
+
+  
  
  const navigate = useNavigate('')
     
@@ -95,11 +123,16 @@ function  JobPost() {
     {value:9,label:'Social Services'},
     {value:10,label:'Media and Communication'}
 ]
+
+
+
+// console.log({arr})
 //console.log({postData,address,campany})
 console.log({response})
 const submitHundler = async (e) =>{
   e.preventDefault()
   setLoading(true)
+  postData.requirement = requirements
   const formData = new FormData()
   formData.append('data',JSON.stringify({postData,address,company}))
   for(let i = 0; i <= images.length; i++){
@@ -178,6 +211,8 @@ const submitHundler = async (e) =>{
       setErrMessage('you have to fiil all required place')
     }
   }
+
+
   return (
 <div className='bg-neutral-50  dark:bg-gray-900 dark:text-white/80 p-6'>
 
@@ -269,22 +304,83 @@ const submitHundler = async (e) =>{
       </div>
 
 
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
+
+      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="col-span-full lg:col-span-3">
           <label htmlFor="about" className="block text-sm font-medium leading-6 dark:text-white/80 text-gray-900">Job Requirment</label>
-          <div className="mt-2">
-            <textarea onChange={(e) => setPostData({...postData,requirement:e.target.value})} id="about"  name="about" rows="3" 
-            className={` ${asured == true & postData.requirement == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}></textarea>
-          </div>
+          {/* <div className="mt-2">
+            <input onChange={(e) => setPostData({...postData,requirement:e.target.value})} id="about"  name="about" rows="3" 
+            className={` ${asured == true & postData.requirement == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}>
+            </input>
+          </div> */}
+              <div className="">
+                {requirements.map((single,i)=>{
+                  return(<div key={i} className='py-2 flex gap-3'>
+                     {single}
+                    <div onClick={()=>removeText(requirements.indexOf(single))}  className=" bg-gray-300 p-1 hover:bg-gray-500 text-lg rounded-md justify-center"><MdClear/></div> 
+                  </div>)
+                })}
+              </div>
+              <div className=" justify-center items-center">
+                 {/* <div className='flex-1 justify-between'>
+                <input onChange={(e) => setPostData({...postData,requirement:e.target.value})} id="about"  name="about" rows="3" 
+                  className={` ${asured == true & postData.requirement == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block p-6 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}>
+                </input>
+              </div> */}
+                  <div  className={` ${asured == true & postData.requirement == '' || reqErr && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} flex justify-between px-2 w-full rounded-md border-0 dark:bg-gray-700 dark:text-white/80-none py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:outline-none focus:shadow-md focus:shadow-indigo-600 dark:text-white/80 sm:text-sm sm:leading-6`}>
+                    <input
+                          ref={inputRef}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                          setText(value);        // Save value if needed
+                          }}
+                        id="about"
+                        name="about" rows="3" 
+                        className={` w-[87%] focus:outline-none`}>
+                    </input>
+                    <div onClick={(e)=> {
+                      inputRef.current.value = "";
+                      setText('')
+                    }}  className=" bg-gray-400 p-1 text-white hover:bg-gray-600 text-lg rounded-md justify-center"><MdClear/></div> 
+                  </div>
+                  <button onClick={addText} type='submit' className="p-2 my-2 bg-gray-200 text-center w-5/6 left-4 justify-center items-center border shadow-3" >
+                    Add Requirement
+                  </button>
+              </div>
+               {reqErr &&
+            <div className="py-3">
+            <div className="w-full text-white bg-red-500 rounded-md">
+            <div className="container flex items-center justify-between px-6 py-4 mx-auto">
+                <div className="flex">
+                    <svg viewBox="0 0 40 40" className="w-6 h-6 fill-current">
+                        <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                        </path>
+                    </svg>
+
+                        <p className="mx-3">{reqErr}</p>
+                    </div>
+
+                    <button onClick={()=> setReqError('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            </div>
+          }
           <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-white/80">Write a few sentences about yourself.</p>
         </div>
       </div>
 
+
+
+
       <div className="w-52">
           <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">Salary</label>
  		      <div className="mt-2">
-            <input onChange={(e) => setPostData({...postData,salary:e.target.value})} type="number" 
+            <input onChange={(e) => setPostData({...postData,salary:` ${e.target.value}`})} type="number" 
             className={` ${asured == true & postData.salary == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500  sm:text-sm sm:leading-6`}/>
           </div>
         </div>
@@ -351,7 +447,7 @@ const submitHundler = async (e) =>{
         <div className="sm:col-span-2">
           <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900 dark:text-white/80">State / Province</label>
           <div className="mt-2">
-            <input onChange={(e) => setAdress({...address,state:e.target.value})} type="text" name="region" id="region" autoComplete="address-level1" 
+            <input onChange={(e) => setAdress({...address,state:e.target.value}) && clearIt(e)} type="text" name="region" id="region" autoComplete="address-level1" 
            className={`${asured == true & address.state == '' && 'shadow-3 shadow-red-700 dark:shadow-3 dark:shadow-fuchsia-600'} block dark:bg-gray-600 dark:text-white/80 active:outline-none px-6 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:shadow-md focus:shadow-indigo-500   sm:text-sm sm:leading-6`}/>
           </div>
         </div>

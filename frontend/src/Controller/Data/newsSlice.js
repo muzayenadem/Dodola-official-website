@@ -37,7 +37,6 @@ export const fetchReaction = createAsyncThunk('newsSlice/fetchReaction',(newsId)
     return axiosSingleDataFetching(`${serverLink}/single-news/${newsId}`)
 })
 
-
 const newsSlice = createSlice({
     name:'newsSlice',
     initialState:initialState,
@@ -120,7 +119,21 @@ const newsSlice = createSlice({
         build.addCase(fetchReaction.fulfilled,(state,action)=>{
             state.reaction = action.payload.reaction
         })
-        
+    },
+        reducers:{
+        setNewsPostImages :(state,action) =>{
+            for (let  i = 0; i <= action.payload.length-1; i++ ){
+                state.single[0].files.push(action.payload[i])
+               }
+        },
+        removeNewsPostImages :(state,action)=>{
+            state.single[0].files.splice(action.payload,1)
+        },
+        manageCheckboxOfNewsPost : (state,action) =>{
+            state.single[0].asAdmin = !state.single[0].asAdmin
+        },
     }
 })
+
+export const {setNewsPostImages,removeNewsPostImages,manageCheckboxOfNewsPost} = newsSlice.actions
 export default  newsSlice.reducer
