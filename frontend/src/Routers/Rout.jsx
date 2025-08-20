@@ -53,6 +53,7 @@ import ContentDetail from '../Components/AppComponents/ContentDetail/ContentDeta
 import ScrollToTop from '../Components/AppComponents/Home/ScrollTop'
 import NoData from '../Components/ErrorPages/NoData'
 import UpdateNews from '../Components/AdminComponents/UpdateComponents/UpdateNews'
+import UpdateEmloyee from '../Components/AdminComponents/UpdateComponents/UpdateEmployee/UpdateEmloyee'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -67,7 +68,7 @@ function Rout() {
     }
     return adminsRole
   }
-  const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager} = list()
+  const {generalManager,contentManager,jobsManager,eventManager,responseManager,biddingManager,employeeManager} = list()
    console.log({generalManager}) 
 
    const [real,setReal] = useState('')
@@ -247,6 +248,12 @@ function Rout() {
                />
             }/>
               <Route path='update-news/:newsId' element={generalManager || eventManager ? <UpdateNews/>:
+               <NotGeneralAdmin
+               title={'You are not general or event manager'}
+               description={"in this software you can't  access this page if you are not general manager or content manager"}
+               />
+            }/>
+              <Route path='update-employee/:employeeId' element={generalManager || employeeManager ? <UpdateEmloyee/>:
                <NotGeneralAdmin
                title={'You are not general or event manager'}
                description={"in this software you can't  access this page if you are not general manager or content manager"}

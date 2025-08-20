@@ -18,6 +18,7 @@ function AddAdmin() {
     biddingManager:false,
     responseManager:false,
     generalManager:false,
+    employeeManager:false,
   })
 
   const [adminData,setAdminData] = useState({
@@ -35,6 +36,7 @@ function AddAdmin() {
     {value:'Jobs Manager',input:<input checked={roles.generalManager || roles.jobsManager}  className='size-5' type='checkbox' onChange={()=>setRoles({...roles,generalManager:false,jobsManager:!roles.jobsManager})} ></input>},
     {value:'Bidding Manager',input:<input checked={roles.generalManager || roles.biddingManager}  className='size-5' type='checkbox' onChange={()=>setRoles({...roles,generalManager:false,biddingManager:!roles.biddingManager})} ></input>},
     {value:'Response Manager',input:<input checked={roles.generalManager || roles.responseManager}  className='size-5' type='checkbox' onChange={()=>setRoles({...roles,generalManager:false,responseManager:!roles.responseManager})} ></input>},
+    {value:'Employee Manager',input:<input checked={roles.generalManager || roles.employeeManager}  className='size-5' type='checkbox' onChange={()=>setRoles({...roles,generalManager:false,employeeManager:!roles.employeeManager})} ></input>},
     {value:'General Manager',input:<input checked={roles.generalManager}  className='size-5' type='checkbox' onChange={()=>setRoles({
       ...roles,
       generalManager:!roles.generalManager,
@@ -42,6 +44,7 @@ function AddAdmin() {
       contentManager:!roles.contentManager,
       jobsManager:!roles.jobsManager,
       responseManager:!roles.responseManager,
+      employeeManager:!roles.employeeManager,
       biddingManager:!roles.biddingManager
     })} ></input>},
   ]

@@ -40,7 +40,7 @@ const employeePost = async(req,res) =>{
 
         const uploadPromises = files.map(async (file) => {
             const fileName = `${Date.now()}-${file.originalname}`;
-            const fileRef = bucket.file(`JobsImages/${fileName}`);
+            const fileRef = bucket.file(`EmployeesImages/${fileName}`);
      
             const stream = fileRef.createWriteStream({
               metadata: {

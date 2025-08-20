@@ -41,6 +41,12 @@ const shema = mongoose.Schema({
         required:true,
         type:String
     },
+     updatedDate:{
+        type:String,
+    },
+    updatedBy:{
+        type:Object
+    }
 })
 
 const EmployeeModel = mongoose.model('Employee',shema)

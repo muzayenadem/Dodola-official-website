@@ -278,10 +278,6 @@ const submitHundler = async (e) =>{
     }
   }
 
-  console.log({singleJob:allData})
-
-  const typ = typeof(obj.job?.salary)
-  console.log({type:typ})
   if(allData.singleLoading){
       return (
         <div className="flex items-center  justify-center px-32 py-60 dark:bg-gray-900  md:p-32 md:py-60 min-h-[65vh] space-x-2">

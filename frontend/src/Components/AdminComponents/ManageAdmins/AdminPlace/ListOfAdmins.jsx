@@ -5,7 +5,7 @@ import DeletePopUp from '../../PopUps/DeletePopUp';
 import UnPuplishPopUp from '../../PopUps/UnPuplishPopUp';
 import axios from 'axios';
 import { serverLink } from '../../../../Controller/CommonLinks/ServerLink';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Click from './Click';
 function ListOfAdmins({employee,data}) {
@@ -13,6 +13,7 @@ function ListOfAdmins({employee,data}) {
     const [openPublish,setOpenPublish] = useState(false)
     const [openId,setOpenId] = useState('') 
     const [isOpen, setIsOpen] = useState(false)
+    const {employeeId} = useParams()
     const navigate = useNavigate('')
     const openHandler = (id) =>{
         if(id  & id != openId){
@@ -26,13 +27,14 @@ function ListOfAdmins({employee,data}) {
        }
 
        const dispatch = useDispatch()
+
        const deleteHandler = async () =>{
         try {
-            const response = await axios.post(`${serverLink}/delete-emPloyee`,{id:openId})
+            const response = await axios.delete(`${serverLink}/delete-admin/${openId}`)
             if(response.data){
                 setOpenDelete(false)
                 //dispatch(reFetchEmployee)
-                window.location.href = '/admin/employees'
+                window.location.href = '/admin/admins'
             }
         } catch (error) {
             if(error.response.data){
@@ -68,7 +70,7 @@ function ListOfAdmins({employee,data}) {
             <div className="hidden md:flex w-[40%]">Contacts</div>
             <button className="flex focus:outline-none w-[10%] font-body text-xl text-blue-700 justify-end items-center px-6">Edit</button>
         </div>
-        {employee.map(({fname,lname,email,phone,profileImg,role,_id},i) =>{
+        {employee?.map(({fname,lname,email,phone,profileImg,role,_id},i) =>{
              const {eventManager,jobsManager,contentManager,responseManager,biddingManager,generalManager} = role
             return (
                 <div key={i} className='bg-white border-b-[1px] h-24 border-b-neutral-300 dark:border-b-neutral-700 dark:bg-gray-900 p-3 dark:text-white/80'>

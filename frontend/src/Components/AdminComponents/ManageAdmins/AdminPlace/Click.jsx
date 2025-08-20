@@ -19,7 +19,8 @@ function Click({isOpen,setIsOpen,setOpenDelete,setOpenPublish,employeeId}) {
         {title:'Calander',icon:<CgCalendarDates/>,func:()=> alert('delete')},
         {title:'Preview',icon:<MdOutlinePreview/>,func:()=>alert('preview')},
         {title:'Edit',icon:<CiEdit/> , func:()=>{
-            navigate(`/admin/update-job/${employeeId}`)
+            // navigate(`/admin/update-job/${employeeId}`)
+            alert('fix it later')
         }},
         {title:'Duplicate',icon:<HiOutlineDuplicate/>},
         {title:'Unpublish',icon:<MdOutlineUnpublished/>, func:()=>{
