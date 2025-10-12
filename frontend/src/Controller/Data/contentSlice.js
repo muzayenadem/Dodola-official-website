@@ -10,6 +10,7 @@ const initialState = {
     singleError:'',
     data:[],
     single:[],
+    allData:[],
     filteredData:[],
     releatedData:[],
     releatedLoading:false,
@@ -110,7 +111,18 @@ const contentSlice = createSlice({
             state.singleLoading =false
             state.singleError = action.error.message
         })
+    },
+    reducers:{
+        setUpdateContentImage:(state,action) =>{
+            for (let  i = 0; i <= action.payload.length-1; i++ ){
+                state.single[0]?.images?.push(action.payload[i])
+                }
+        },
+        removeUpdateContentImage:(state,action) =>{
+            state.single[0]?.images?.splice(action.payload,1)
+        }
     }
 })
 
+export const {setUpdateContentImage,removeUpdateContentImage} = contentSlice.actions
 export default  contentSlice.reducer

@@ -1,6 +1,7 @@
 const express = require('express')
 const createAdmin = require('../Controller/admin/createAdmin')
 const loginAdmin = require('../Controller/admin/loginAdmin')
+
 const googleCallback = require('../Controller/SpecialFunctions/googleCallback')
 const useGoogle = require('../Controller/SpecialFunctions/useGoogle')
 const authGoogle = require('../Controller/SpecialFunctions/authGoogle')
@@ -10,6 +11,7 @@ const isLogginedWithGoogle = require('../Middleware/isLogginedWithGoogle')
 const isLogginedWithEmail = require('../Middleware/isLogginedWithEmail')
 const authorizedAdmin = require('../Controller/admin/authorizedAdmin')
 const isAdminLoggined = require('../Controller/admin/AdminToken/isAdminLoggined')
+
 const contentPost = require('../Controller/post/contentPost')
 const multer = require('multer')
 const content = require('../Controller/readData/content')
@@ -49,6 +51,7 @@ const updateNews = require('../Controller/updateData/updateNews')
 const deleteAdmin = require('../Controller/deleteData/deleteAdmin')
 const singleEmployee = require('../Controller/readData/SingleData/singleEmployee')
 const updateEmployee = require('../Controller/updateData/updateEmployee')
+const updateContent = require('../Controller/updateData/updateContent')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -126,6 +129,7 @@ route.put('/change-admin-password',isLogginedWithEmail,changeAdminPassword)
 route.put('/update/new/:newsId',isLogginedWithEmail,upload.array('files'),updateNews)
 route.put('/update/job/:jobId',isLogginedWithEmail,upload.array('files'),updateJob)
 route.put('/update/employee/:employeeId', isLogginedWithEmail, upload.array('files'), updateEmployee)
+route.put('/update/content/:contentId', isLogginedWithEmail, upload.array('files'), updateContent)
 
 
 module.exports = route
