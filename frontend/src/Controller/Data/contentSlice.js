@@ -17,7 +17,7 @@ const initialState = {
     filterLoading:false,
     error:''
 }
-//server side render
+//server side render-
 export const fetchContent = createAsyncThunk('contentSlice/fetchContent',()=>{
    return axiosFunction(`${serverLink}/contents`)
 })

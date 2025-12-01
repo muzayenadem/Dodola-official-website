@@ -17,33 +17,136 @@ function LoginAdmin() {
     },[])
     const navigate = useNavigate('')
 
-    const loginHandler = async (e) => {
-        e.preventDefault();
 
-        // Basic validation for email and password fields
+
+
+    // function LoginSecurity(){
+    //     let count = Number(localStorage.getItem('count')) || 0
+    //     let lockedUntil = Number(localStorage.getItem('lockedUntil')) || null
+    //     return function ( password = false ) {
+
+    //         if(password){
+    //             // alert('access granted')
+    //             count = 0
+    //             lockedUntil = null
+    //             localStorage.removeItem('count')
+    //             localStorage.removeItem('lockedUntil')
+    //             return true
+    //         }
+    //         const now = Date.now()
+    //         if(lockedUntil && now < lockedUntil){
+    //             const remaining = Math.ceil((lockedUntil-now)/1000)
+    //             alert(`try again after ${remaining}s.`)
+    //             return false
+    //         }
+
+
+    //         count++
+    //         localStorage.setItem('count',count)
+    //         if(count >= 5 ){
+    //             lockedUntil = now 
+    //             localStorage.setItem('lockedUntil',lockedUntil)
+    //             // alert('to many attempy Locked for 10s.')
+    //             setErr({ type: 'error', message: 'to many attempy Locked for 10s.' });
+    //         } else {
+    //             // alert(`Wrong password ${5 - count} tries left.`)
+    //             // setErr({ type: 'error', message: `Wrong password ${5 - count} tries left.` });
+    //         }
+
+    //         return false
+    //     }
+    // }
+
+    // const enough = LoginSecurity()
+
+    // function loginDenied (value){
+    //      const success = enough(value)
+    //      if(success){
+    //        return "Access Denaid"
+    //      }   
+    // }
+    
+
+    // const loginHandler = async (e) => {
+    //     e.preventDefault();
+
+    //      // Basic validation for email and password fields
+    //     if (!admin.email || !admin.password) {
+    //         return setErr({ type: 'error', message: 'Please fill all required fields.' });
+    //     }
+
+        
+        
+    //     // if(!loginDenied()) return alert('afterrr')
+
+    //     (async ()=>{
+    //         let you_tried = localStorage.getItem('count') || 0
+    //         let lockedUntil = Number(localStorage.getItem('lockedUntil')) || null
+    //         console.log({you_tried})
+    //         const now = Date.now()
+    //         if(lockedUntil && now < lockedUntil){
+    //             const remaining = Math.ceil((lockedUntil-now)/1000)
+    //             // alert(`try again after ${remaining}s.`)
+    //             setErr({ type: 'error', message: `try again after ${remaining}s.` });
+    //             return false
+    //         } else {
+
+    //             try {
+    //             setLoading(true);
+    //             const response = await axios.post(
+    //             `${serverLink}/login-admin`,
+    //             { email: admin.email, password: admin.password },
+    //             {
+    //                 headers: { 'Content-Type': 'application/json' },
+    //                 withCredentials: true,
+    //             }
+    //         );
+
+    //         // Set success message
+    //         setErr('');
+    //         setSuccess({ type: 'success', message: 'Successfully logged in!' });
+
+    //         // Redirect to admin dashboard
+    //         console.log({ response });
+          
+    //         loginDenied(true)
+    //         //navigate('/admin');
+    //         window.location.href = '/admin'
+
+    //         } catch (error) {
+    //             const errorMsg = error.response?.data?.message || 'Login failed. Please try again.';
+    //             setErr({ type: 'error', message: errorMsg });
+    //             loginDenied(false)
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //       }
+    //     })()
+    // };
+    
+     const loginHandler = async (e) => {
+        e.preventDefault();
+         // Basic validation for email and password fields
         if (!admin.email || !admin.password) {
             return setErr({ type: 'error', message: 'Please fill all required fields.' });
         }
-
         try {
-            setLoading(true);
-            const response = await axios.post(
-                `${serverLink}/login-admin`,
-                { email: admin.email, password: admin.password },
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true,
-                }
-            );
+        setLoading(true);
+        const response = await axios.post(
+        `${serverLink}/login-admin`,
+            { email: admin.email, password: admin.password },
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true,
+            }
+        );
+         // Set success message
+        setErr('');
+        setSuccess({ type: 'success', message: 'Successfully logged in!' });
 
-            // Set success message
-            setSuccess({ type: 'success', message: 'Successfully logged in!' });
-
-            // Redirect to admin dashboard
-            console.log({ response });
-            //navigate('/admin');
-            window.location.href = '/admin'
-
+        console.log({ response });
+        //navigate('/admin');
+        window.location.href = '/admin'
         } catch (error) {
             const errorMsg = error.response?.data?.message || 'Login failed. Please try again.';
             setErr({ type: 'error', message: errorMsg });

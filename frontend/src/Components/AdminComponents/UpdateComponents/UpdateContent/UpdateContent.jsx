@@ -199,104 +199,7 @@ const findCategory = data => {
 useEffect(()=>{
   setFiles(obj.images)
 },[single])
-const submitHundler = async (e) =>{
-  e.preventDefault()
-  setLoading(true)
- let oldFiles = []
-    for( let i = 0; i <= files.length ; i++){
-      if(typeof files[i] === 'string'){
-        if (files[i] != files[i-1]) oldFiles = [...oldFiles,files[i]]
-      }
-    }
-  console.log({oldFiles,files})
 
-  const updatedEmployeeData = {
-    category : postData.category ? postData.category : obj?.category,
-    subCategory : postData.subCategory ? postData.subCategory : obj?.subCategory,
-    name: postData.name ? postData.name : obj?.name,
-    title: postData.title ? postData.title : obj?.title,
-    description: postData.description ? postData.description : obj?.description,
-    date: postData.date ? postData.date : obj?.date,
-    files : oldFiles
-  }
-
-  const formData = new FormData()
-  formData.append('data',JSON.stringify({updatedEmployeeData}))
-  for(let i = 0; i <= files.length; i++){
-    formData.append('files',files[i]) 
-  }
-
-    try {
-        // Replace with your server URL
-    
-        const response = await axios.put(`${serverLink}/update/employee/${contentId}`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-            withCredentials: true, // This is important for sending credentials
-          })
-        console.log('Data fetched successfully:', response.data);
-        setLoading(false)
-        setOpen(false)
-        setErrorPage(false)
-        setSucced(true)
-        
-        // You can handle the response here, such as updating state in React
-        return response.data;
-    
-        } catch (error) {
-        // Error handling
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error('Server responded with an error:', error.response.data);
-          setLoading(false)
-          setOpen(false)
-          setSucced(false)
-          setResponse(error.response.data)
-          setErr(error.response.data)
-          setErrorPage(true)
-          return error.response.data
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error('No response received:', error.request);
-          setLoading(false)
-          setOpen(false)
-          setSucced(false)
-          setResponse('response not received')
-          setErr('No response resivied')
-          setErrorPage(true)
-          
-          return error.request
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error('Error setting up request:', error.message);
-          setLoading(false)
-          setOpen(false)
-          setSucced(false)
-          setResponse('Error setting up request')
-          setErr(error.message)
-          setErrorPage(true)
-          
-          return error.message
-        }
-      }
-  }
-
-  const nextHandler =  (e) => {
-    e.preventDefault()
-    setAsured(true)
-
-    if(
-      postData.title || obj.title && postData.description || obj.description && postData.category || obj.category && 
-      postData.date || obj.date && obg.images.length
-    ){
-      setAsured(false)
-      setOpen(true)
-    }else{
-      setErrMessage('you have to fiil all required place')
-    }
-  }
 
 
 const submitHundler2 = async (event) => {
@@ -340,6 +243,7 @@ const submitHundler2 = async (event) => {
         setLoading(false)
         setErr('')
         dispatch(fetchSingleContent(contentId))
+        console.log({response})
         setSucced(response?.data?.message)
         
         // You can handle the response here, such as updating state in React
@@ -485,7 +389,7 @@ const submitHundler2 = async (event) => {
 							</path>
 						</svg>
 
-						{/* <p class="mx-3">{succed}</p> */}
+						<p class="mx-3">{succed}</p>
 					</div>
 
 					<button onClick={()=> setSucced('')} class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">

@@ -11,7 +11,6 @@ function AdminNavbar({admin}) {
     const [isDarkMode, setIsDarkMode] = useState(!false);
     const [open,setOpen] = useState(false)
     
-
 useEffect(() => {
   if (!isDarkMode) {
     document.documentElement.classList.add('dark');
@@ -23,6 +22,9 @@ useEffect(() => {
 const toggleDarkMode = () => {
   setIsDarkMode(!isDarkMode);
 };
+
+const thisAdmin = admin.reduce(()=> admin)
+console.log({thisAdmin})
 
 const dispatch = useDispatch()
 const AdminToggle = useSelector(state => state.AdminToggle.open)
@@ -52,10 +54,10 @@ const AdminToggle = useSelector(state => state.AdminToggle.open)
                    <div className="flex gap-20 relative ">
                    <button onClick={()=> setOpen(!open)} type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                         <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                            <img src={br1} className="object-cover w-full h-full" alt="avatar"/>
+                            <img src={thisAdmin?.profileImg ? thisAdmin.profileImg : br1} className="object-cover w-full h-full" alt="avatar"/>
                         </div>
 
-                        <h3 className="mx-2 text-gray-700 dark:text-gray-200 hidden lg:block">{admin[0].fname} {admin[0].lname}</h3>
+                        <h3 className="mx-2 text-gray-700 dark:text-gray-200 hidden lg:block">{thisAdmin?.fname} {thisAdmin?.lname}</h3>
                     </button> 
                     <button  type="button" className=" lg:hidden ml-4 text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
                         {!AdminToggle && 

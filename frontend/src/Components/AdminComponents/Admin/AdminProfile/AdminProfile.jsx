@@ -12,7 +12,7 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 function AdminProfile({setOpen}) {
 
   const {admin,role} = adminData()
-  console.log({admin})
+  console.log({'thisProfileAdmin':admin})
   const {eventManager,jobsManager,contentManager,responseManager,biddingManager,generalManager} = role
   const navigate = useNavigate('')
 
@@ -28,7 +28,7 @@ function AdminProfile({setOpen}) {
       <div className='border-b-[1px] flex justify-between p-5 border-b-neutral-200 dark:border-b-neutral-700'>
           <h3 className="mx-2 items-center self-center text-gray-700 dark:text-gray-200 ">{admin.fname} {admin.lname}</h3>
           <div className="w-12 h-12 overflow-hidden border-2 border-gray-400 rounded-full">
-              <img src={br1} className="object-cover w-full h-full" alt="avatar"/>
+              <img src={admin?.profileImg ? admin?.profileImg : br1} className="object-cover w-full h-full" alt="avatar"/>
           </div>
       </div>
 

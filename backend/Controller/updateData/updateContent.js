@@ -78,7 +78,7 @@ const contentModel = require('../../Model/contentModel');
             return res.status(404).json({ message: "News not found" });
             }
 
-             res.status(200).json({ message: "News updated successfully", data: result });
+             res.status(200).json({ message: "Contents updated successfully", data: result });
     } catch (error) {
         res.status(403).send(error.message)
         console.log({error:error.message})

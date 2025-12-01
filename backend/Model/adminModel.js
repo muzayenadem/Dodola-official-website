@@ -26,6 +26,14 @@ const schema = mongoose.Schema({
         type:Object,
         required:true
     },
+    failedAttempts:{
+        type:Number,
+        default:0
+    },
+    lockUntil:{
+        type:Date,
+        default: null
+    },
     profileImg:{
         type:String
     },

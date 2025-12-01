@@ -80,7 +80,7 @@ function EditProfile() {
                     </h1>
                     <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Update Profile</h2>
                 </div>
-                <button onClick={()=> setOpen(!open)} className=" self-center bg-fuchsia-800 hover:bg-fuchsia-900 hover:font-normal font-medium px-4 py-2 rounded-md">
+                <button onClick={()=> setOpen(!open)} className=" self-center text-white bg-fuchsia-800 hover:bg-fuchsia-900 hover:font-normal font-medium px-4 py-2 rounded-md">
                     Change Password
                 </button>
               </div>

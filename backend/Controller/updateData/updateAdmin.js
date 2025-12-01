@@ -67,6 +67,7 @@ const updateAdminProfile = async (req,res) =>{
         } },
           { new: true }
         );
+        await updateAdmin.save()
         res.status(200).send('Admin profile updated successfully.');
     } catch (error) {
         res.status(500).send('something is error')
