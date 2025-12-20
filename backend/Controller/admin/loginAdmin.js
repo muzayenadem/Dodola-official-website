@@ -7,6 +7,36 @@ const loginAdmin = async (req,res) =>{
         const {email,password} = req.body
         console.log({email,password})
 
+
+
+
+
+         const json_super_admin = process.env.SUPER_ADMIN
+        const super_admin = JSON.parse(json_super_admin)
+        // const {fname,lname,em:email,phone,ps:password,roles} = super_admin
+        const isSuperAdminBefore = await adminModel.findOne({email:super_admin.email})
+
+        if(!isSuperAdminBefore){
+            const dat = new Date()
+            const date = `${dat.getFullYear()} / ${dat.getMonth()} / ${dat.getDate()}`
+            console.log({date})
+
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(super_admin.password,salt)
+
+            delete super_admin.password
+            const newSuperAdmin = new adminModel({
+                ...super_admin,password:hashedPassword,date
+            })
+
+            const savedSuperAdmin = await newSuperAdmin.save()
+        }
+
+
+
+
+
+
         if (!email || !password) {
             return res.status(400).json({ message: 'Please fill all required fields.' });
         }
