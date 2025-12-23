@@ -9,6 +9,7 @@ import jobs from '../Data/jobsSlce'
 import jobPost from "../Posts/jobPost";
 import questions from "../Data/questionsSlice";
 import news from '../Data/newsSlice'
+import adminRoles from '../Data/roleSlice'
 import admins from '../Data/adminsSlice'
 import adminData from "../Data/adminData";
 const store = configureStore({
@@ -20,7 +21,8 @@ const store = configureStore({
        //post reducers
        mainPost,
        jobPost,
-
+       //frontend admin role
+       adminRoles,
        //loggined asure reduceres
        adminToken,
 

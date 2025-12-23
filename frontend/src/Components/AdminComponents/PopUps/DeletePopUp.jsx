@@ -3,7 +3,7 @@ import React from 'react'
 import { MdOutlineClear } from "react-icons/md";
 
 
-function DeletePopUp({openDelete,type,title,description,deleteHandler}) {
+function DeletePopUp({openDelete,type,title,description,deleteHandler,delete_btn}) {
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white/80 shadow-lg shadow-neutral-700 gap-3 flex-col flex p-5 z-10 rounded-md w-[90%]  md:w-[35%] top-[20%] fixed left-[5%] md:left-[32%]'>
       <div className="flex justify-between">

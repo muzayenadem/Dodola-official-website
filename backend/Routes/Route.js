@@ -52,6 +52,10 @@ const deleteAdmin = require('../Controller/deleteData/deleteAdmin')
 const singleEmployee = require('../Controller/readData/SingleData/singleEmployee')
 const updateEmployee = require('../Controller/updateData/updateEmployee')
 const updateContent = require('../Controller/updateData/updateContent')
+const singleAdmin = require('../Controller/readData/SingleData/singleAdmin')
+const updateAdminRole = require('../Controller/admin/updateadminRole')
+const isGeneralAdmin = require('../Middleware/isGeneralAdmin')
+const suspendAdmin = require('../Controller/admin/suspendAdmin')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -88,6 +92,7 @@ route.get('/single-news/:newsId',singleNews)
 route.get('/single-job/:jobId',singleJob)
 route.get('/single-content/:contentId',singleContent)
 route.get('/single-employee/:employeeId', singleEmployee)
+route.get('/single-admin/:adminId',isLogginedWithEmail,singleAdmin)
 
 // POST METHOD 
 route.post('/subscribe',AddSubscriber)
@@ -130,6 +135,8 @@ route.put('/update/new/:newsId',isLogginedWithEmail,upload.array('files'),update
 route.put('/update/job/:jobId',isLogginedWithEmail,upload.array('files'),updateJob)
 route.put('/update/employee/:employeeId', isLogginedWithEmail, upload.array('files'), updateEmployee)
 route.put('/update/content/:contentId', isLogginedWithEmail, upload.array('files'), updateContent)
+route.put('/update/admin-role/:adminId', isLogginedWithEmail,updateAdminRole)
+route.put('/update/suspend-admin/:adminId',isLogginedWithEmail,isGeneralAdmin,suspendAdmin)
 
 
 module.exports = route

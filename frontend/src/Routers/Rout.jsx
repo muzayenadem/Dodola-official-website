@@ -54,6 +54,7 @@ import ScrollToTop from '../Components/AppComponents/Home/ScrollTop'
 import NoData from '../Components/ErrorPages/NoData'
 import UpdateNews from '../Components/AdminComponents/UpdateComponents/UpdateNews'
 import UpdateEmloyee from '../Components/AdminComponents/UpdateComponents/UpdateEmployee/UpdateEmloyee'
+import UpdateAdmin from '../Components/AdminComponents/UpdateComponents/UpdateAdmin/UpdateAdmin'
 
 function Rout() {
   const {adminToken ,admin}= isAdminLoggined()
@@ -259,6 +260,7 @@ function Rout() {
                description={"in this software you can't  access this page if you are not general manager or content manager"}
                />
             }/>
+            <Route path='update-admins/:adminId' element={generalManager && <UpdateAdmin/>}/>
         </Route>
       </Routes>
    </Router>

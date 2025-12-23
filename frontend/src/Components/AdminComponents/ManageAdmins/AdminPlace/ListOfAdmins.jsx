@@ -12,6 +12,9 @@ function ListOfAdmins({employee,data}) {
     const [openDelete,setOpenDelete] = useState(false)
     const [openPublish,setOpenPublish] = useState(false)
     const [openId,setOpenId] = useState('') 
+    const [errMessage,setErrMessage] = useState('')
+    const [suspensio_loading , setSuspension_loading] = useState(false)
+    const [succeed,setSucceed] = useState('')
     const [isOpen, setIsOpen] = useState(false)
     const {employeeId} = useParams()
     const navigate = useNavigate('')
@@ -19,7 +22,7 @@ function ListOfAdmins({employee,data}) {
         if(id  & id != openId){
             setIsOpen(false)
             setIsOpen(true)
-            setIsOpen(id)
+            setOpenId(id)
         } else{
             setOpenId(id)
             setIsOpen(!isOpen)
@@ -52,9 +55,17 @@ function ListOfAdmins({employee,data}) {
         } 
       }
 
-
-      const unPublishHandler = () =>{
-        alert('Un Publish handler')
+    
+      const unPublishHandler = async () =>{
+        setSuspension_loading(true)
+        try {
+            const res = await axios.put(`${serverLink}/update/suspend-admin/${openId}`)
+            setSucceed(res.data)
+        } catch (error) {
+            setErrMessage(error.message)
+        } finally{
+            setSuspension_loading(false)
+        }
       }
       if(!data.data.length & data.loading == false){
         return <div className='text-center py-32 min-h-[70vh] dark:bg-gray-900'>there is no data </div>
@@ -70,7 +81,7 @@ function ListOfAdmins({employee,data}) {
             <div className="hidden md:flex w-[40%]">Contacts</div>
             <button className="flex focus:outline-none w-[10%] font-body text-xl text-blue-700 justify-end items-center px-6">Edit</button>
         </div>
-        {employee?.map(({fname,lname,email,phone,profileImg,role,_id},i) =>{
+        {employee?.map(({fname,lname,email,phone,suspended,profileImg,role,_id},i) =>{
              const {eventManager,jobsManager,contentManager,responseManager,biddingManager,generalManager} = role
             return (
                 <div key={i} className='bg-white border-b-[1px] h-24 border-b-neutral-300 dark:border-b-neutral-700 dark:bg-gray-900 p-3 dark:text-white/80'>
@@ -103,7 +114,8 @@ function ListOfAdmins({employee,data}) {
                                  setIsOpen={setIsOpen} 
                                  setOpenDelete={setOpenDelete}
                                  setOpenPublish={setOpenPublish}
-                                 employeeId={_id}
+                                 adminId={_id}
+                                 admin={{fname,lname,email,phone,suspended,profileImg,role,_id}}
                                  />
                             </div>
                         </div>
@@ -120,7 +132,7 @@ function ListOfAdmins({employee,data}) {
                                         setIsOpen={setIsOpen} 
                                         setOpenDelete={setOpenDelete} 
                                         setOpenPublish={setOpenPublish}
-                                        employeeId={_id}
+                                        adminId={_id}
                                         />
                                     </div>
                                 </div>
@@ -141,7 +153,7 @@ function ListOfAdmins({employee,data}) {
         <dialog open={openDelete}>
         <DeletePopUp 
             openDelete={setOpenDelete} 
-            type={'Job'}
+            type={'Admin'}
             title={'Are you certain you want to remove this job?'}
             description={"Once the job is deleted, it cannot be republished. If you later decided you want to make it available again, you'll need to recreate the job content from scratch. As an alternative, you can update your calendar's availability to reflect any changes."}
             deleteHandler={deleteHandler}
@@ -151,9 +163,10 @@ function ListOfAdmins({employee,data}) {
         <UnPuplishPopUp 
             setOpenPublish={setOpenPublish}
             type={'Job'}
-            title={'Are you certain you want to unpublish this job?'}
-            description={"Do you want to view out this content for the next period? Then all you have to do is change the availability."}
+            title={'Are you certain that you want to suspend this admin?'}
+            description={"But you can remove suspenssion time from this admin when ever you want "}
             unPublishHandler={unPublishHandler}
+            button={suspensio_loading ? 'updating' : 'suspend'}
             />
         </dialog>
     </>

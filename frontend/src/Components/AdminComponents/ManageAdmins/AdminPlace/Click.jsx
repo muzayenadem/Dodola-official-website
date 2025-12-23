@@ -13,17 +13,21 @@ import { TbCreditCardPay } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 
-function Click({isOpen,setIsOpen,setOpenDelete,setOpenPublish,employeeId}) {
+function Click({isOpen,setIsOpen,setOpenDelete,setOpenPublish,adminId,admin}) {
+    console.log({adminId})
     const navigate = useNavigate('')
     const clicks = [
         {title:'Calander',icon:<CgCalendarDates/>,func:()=> alert('delete')},
         {title:'Preview',icon:<MdOutlinePreview/>,func:()=>alert('preview')},
         {title:'Edit',icon:<CiEdit/> , func:()=>{
-            // navigate(`/admin/update-job/${employeeId}`)
-            alert('fix it later')
+            navigate(`/admin/update-admins/${adminId}`)
+            // alert('fix it later')
         }},
-        {title:'Duplicate',icon:<HiOutlineDuplicate/>},
-        {title:'Unpublish',icon:<MdOutlineUnpublished/>, func:()=>{
+        {title:'Reset Password',icon:<HiOutlineDuplicate/>,func:()=>{
+            // alert("are you sure do you want to reset this password")
+            setOpenPublish(true)
+        }}, 
+        {title:`${admin?.suspended ? 'Unsuspend' : 'Suspend'}`,icon:<MdOutlineUnpublished/>, func:()=>{
             setIsOpen(false)
             setOpenDelete(false)
             setOpenPublish(true)

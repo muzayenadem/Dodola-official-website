@@ -26,6 +26,10 @@ const schema = mongoose.Schema({
         type:Object,
         required:true
     },
+    suspended:{
+        type:Boolean,
+        default:false
+    },
     failedAttempts:{
         type:Number,
         default:0
