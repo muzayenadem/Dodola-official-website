@@ -48,9 +48,14 @@ const loginAdmin = async (req,res) =>{
 
         // Check if admin exists
         const isAdmin = await adminModel.findOne({ email });
-        if (!isAdmin) {
+           if (!isAdmin) {
             return res.status(403).json({ message: 'Incorrect email or password.' });
         }
+        // check if suspended
+        const suspended = isAdmin.suspended
+        if(suspended)
+            return res.status(403).json({message:'Your Account has suspended please contact supporters'})
+     
         // check if user locked before
         if(isAdmin.lockUntil && isAdmin.lockUntil > Date.now()){
             console.log("locked before")
