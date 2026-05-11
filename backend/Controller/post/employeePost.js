@@ -10,7 +10,7 @@ const employeePost = async(req,res) =>{
       const {adminId} = req.admin
      
       const mainAdmin = await adminModel.findOne({_id:adminId})
-      const isGeneralManager = mainAdmin.role.generalManager
+      const isGeneralManager = mainAdmin.role.geneyralManager
    
 
 

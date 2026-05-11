@@ -17,7 +17,6 @@ const newsPost = async(req,res) => {
         // take data from client
         let {data} = req.body
         data = JSON.parse(data)
-        const files = req.files
 
         const {newsData} = data
 
@@ -30,34 +29,38 @@ const newsPost = async(req,res) => {
 
         const {fname,lname,email,_id} = loginnedAdmin
         const admin = {fname,lname,email,_id}
-        const uploadPromises = files.map(async (file) => {
-            const fileName = `${Date.now()}-${file.originalname}`;
-            const fileRef = bucket.file(`NewsFile/${fileName}`);
-     
-            const stream = fileRef.createWriteStream({
-              metadata: {
-                contentType: file.mimetype
-              }
-            });
-     
-            await new Promise((resolve, reject) => {
-              stream.on('error', reject);
-              stream.on('finish', resolve);
-              stream.end(file.buffer);
-            });
-     
-            await fileRef.makePublic();
-            const publicUrl = `https://storage.googleapis.com/${bucket.name}/${fileRef.name}`;
 
-            return publicUrl
-          });
+        const files = req.files
+        const images = files?.map(file => file.path)
+
+        // const uploadPromises = files.map(async (file) => {
+        //     const fileName = `${Date.now()}-${file.originalname}`;
+        //     const fileRef = bucket.file(`NewsFile/${fileName}`);
      
-        const filesUrl = await Promise.all(uploadPromises);
-        
-        console.log({filesUrl})
+        //     const stream = fileRef.createWriteStream({
+        //       metadata: {
+        //         contentType: file.mimetype
+        //       }
+        //     });
+     
+        //     await new Promise((resolve, reject) => {
+        //       stream.on('error', reject);
+        //       stream.on('finish', resolve);
+        //       stream.end(file.buffer);
+        //     });
+     
+        //     await fileRef.makePublic();
+        //     const publicUrl = `https://storage.googleapis.com/${bucket.name}/${fileRef.name}`;
+
+        //     return publicUrl
+        //   });
+     
+        // const filesUrl = await Promise.all(uploadPromises);
+        // console.log({filesUrl})
+
         const newsContent = new newsModel({
             ...newsData,
-            files:filesUrl,
+            files:images,
             admin,
             postedDate:new Date(),
             updatedDate:new Date()

@@ -56,6 +56,7 @@ const singleAdmin = require('../Controller/readData/SingleData/singleAdmin')
 const updateAdminRole = require('../Controller/admin/updateadminRole')
 const isGeneralAdmin = require('../Middleware/isGeneralAdmin')
 const suspendAdmin = require('../Controller/admin/suspendAdmin')
+const upload_to_cloudnary = require('../Middleware/apload_to_cloudinary')
 const route = express.Router()
 
 const storage = multer.memoryStorage();
@@ -104,7 +105,7 @@ route.get('/admins',isLogginedWithEmail,admins)
 //POST METHOD
 route.post('/post-main-content',isLogginedWithEmail,upload.array('files'),contentPost)
 route.post('/post-job',isLogginedWithEmail,upload.array('files'),postJob)
-route.post('/post-news',isLogginedWithEmail,upload.array('files'),newsPost)
+route.post('/post-news',isLogginedWithEmail,upload_to_cloudnary("News_Image").array('files'),newsPost)
 route.post('/post-employee',isLogginedWithEmail,upload.array('files'),employeePost)
 
 
@@ -129,7 +130,7 @@ route.get('/news/:id/share',shareNews)
 
 
 //UPDATE METHODS
-route.put('/update-admin-profile',isLogginedWithEmail,upload.any('image'),updateAdminProfile)
+route.put('/update-admin-profile',isLogginedWithEmail,upload_to_cloudnary("AdminImages").any('image'),updateAdminProfile)
 route.put('/change-admin-password',isLogginedWithEmail,changeAdminPassword)
 route.put('/update/new/:newsId',isLogginedWithEmail,upload.array('files'),updateNews)
 route.put('/update/job/:jobId',isLogginedWithEmail,upload.array('files'),updateJob)
@@ -137,6 +138,20 @@ route.put('/update/employee/:employeeId', isLogginedWithEmail, upload.array('fil
 route.put('/update/content/:contentId', isLogginedWithEmail, upload.array('files'), updateContent)
 route.put('/update/admin-role/:adminId', isLogginedWithEmail,updateAdminRole)
 route.put('/update/suspend-admin/:adminId',isLogginedWithEmail,isGeneralAdmin,suspendAdmin)
+
+route.post('/see', (req,res)=>{
+    try {
+        res.status(200).send("succeed")
+    } catch (error) {
+        res.status(500).json({"error":error.message})
+    }
+})
+
+
+
+
+
+
 
 
 module.exports = route

@@ -58,7 +58,7 @@ const updateAdminProfile = async (req,res) =>{
         const updateAdmin = await adminModel.findByIdAndUpdate(
           { _id: adminId },
           { $set: {
-            fname: fname ? fname : null,
+            fname: fname ? fname : null,  
             lname: lname ? lname : null,
             email: email ? email : null,
             phone: phone ? phone : null,
